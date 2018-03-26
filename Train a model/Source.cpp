@@ -81,17 +81,17 @@ int main(int argc, char ** argv)
 
 
 	custom_roi.push_back(vector<Point>());
-	custom_roi[0].push_back(Point(255, 255));
+	/*custom_roi[0].push_back(Point(255, 255));
 	custom_roi[0].push_back(Point(300, 255));
 	custom_roi[0].push_back(Point(250, 480));
-	custom_roi[0].push_back(Point(120, 480));
+	custom_roi[0].push_back(Point(120, 480));*/
 
 
-	/*
+	
 	custom_roi[0].push_back(Point(10, 10));
-	custom_roi[0].push_back(Point(10, 630));
 	custom_roi[0].push_back(Point(630, 10));
-	custom_roi[0].push_back(Point(630, 630));*/
+	custom_roi[0].push_back(Point(630, 470));
+	custom_roi[0].push_back(Point(10, 470));
 	
 	//set roi
 	custom_roi_mask = Mat::zeros(IMAGE_SIZE, CV_8UC1);
@@ -113,6 +113,7 @@ int main(int argc, char ** argv)
 	if (choice == 1) {
 		extractHogAndTrainSVM(detector, "dumps.txt", "cars.txt");
 		detector->save("my_det.xml");
+		cout << "New model saved!";
 	}
 	else if (choice == 2) {
 		detector = StatModel::load<SVM>("my_det.xml");
@@ -143,13 +144,13 @@ int main(int argc, char ** argv)
 		threshold(fg, fg, 30, 250, THRESH_BINARY);
 		imshow("before dilation", fg);
 
-		/*int dilateSize = 3;
+		int dilateSize = 3;
 		// types : MORPH_RECT, MORPH_CROSS, MORPH_ELLIPSE
 		Mat element = getStructuringElement(MORPH_RECT,
 			Size(2 * dilateSize + 1, 2 * dilateSize + 1),
 			Point(dilateSize, dilateSize));
 		dilate(fg, fg, element);
-		imshow("after dilation", fg);*/
+		imshow("after dilation", fg);
 
 		vector< vector< Point > > contours = getContours(fg);
 		vector< vector< Point > > hull(contours.size());
@@ -308,6 +309,7 @@ void trainSvm(Ptr<SVM>& svm, Mat& train_data, Mat& labels)
 	svm->setTermCriteria(TermCriteria(TermCriteria::MAX_ITER, 10000, 1e-6));
 
 	Ptr<TrainData> td = TrainData::create(train_data, ROW_SAMPLE, labels);
+	cout << "Train----------------------------------------->"<<endl;
 	svm->train(td);
 }
 
