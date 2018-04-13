@@ -11,7 +11,6 @@ using namespace cv;
 using namespace std;
 using namespace server_client;
 
-
 void callback(Server& server) {
 
     VideoCapture cap(0);
@@ -23,11 +22,11 @@ void callback(Server& server) {
     Mat frame;
     cap >> frame;
     MatConverter matConverter(frame);
-
+//
     volatile bool connectionActive = true;
     for(;connectionActive;) {
 
-        const vector<byte> &buffer = matConverter.byteStream(frame);
+        const vector<byte>& buffer = matConverter.byteStream(frame);
         long size = buffer.size();
 
         if (server.send(&size, sizeof(long)) != sizeof(long)) {
@@ -38,7 +37,7 @@ void callback(Server& server) {
             connectionActive = false;
         }
 
-        if (!connectionActive && errno != EPIPE )
+        if (!connectionActive && errno != EPIPE ) // EPIPE if connection is closed by the client
             server.stop();
         else
             cap >> frame;

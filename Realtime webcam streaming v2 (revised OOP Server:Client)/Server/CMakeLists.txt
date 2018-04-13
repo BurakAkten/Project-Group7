@@ -20,7 +20,7 @@ add_executable(Server
         Server.cpp
         Server.h
         Networkable.cpp
-        Networkable.h)
+        Networkable.h NetworkableException.h)
 
 include_directories(${OpenCV_INCLUDE_DIRS})
 target_link_libraries(Server ${OpenCV_LIBS})

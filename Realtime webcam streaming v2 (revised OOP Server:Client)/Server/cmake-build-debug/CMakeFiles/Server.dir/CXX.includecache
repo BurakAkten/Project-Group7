@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/Users/vakhidbetrakhmadov/Desktop/CLion/Server/MatConverter.cpp
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/MatConverter.cpp
 MatConverter.h
-/Users/vakhidbetrakhmadov/Desktop/CLion/Server/MatConverter.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/MatConverter.h
 
-/Users/vakhidbetrakhmadov/Desktop/CLion/Server/MatConverter.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/MatConverter.h
 iostream
 -
 vector
@@ -18,15 +18,15 @@ vector
 exception
 -
 opencv2/imgproc.hpp
-/Users/vakhidbetrakhmadov/Desktop/CLion/Server/opencv2/imgproc.hpp
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/opencv2/imgproc.hpp
 opencv2/highgui.hpp
-/Users/vakhidbetrakhmadov/Desktop/CLion/Server/opencv2/highgui.hpp
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/opencv2/highgui.hpp
 
-/Users/vakhidbetrakhmadov/Desktop/CLion/Server/Networkable.cpp
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/Networkable.cpp
 Networkable.h
-/Users/vakhidbetrakhmadov/Desktop/CLion/Server/Networkable.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/Networkable.h
 
-/Users/vakhidbetrakhmadov/Desktop/CLion/Server/Networkable.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/Networkable.h
 iostream
 -
 cstdio
@@ -36,37 +36,43 @@ vector
 sys/ioctl.h
 -
 supporting/uici.h
-/Users/vakhidbetrakhmadov/Desktop/CLion/Server/supporting/uici.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/supporting/uici.h
 supporting/restart.h
-/Users/vakhidbetrakhmadov/Desktop/CLion/Server/supporting/restart.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/supporting/restart.h
+NetworkableException.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/NetworkableException.h
 
-/Users/vakhidbetrakhmadov/Desktop/CLion/Server/Server.cpp
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/NetworkableException.h
+iostream
+-
+
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/Server.cpp
 Server.h
-/Users/vakhidbetrakhmadov/Desktop/CLion/Server/Server.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/Server.h
 
-/Users/vakhidbetrakhmadov/Desktop/CLion/Server/Server.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/Server.h
 Networkable.h
-/Users/vakhidbetrakhmadov/Desktop/CLion/Server/Networkable.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/Networkable.h
 
-/Users/vakhidbetrakhmadov/Desktop/CLion/Server/main.cpp
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/main.cpp
 iostream
 -
 cstdlib
 -
 opencv2/imgproc.hpp
-/Users/vakhidbetrakhmadov/Desktop/CLion/Server/opencv2/imgproc.hpp
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/opencv2/imgproc.hpp
 opencv2/highgui.hpp
-/Users/vakhidbetrakhmadov/Desktop/CLion/Server/opencv2/highgui.hpp
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/opencv2/highgui.hpp
 supporting/uici.h
-/Users/vakhidbetrakhmadov/Desktop/CLion/Server/supporting/uici.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/supporting/uici.h
 supporting/restart.h
-/Users/vakhidbetrakhmadov/Desktop/CLion/Server/supporting/restart.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/supporting/restart.h
 MatConverter.h
-/Users/vakhidbetrakhmadov/Desktop/CLion/Server/MatConverter.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/MatConverter.h
 Server.h
-/Users/vakhidbetrakhmadov/Desktop/CLion/Server/Server.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/Server.h
 
-/Users/vakhidbetrakhmadov/Desktop/CLion/Server/supporting/restart.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/supporting/restart.h
 fcntl.h
 -
 unistd.h
@@ -76,7 +82,7 @@ sys/time.h
 sys/types.h
 -
 
-/Users/vakhidbetrakhmadov/Desktop/CLion/Server/supporting/uici.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/supporting/uici.h
 errno.h
 -
 signal.h
@@ -90,9 +96,9 @@ sys/select.h
 sys/socket.h
 -
 uiciname.h
-/Users/vakhidbetrakhmadov/Desktop/CLion/Server/supporting/uiciname.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/supporting/uiciname.h
 
-/Users/vakhidbetrakhmadov/Desktop/CLion/Server/supporting/uiciname.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/supporting/uiciname.h
 ctype.h
 -
 netdb.h

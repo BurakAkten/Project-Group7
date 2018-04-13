@@ -34,4 +34,8 @@ namespace server_client {
 
         return 0;
     }
+
+    void Client::disconnect() const {
+        r_close(connection_sock_fd);
+    }
 }

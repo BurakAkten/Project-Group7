@@ -1,4 +1,4 @@
-# Install script for directory: /Users/vakhidbetrakhmadov/Desktop/CLion/Server
+# Install script for directory: /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/vakhidbetrakhmadov/Desktop/CLion/Server/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

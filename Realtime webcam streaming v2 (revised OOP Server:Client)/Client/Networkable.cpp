@@ -4,6 +4,9 @@
 
 #include "Networkable.h"
 
+namespace  {
+#define BUFFER_SIZE 1024
+}
 
 namespace server_client {
 
@@ -15,31 +18,38 @@ namespace server_client {
         r_close(connection_sock_fd);
     }
 
-    ssize_t Networkable::send(const vector<byte>& buffer) {
+    ssize_t Networkable::send(const vector<byte>& buffer) const {
         return send(buffer.data(), buffer.size());
     }
 
-    ssize_t Networkable::send(const void* buffer, size_t size) {
+    ssize_t Networkable::send(const void* buffer, size_t size) const {
         return r_write(connection_sock_fd, (void*) buffer, size);
     }
 
-    ssize_t Networkable::receive(vector<byte> &buffer) {
+    ssize_t Networkable::receive(vector<byte> &buffer) const {
         return readblock(connection_sock_fd, buffer.data(), buffer.capacity());
     }
 
-    ssize_t Networkable::receive(void *buffer, size_t size) {
+    ssize_t Networkable::receive(void *buffer, size_t size) const {
         return r_read_persistent(connection_sock_fd, buffer, size);
     }
 
-    bool Networkable::hasDataPending() {
-        int count = 0;
-        if (ioctl(connection_sock_fd, FIONREAD, &count) == -1)
-            return false;
+    ssize_t Networkable::dataPending() const {
+        ssize_t count = 0;
+        if (ioctl(connection_sock_fd, FIONREAD, &count) == -1) {
+            char buffer[BUFFER_SIZE];
+            strerror_r(errno, buffer, BUFFER_SIZE);
+            throw NetworkableException(buffer);
+        }
 
-        return count != 0;
+        return count;
     }
 
-    ssize_t Networkable::r_read_persistent(int fd, void *buf, size_t size) {
+    bool Networkable::hasDataPending() const {
+        return dataPending() != 0;
+    }
+
+    ssize_t Networkable::r_read_persistent(int fd, void *buf, size_t size) const {
         char *bufp;
         size_t bytestoread;
         ssize_t bytesread;

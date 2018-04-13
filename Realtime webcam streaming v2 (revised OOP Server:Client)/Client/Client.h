@@ -24,8 +24,8 @@ namespace server_client {
         Client(u_port_t thePort, const string& theHostname, callback_t theCallback);
         virtual ~Client();
         int connect();
+        void disconnect() const;
     };
 }
-
 
 #endif //CLIENT_CLIENT_H

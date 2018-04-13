@@ -43,10 +43,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/vakhidbetrakhmadov/Desktop/CLion/Server
+CMAKE_SOURCE_DIR = "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/vakhidbetrakhmadov/Desktop/CLion/Server/cmake-build-debug
+CMAKE_BINARY_DIR = "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/cmake-build-debug"
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Server.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/Server.dir/flags.make
 
 CMakeFiles/Server.dir/main.cpp.o: CMakeFiles/Server.dir/flags.make
 CMakeFiles/Server.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/vakhidbetrakhmadov/Desktop/CLion/Server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Server.dir/main.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Server.dir/main.cpp.o -c /Users/vakhidbetrakhmadov/Desktop/CLion/Server/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Server.dir/main.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Server.dir/main.cpp.o -c "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/main.cpp"
 
 CMakeFiles/Server.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Server.dir/main.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vakhidbetrakhmadov/Desktop/CLion/Server/main.cpp > CMakeFiles/Server.dir/main.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/main.cpp" > CMakeFiles/Server.dir/main.cpp.i
 
 CMakeFiles/Server.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Server.dir/main.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vakhidbetrakhmadov/Desktop/CLion/Server/main.cpp -o CMakeFiles/Server.dir/main.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/main.cpp" -o CMakeFiles/Server.dir/main.cpp.s
 
 CMakeFiles/Server.dir/main.cpp.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/Server.dir/main.cpp.o.provides.build: CMakeFiles/Server.dir/main.cpp.
 
 CMakeFiles/Server.dir/supporting/restart.c.o: CMakeFiles/Server.dir/flags.make
 CMakeFiles/Server.dir/supporting/restart.c.o: ../supporting/restart.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/vakhidbetrakhmadov/Desktop/CLion/Server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/Server.dir/supporting/restart.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Server.dir/supporting/restart.c.o   -c /Users/vakhidbetrakhmadov/Desktop/CLion/Server/supporting/restart.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/Server.dir/supporting/restart.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Server.dir/supporting/restart.c.o   -c "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/supporting/restart.c"
 
 CMakeFiles/Server.dir/supporting/restart.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Server.dir/supporting/restart.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/vakhidbetrakhmadov/Desktop/CLion/Server/supporting/restart.c > CMakeFiles/Server.dir/supporting/restart.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/supporting/restart.c" > CMakeFiles/Server.dir/supporting/restart.c.i
 
 CMakeFiles/Server.dir/supporting/restart.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Server.dir/supporting/restart.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/vakhidbetrakhmadov/Desktop/CLion/Server/supporting/restart.c -o CMakeFiles/Server.dir/supporting/restart.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/supporting/restart.c" -o CMakeFiles/Server.dir/supporting/restart.c.s
 
 CMakeFiles/Server.dir/supporting/restart.c.o.requires:
 
@@ -107,16 +107,16 @@ CMakeFiles/Server.dir/supporting/restart.c.o.provides.build: CMakeFiles/Server.d
 
 CMakeFiles/Server.dir/supporting/uici.c.o: CMakeFiles/Server.dir/flags.make
 CMakeFiles/Server.dir/supporting/uici.c.o: ../supporting/uici.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/vakhidbetrakhmadov/Desktop/CLion/Server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/Server.dir/supporting/uici.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Server.dir/supporting/uici.c.o   -c /Users/vakhidbetrakhmadov/Desktop/CLion/Server/supporting/uici.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/Server.dir/supporting/uici.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Server.dir/supporting/uici.c.o   -c "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/supporting/uici.c"
 
 CMakeFiles/Server.dir/supporting/uici.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Server.dir/supporting/uici.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/vakhidbetrakhmadov/Desktop/CLion/Server/supporting/uici.c > CMakeFiles/Server.dir/supporting/uici.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/supporting/uici.c" > CMakeFiles/Server.dir/supporting/uici.c.i
 
 CMakeFiles/Server.dir/supporting/uici.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Server.dir/supporting/uici.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/vakhidbetrakhmadov/Desktop/CLion/Server/supporting/uici.c -o CMakeFiles/Server.dir/supporting/uici.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/supporting/uici.c" -o CMakeFiles/Server.dir/supporting/uici.c.s
 
 CMakeFiles/Server.dir/supporting/uici.c.o.requires:
 
@@ -131,16 +131,16 @@ CMakeFiles/Server.dir/supporting/uici.c.o.provides.build: CMakeFiles/Server.dir/
 
 CMakeFiles/Server.dir/supporting/uiciname.c.o: CMakeFiles/Server.dir/flags.make
 CMakeFiles/Server.dir/supporting/uiciname.c.o: ../supporting/uiciname.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/vakhidbetrakhmadov/Desktop/CLion/Server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/Server.dir/supporting/uiciname.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Server.dir/supporting/uiciname.c.o   -c /Users/vakhidbetrakhmadov/Desktop/CLion/Server/supporting/uiciname.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/Server.dir/supporting/uiciname.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Server.dir/supporting/uiciname.c.o   -c "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/supporting/uiciname.c"
 
 CMakeFiles/Server.dir/supporting/uiciname.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Server.dir/supporting/uiciname.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/vakhidbetrakhmadov/Desktop/CLion/Server/supporting/uiciname.c > CMakeFiles/Server.dir/supporting/uiciname.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/supporting/uiciname.c" > CMakeFiles/Server.dir/supporting/uiciname.c.i
 
 CMakeFiles/Server.dir/supporting/uiciname.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Server.dir/supporting/uiciname.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/vakhidbetrakhmadov/Desktop/CLion/Server/supporting/uiciname.c -o CMakeFiles/Server.dir/supporting/uiciname.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/supporting/uiciname.c" -o CMakeFiles/Server.dir/supporting/uiciname.c.s
 
 CMakeFiles/Server.dir/supporting/uiciname.c.o.requires:
 
@@ -155,16 +155,16 @@ CMakeFiles/Server.dir/supporting/uiciname.c.o.provides.build: CMakeFiles/Server.
 
 CMakeFiles/Server.dir/MatConverter.cpp.o: CMakeFiles/Server.dir/flags.make
 CMakeFiles/Server.dir/MatConverter.cpp.o: ../MatConverter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/vakhidbetrakhmadov/Desktop/CLion/Server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Server.dir/MatConverter.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Server.dir/MatConverter.cpp.o -c /Users/vakhidbetrakhmadov/Desktop/CLion/Server/MatConverter.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Server.dir/MatConverter.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Server.dir/MatConverter.cpp.o -c "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/MatConverter.cpp"
 
 CMakeFiles/Server.dir/MatConverter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Server.dir/MatConverter.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vakhidbetrakhmadov/Desktop/CLion/Server/MatConverter.cpp > CMakeFiles/Server.dir/MatConverter.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/MatConverter.cpp" > CMakeFiles/Server.dir/MatConverter.cpp.i
 
 CMakeFiles/Server.dir/MatConverter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Server.dir/MatConverter.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vakhidbetrakhmadov/Desktop/CLion/Server/MatConverter.cpp -o CMakeFiles/Server.dir/MatConverter.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/MatConverter.cpp" -o CMakeFiles/Server.dir/MatConverter.cpp.s
 
 CMakeFiles/Server.dir/MatConverter.cpp.o.requires:
 
@@ -179,16 +179,16 @@ CMakeFiles/Server.dir/MatConverter.cpp.o.provides.build: CMakeFiles/Server.dir/M
 
 CMakeFiles/Server.dir/Server.cpp.o: CMakeFiles/Server.dir/flags.make
 CMakeFiles/Server.dir/Server.cpp.o: ../Server.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/vakhidbetrakhmadov/Desktop/CLion/Server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Server.dir/Server.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Server.dir/Server.cpp.o -c /Users/vakhidbetrakhmadov/Desktop/CLion/Server/Server.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Server.dir/Server.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Server.dir/Server.cpp.o -c "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/Server.cpp"
 
 CMakeFiles/Server.dir/Server.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Server.dir/Server.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vakhidbetrakhmadov/Desktop/CLion/Server/Server.cpp > CMakeFiles/Server.dir/Server.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/Server.cpp" > CMakeFiles/Server.dir/Server.cpp.i
 
 CMakeFiles/Server.dir/Server.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Server.dir/Server.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vakhidbetrakhmadov/Desktop/CLion/Server/Server.cpp -o CMakeFiles/Server.dir/Server.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/Server.cpp" -o CMakeFiles/Server.dir/Server.cpp.s
 
 CMakeFiles/Server.dir/Server.cpp.o.requires:
 
@@ -203,16 +203,16 @@ CMakeFiles/Server.dir/Server.cpp.o.provides.build: CMakeFiles/Server.dir/Server.
 
 CMakeFiles/Server.dir/Networkable.cpp.o: CMakeFiles/Server.dir/flags.make
 CMakeFiles/Server.dir/Networkable.cpp.o: ../Networkable.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/vakhidbetrakhmadov/Desktop/CLion/Server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Server.dir/Networkable.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Server.dir/Networkable.cpp.o -c /Users/vakhidbetrakhmadov/Desktop/CLion/Server/Networkable.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Server.dir/Networkable.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Server.dir/Networkable.cpp.o -c "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/Networkable.cpp"
 
 CMakeFiles/Server.dir/Networkable.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Server.dir/Networkable.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vakhidbetrakhmadov/Desktop/CLion/Server/Networkable.cpp > CMakeFiles/Server.dir/Networkable.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/Networkable.cpp" > CMakeFiles/Server.dir/Networkable.cpp.i
 
 CMakeFiles/Server.dir/Networkable.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Server.dir/Networkable.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vakhidbetrakhmadov/Desktop/CLion/Server/Networkable.cpp -o CMakeFiles/Server.dir/Networkable.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/Networkable.cpp" -o CMakeFiles/Server.dir/Networkable.cpp.s
 
 CMakeFiles/Server.dir/Networkable.cpp.o.requires:
 
@@ -291,7 +291,7 @@ Server: /usr/local/lib/libopencv_objdetect.3.4.1.dylib
 Server: /usr/local/lib/libopencv_imgproc.3.4.1.dylib
 Server: /usr/local/lib/libopencv_core.3.4.1.dylib
 Server: CMakeFiles/Server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/vakhidbetrakhmadov/Desktop/CLion/Server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable Server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable Server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -314,6 +314,6 @@ CMakeFiles/Server.dir/clean:
 .PHONY : CMakeFiles/Server.dir/clean
 
 CMakeFiles/Server.dir/depend:
-	cd /Users/vakhidbetrakhmadov/Desktop/CLion/Server/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/vakhidbetrakhmadov/Desktop/CLion/Server /Users/vakhidbetrakhmadov/Desktop/CLion/Server /Users/vakhidbetrakhmadov/Desktop/CLion/Server/cmake-build-debug /Users/vakhidbetrakhmadov/Desktop/CLion/Server/cmake-build-debug /Users/vakhidbetrakhmadov/Desktop/CLion/Server/cmake-build-debug/CMakeFiles/Server.dir/DependInfo.cmake --color=$(COLOR)
+	cd "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server" "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server" "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/cmake-build-debug" "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/cmake-build-debug" "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/cmake-build-debug/CMakeFiles/Server.dir/DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/Server.dir/depend
 

@@ -18,7 +18,7 @@ add_executable(Client
         MatConverter.cpp
         MatConverter.h
         Networkable.cpp
-        Networkable.h Client.cpp Client.h)
+        Networkable.h Client.cpp Client.h NetworkableException.h)
 
 include_directories(${OpenCV_INCLUDE_DIRS})
 target_link_libraries(Client ${OpenCV_LIBS})

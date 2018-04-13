@@ -38,7 +38,10 @@ void callback(Client& client) {
 
         imshow(WINDOW_NAME, frame);
 
-        if (waitKey(30) >= 0) break;
+        if (waitKey(30) >= 0) {
+            client.disconnect();
+            connectionActive = false;
+        }
     }
 }
 

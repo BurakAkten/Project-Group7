@@ -1,3 +1,3 @@
-/Users/vakhidbetrakhmadov/Desktop/CLion/Server/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/vakhidbetrakhmadov/Desktop/CLion/Server/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/vakhidbetrakhmadov/Desktop/CLion/Server/cmake-build-debug/CMakeFiles/Server.dir
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/cmake-build-debug/CMakeFiles/Server.dir

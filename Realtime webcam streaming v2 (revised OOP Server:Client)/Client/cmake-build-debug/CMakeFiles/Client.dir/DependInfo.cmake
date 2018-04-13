@@ -5,9 +5,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/Users/vakhidbetrakhmadov/Desktop/CLion/Client/supporting/restart.c" "/Users/vakhidbetrakhmadov/Desktop/CLion/Client/cmake-build-debug/CMakeFiles/Client.dir/supporting/restart.c.o"
-  "/Users/vakhidbetrakhmadov/Desktop/CLion/Client/supporting/uici.c" "/Users/vakhidbetrakhmadov/Desktop/CLion/Client/cmake-build-debug/CMakeFiles/Client.dir/supporting/uici.c.o"
-  "/Users/vakhidbetrakhmadov/Desktop/CLion/Client/supporting/uiciname.c" "/Users/vakhidbetrakhmadov/Desktop/CLion/Client/cmake-build-debug/CMakeFiles/Client.dir/supporting/uiciname.c.o"
+  "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Client/supporting/restart.c" "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Client/cmake-build-debug/CMakeFiles/Client.dir/supporting/restart.c.o"
+  "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Client/supporting/uici.c" "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Client/cmake-build-debug/CMakeFiles/Client.dir/supporting/uici.c.o"
+  "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Client/supporting/uiciname.c" "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Client/cmake-build-debug/CMakeFiles/Client.dir/supporting/uiciname.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 
@@ -18,10 +18,10 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
   "/usr/local/include/opencv"
   )
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/vakhidbetrakhmadov/Desktop/CLion/Client/Client.cpp" "/Users/vakhidbetrakhmadov/Desktop/CLion/Client/cmake-build-debug/CMakeFiles/Client.dir/Client.cpp.o"
-  "/Users/vakhidbetrakhmadov/Desktop/CLion/Client/MatConverter.cpp" "/Users/vakhidbetrakhmadov/Desktop/CLion/Client/cmake-build-debug/CMakeFiles/Client.dir/MatConverter.cpp.o"
-  "/Users/vakhidbetrakhmadov/Desktop/CLion/Client/Networkable.cpp" "/Users/vakhidbetrakhmadov/Desktop/CLion/Client/cmake-build-debug/CMakeFiles/Client.dir/Networkable.cpp.o"
-  "/Users/vakhidbetrakhmadov/Desktop/CLion/Client/main.cpp" "/Users/vakhidbetrakhmadov/Desktop/CLion/Client/cmake-build-debug/CMakeFiles/Client.dir/main.cpp.o"
+  "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Client/Client.cpp" "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Client/cmake-build-debug/CMakeFiles/Client.dir/Client.cpp.o"
+  "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Client/MatConverter.cpp" "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Client/cmake-build-debug/CMakeFiles/Client.dir/MatConverter.cpp.o"
+  "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Client/Networkable.cpp" "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Client/cmake-build-debug/CMakeFiles/Client.dir/Networkable.cpp.o"
+  "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Client/main.cpp" "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Client/cmake-build-debug/CMakeFiles/Client.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 

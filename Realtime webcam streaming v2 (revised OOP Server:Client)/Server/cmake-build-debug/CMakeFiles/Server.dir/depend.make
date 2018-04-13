@@ -247,11 +247,13 @@ CMakeFiles/Server.dir/MatConverter.cpp.o: /usr/local/include/opencv2/xfeatures2d
 
 CMakeFiles/Server.dir/Networkable.cpp.o: ../Networkable.cpp
 CMakeFiles/Server.dir/Networkable.cpp.o: ../Networkable.h
+CMakeFiles/Server.dir/Networkable.cpp.o: ../NetworkableException.h
 CMakeFiles/Server.dir/Networkable.cpp.o: ../supporting/restart.h
 CMakeFiles/Server.dir/Networkable.cpp.o: ../supporting/uici.h
 CMakeFiles/Server.dir/Networkable.cpp.o: ../supporting/uiciname.h
 
 CMakeFiles/Server.dir/Server.cpp.o: ../Networkable.h
+CMakeFiles/Server.dir/Server.cpp.o: ../NetworkableException.h
 CMakeFiles/Server.dir/Server.cpp.o: ../Server.cpp
 CMakeFiles/Server.dir/Server.cpp.o: ../Server.h
 CMakeFiles/Server.dir/Server.cpp.o: ../supporting/restart.h
@@ -260,6 +262,7 @@ CMakeFiles/Server.dir/Server.cpp.o: ../supporting/uiciname.h
 
 CMakeFiles/Server.dir/main.cpp.o: ../MatConverter.h
 CMakeFiles/Server.dir/main.cpp.o: ../Networkable.h
+CMakeFiles/Server.dir/main.cpp.o: ../NetworkableException.h
 CMakeFiles/Server.dir/main.cpp.o: ../Server.h
 CMakeFiles/Server.dir/main.cpp.o: ../main.cpp
 CMakeFiles/Server.dir/main.cpp.o: ../supporting/restart.h
