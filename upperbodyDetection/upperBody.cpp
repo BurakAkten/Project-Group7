@@ -1,67 +1,90 @@
-// OpenCVWebcamTest.cpp
+#include "opencv2\highgui.hpp"
+#include "opencv2\imgproc.hpp"
+#include "opencv2\objdetect\objdetect.hpp"
+#include "opencv2/video/tracking.hpp"
+#include <vector>
+#include <stdio.h>
+#include <Windows.h>
+#include <iostream>
+#include <time.h>
+#include <ctime>
 
-#include<opencv2/core/core.hpp>
-#include<opencv2/highgui/highgui.hpp>
-#include<opencv2/imgproc/imgproc.hpp>
+using namespace cv;
+using namespace std;
 
-#include<iostream>
-#include<conio.h>           // may have to modify this line if not using Windows
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-int main() {
-	cv::VideoCapture capWebcam(0);            // declare a VideoCapture object and associate to webcam, 0 => use 1st webcam
 
-	if (capWebcam.isOpened() == false) {                                // check if VideoCapture object was associated to webcam successfully
-		std::cout << "error: capWebcam not accessed successfully\n\n";      // if not, print error message to std out
-		_getch();                                                           // may have to modify this line if not using Windows
-		return(0);                                                          // and exit program
-	}
+int main(int argc, const char** argv){
 
-	cv::Mat imgOriginal;        // input image
-	cv::Mat imgGrayscale;       // grayscale of input image
-	cv::Mat imgBlurred;         // intermediate blured image
-	cv::Mat imgCanny;           // Canny edge image
 
-	char charCheckForEscKey = 0;
+	// prepare video input
+	VideoCapture cap(0);
 
-	while (charCheckForEscKey != 27 && capWebcam.isOpened()) {            // until the Esc key is pressed or webcam connection is lost
-		bool blnFrameReadSuccessfully = capWebcam.read(imgOriginal);            // get next frame
 
-		if (!blnFrameReadSuccessfully || imgOriginal.empty()) {                 // if frame not read successfully
-			std::cout << "error: frame not read from webcam\n";                 // print error message to std out
-			break;                                                              // and jump out of while loop
+	// prepare cascadeClassifier
+	CascadeClassifier detectorUpper;
+	// !! Put your cascade or opencv cascede into project folder !!
+	string cascadeUpper = "CascadeFiles/cascadeH5.xml";
+	// Load cascade into CascadeClassifier
+	bool loaded1 = detectorUpper.load(cascadeUpper);
+	if (!loaded1){ cout << "Error loading upper body cascade file\n" << endl; return 0; };
+
+
+	// Basic video input loop
+	for (;;)
+	{
+
+		bool Is = cap.grab();
+		if (Is == false) {
+
+			cout << "Video Capture Fail" << endl;
+			break;
 		}
+		else {
+			// Just for measure time   
+			const clock_t begin_time = clock();
 
-		cv::cvtColor(imgOriginal, imgGrayscale, CV_BGR2GRAY);                   // convert to grayscale
+			// Store results for upperbody
+			vector<Rect> upperBody;
 
-		cv::GaussianBlur(imgGrayscale,              // input image
-			imgBlurred,                // output image
-			cv::Size(5, 5),            // smoothing window width and height in pixels
-			1.8);                      // sigma value, determines how much the image will be blurred
+			// prepare 2 Mat container
+			Mat img;
+			Mat original;
 
-		cv::Canny(imgBlurred,                       // input image
-			imgCanny,                         // output image
-			50,                               // low threshold
-			100);                             // high threshold
+			// capture frame from video file
+			cap.retrieve(img, CV_CAP_OPENNI_BGR_IMAGE);
+			// Resize image if you want with same size as your VideoWriter
+			resize(img, img, Size(640, 480));
+			// Store original colored image
+			img.copyTo(original);
+			// color to gray image
+			cvtColor(img, img, CV_BGR2GRAY);
+			equalizeHist(img, img);
 
-											  // declare windows
-		cv::namedWindow("imgOriginal", CV_WINDOW_NORMAL);       // note: you can use CV_WINDOW_NORMAL which allows resizing the window
-		cv::namedWindow("imgCanny", CV_WINDOW_NORMAL);          // or CV_WINDOW_AUTOSIZE for a fixed size window matching the resolution of the image
-																// CV_WINDOW_AUTOSIZE is the default
-		cv::imshow("imgOriginal", imgOriginal);                 // show windows
-		cv::imshow("imgCanny", imgCanny);                       //
+			// detect people, more remarks in performace section  
+			detectorUpper.detectMultiScale(img, upperBody, 1.1, 2, 0 | CV_HAAR_SCALE_IMAGE, Size(100, 100));
 
-		charCheckForEscKey = cv::waitKey(1);        // delay (in ms) and get key press, if any
-	}   // end while
 
-	return(0);
+		
+
+			// Draw results from detectorUpper into original colored image
+			if (upperBody.size() > 0) {
+				for (int gg = 0; gg < upperBody.size(); gg++) {
+
+					rectangle(original, upperBody[gg].tl(), upperBody[gg].br(), Scalar(0, 255, 0), 2, 8, 0);
+
+				}
+			}
+			// draw results
+			namedWindow("prew", WINDOW_AUTOSIZE);
+			imshow("prew", original);
+			
+			//terminating if esc pressed
+			int key1 = waitKey(20);
+			if ((char)key1 == 27) { break; }
+
+		}
+	}
+	return 0;
 }
-
-
-
-
-
-
-
-
 
