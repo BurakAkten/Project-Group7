@@ -4,7 +4,7 @@
 #include "opencv2/video/tracking.hpp"
 #include <vector>
 #include <stdio.h>
-#include <Windows.h>
+#include <Windows.h>//if not in windows might want to edit this
 #include <iostream>
 #include <time.h>
 #include <ctime>
