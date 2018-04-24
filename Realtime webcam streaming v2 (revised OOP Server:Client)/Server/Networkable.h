@@ -38,7 +38,7 @@ namespace server_client {
         bool hasDataPending() const;
         ssize_t dataPending() const;
     private:
-        ssize_t r_read_persistent(int fd, void *buf, size_t size) const;
+//        ssize_t r_read_persistent(int fd, void *buf, size_t size) const;
     };
 }
 

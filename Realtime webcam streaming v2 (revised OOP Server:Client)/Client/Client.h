@@ -2,13 +2,15 @@
 // Created by Vakhid Betrakhmadov on 03/04/2018.
 //
 
-#ifndef CLIENT_CLIENT_H
-#define CLIENT_CLIENT_H
+#ifndef CLIENT_H
+#define CLIENT_H
 
 #include <sstream>
 #include "Networkable.h"
 
 namespace server_client {
+
+    typedef unsigned short u_port_t;
 
     class Client;
     typedef void(*callback_t)(Client& client);
@@ -28,4 +30,4 @@ namespace server_client {
     };
 }
 
-#endif //CLIENT_CLIENT_H
+#endif //CLIENT_H

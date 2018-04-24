@@ -22,17 +22,17 @@ void callback(Server& server) {
     Mat frame;
     cap >> frame;
     MatConverter matConverter(frame);
-//
+
     volatile bool connectionActive = true;
     for(;connectionActive;) {
 
         const vector<byte>& buffer = matConverter.byteStream(frame);
-        long size = buffer.size();
+        int size = (int) buffer.size();
 
-        if (server.send(&size, sizeof(long)) != sizeof(long)) {
+        if (server.send(&size, sizeof(int)) != sizeof(int)) {
             err("server.send()");
             connectionActive = false;
-        } else if (server.send(buffer) != buffer.size()) {
+        } else if (server.send(buffer) != size) {
             err("server.send()");
             connectionActive = false;
         }

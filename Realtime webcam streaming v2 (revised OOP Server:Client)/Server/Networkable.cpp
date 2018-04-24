@@ -31,7 +31,7 @@ namespace server_client {
     }
 
     ssize_t Networkable::receive(void *buffer, size_t size) const {
-        return r_read_persistent(connection_sock_fd, buffer, size);
+        return readblock(connection_sock_fd, buffer, size);
     }
 
     ssize_t Networkable::dataPending() const {
@@ -49,23 +49,22 @@ namespace server_client {
         return dataPending() != 0;
     }
 
-    ssize_t Networkable::r_read_persistent(int fd, void *buf, size_t size) const {
-        char *bufp;
-        size_t bytestoread;
-        ssize_t bytesread;
-        size_t totalbytes;
-
-        for (bufp = (char *) buf, bytestoread = size, totalbytes = 0;
-             bytestoread > 0;
-             bufp += bytesread, bytestoread -= bytesread) {
-            bytesread = read(fd, bufp, bytestoread);
-            if ((bytesread) == -1 && (errno != EINTR))
-                return -1;
-            if (bytesread == -1)
-                bytesread = 0;
-            totalbytes += bytesread;
-        }
-        return totalbytes;
-    }
-
+//    ssize_t Networkable::r_read_persistent(int fd, void *buf, size_t size) const {
+//        char *bufp;
+//        size_t bytestoread;
+//        ssize_t bytesread;
+//        size_t totalbytes;
+//
+//        for (bufp = (char *) buf, bytestoread = size, totalbytes = 0;
+//             bytestoread > 0;
+//             bufp += bytesread, bytestoread -= bytesread) {
+//            bytesread = read(fd, bufp, bytestoread);
+//            if ((bytesread) == -1 && (errno != EINTR))
+//                return -1;
+//            if (bytesread == -1)
+//                bytesread = 0;
+//            totalbytes += bytesread;
+//        }
+//        return totalbytes;
+//    }
 }

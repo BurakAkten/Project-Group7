@@ -1,0 +1,3 @@
+"C:\Program Files\JetBrains\CLion 2018.1.1\bin\cmake\bin\cmake.exe" -E remove -f CMakeFiles\WindowsClient.dir/objects.a
+C:\MinGW\mingw32\bin\ar.exe cr CMakeFiles\WindowsClient.dir/objects.a @CMakeFiles\WindowsClient.dir\objects1.rsp
+C:\MinGW\mingw32\bin\g++.exe -g   -Wl,--whole-archive CMakeFiles\WindowsClient.dir/objects.a -Wl,--no-whole-archive  -o WindowsClient.exe -Wl,--out-implib,libWindowsClient.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\WindowsClient.dir\linklibs.rsp

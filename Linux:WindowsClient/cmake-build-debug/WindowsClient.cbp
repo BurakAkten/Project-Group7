@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="WindowsClient"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\opencv\;CMake Files\..\..\..\..\opencv\build\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="WindowsClient">
+				<Option output="C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug/WindowsClient.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/."/>
+					<Add directory="C:/opencv/build"/>
+					<Add directory="C:/opencv/sources/include"/>
+					<Add directory="C:/opencv/sources/include/opencv"/>
+					<Add directory="C:/opencv/sources/modules/core/include"/>
+					<Add directory="C:/opencv/sources/modules/flann/include"/>
+					<Add directory="C:/opencv/sources/modules/imgproc/include"/>
+					<Add directory="C:/opencv/sources/modules/ml/include"/>
+					<Add directory="C:/opencv/sources/modules/objdetect/include"/>
+					<Add directory="C:/opencv/sources/modules/photo/include"/>
+					<Add directory="C:/opencv/sources/modules/video/include"/>
+					<Add directory="C:/opencv/sources/modules/dnn/include"/>
+					<Add directory="C:/opencv/sources/modules/imgcodecs/include"/>
+					<Add directory="C:/opencv/sources/modules/shape/include"/>
+					<Add directory="C:/opencv/sources/modules/videoio/include"/>
+					<Add directory="C:/opencv/sources/modules/highgui/include"/>
+					<Add directory="C:/opencv/sources/modules/superres/include"/>
+					<Add directory="C:/opencv/sources/modules/ts/include"/>
+					<Add directory="C:/opencv/sources/modules/features2d/include"/>
+					<Add directory="C:/opencv/sources/modules/calib3d/include"/>
+					<Add directory="C:/opencv/sources/modules/stitching/include"/>
+					<Add directory="C:/opencv/sources/modules/videostab/include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include/c++"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include-fixed"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 WindowsClient"/>
+					<CompileFile command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="WindowsClient/fast">
+				<Option output="C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug/WindowsClient.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/."/>
+					<Add directory="C:/opencv/build"/>
+					<Add directory="C:/opencv/sources/include"/>
+					<Add directory="C:/opencv/sources/include/opencv"/>
+					<Add directory="C:/opencv/sources/modules/core/include"/>
+					<Add directory="C:/opencv/sources/modules/flann/include"/>
+					<Add directory="C:/opencv/sources/modules/imgproc/include"/>
+					<Add directory="C:/opencv/sources/modules/ml/include"/>
+					<Add directory="C:/opencv/sources/modules/objdetect/include"/>
+					<Add directory="C:/opencv/sources/modules/photo/include"/>
+					<Add directory="C:/opencv/sources/modules/video/include"/>
+					<Add directory="C:/opencv/sources/modules/dnn/include"/>
+					<Add directory="C:/opencv/sources/modules/imgcodecs/include"/>
+					<Add directory="C:/opencv/sources/modules/shape/include"/>
+					<Add directory="C:/opencv/sources/modules/videoio/include"/>
+					<Add directory="C:/opencv/sources/modules/highgui/include"/>
+					<Add directory="C:/opencv/sources/modules/superres/include"/>
+					<Add directory="C:/opencv/sources/modules/ts/include"/>
+					<Add directory="C:/opencv/sources/modules/features2d/include"/>
+					<Add directory="C:/opencv/sources/modules/calib3d/include"/>
+					<Add directory="C:/opencv/sources/modules/stitching/include"/>
+					<Add directory="C:/opencv/sources/modules/videostab/include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include/c++"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include-fixed"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 WindowsClient/fast"/>
+					<CompileFile command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/Client.cpp">
+			<Option target="WindowsClient"/>
+		</Unit>
+		<Unit filename="C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/Client.h">
+			<Option target="WindowsClient"/>
+		</Unit>
+		<Unit filename="C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/MatConverter.cpp">
+			<Option target="WindowsClient"/>
+		</Unit>
+		<Unit filename="C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/MatConverter.h">
+			<Option target="WindowsClient"/>
+		</Unit>
+		<Unit filename="C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/Networkable.cpp">
+			<Option target="WindowsClient"/>
+		</Unit>
+		<Unit filename="C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/Networkable.h">
+			<Option target="WindowsClient"/>
+		</Unit>
+		<Unit filename="C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/main.cpp">
+			<Option target="WindowsClient"/>
+		</Unit>
+		<Unit filename="C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/wrestart.cpp">
+			<Option target="WindowsClient"/>
+		</Unit>
+		<Unit filename="C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/wrestart.h">
+			<Option target="WindowsClient"/>
+		</Unit>
+		<Unit filename="C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/../../../../opencv/build/OpenCVConfig-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\opencv\build\"/>
+		</Unit>
+		<Unit filename="C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/../../../../opencv/build/OpenCVConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\opencv\build\"/>
+		</Unit>
+		<Unit filename="C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/../../../../opencv/build/OpenCVModules.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\opencv\build\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

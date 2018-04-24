@@ -1,0 +1,3 @@
+C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug/CMakeFiles/WindowsClient.dir
+C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/vakhidbetrakhmadov/CLionProjects/WindowsClient/cmake-build-debug/CMakeFiles/rebuild_cache.dir

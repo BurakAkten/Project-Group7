@@ -17,13 +17,13 @@ void callback(Client& client) {
     namedWindow(WINDOW_NAME);
 
     Mat frame;
-    unsigned long bufferSize = 0;
+    int bufferSize = 0;
     vector<byte> buffer;
 
     bool connectionActive = true;
     for (;connectionActive;) {
 
-        if (client.receive(&bufferSize, sizeof(long)) != sizeof(long)) {
+        if (client.receive(&bufferSize, sizeof(int)) != sizeof(int)) {
             err("client.receive");
             connectionActive = false;
         } else {
@@ -48,7 +48,7 @@ void callback(Client& client) {
 
 int main() {
 
-    Client client("localhost", callback);
+    Client client("10.1.130.40", callback);
     if (client.connect()) {
         err("client.connect()");
         exit(1);

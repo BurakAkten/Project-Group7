@@ -38,7 +38,7 @@ int u_open(u_port_t port) {
 
    if ((u_ignore_sigpipe() == -1) ||
         ((sock = socket(AF_INET, SOCK_STREAM, 0)) == -1))
-      return -1; 
+      return -1;
 
    if (setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (char *)&true,
                   sizeof(true)) == -1) {
@@ -47,7 +47,7 @@ int u_open(u_port_t port) {
       errno = error;
       return -1;
    }
- 
+
    server.sin_family = AF_INET;
    server.sin_addr.s_addr = htonl(INADDR_ANY);
    server.sin_port = htons((short)port);
