@@ -5,29 +5,27 @@
 #include "fileContent.h"
 
 
-#define MAXPOSSIBLE 50
+#define MAX_LENGTH 50
 using namespace std;
 using namespace cv;
 
 void trackFilteredObject(Mat src, Mat original);
-void print(Mat toPrint);
-
-Mat dst_output;
-//max number of objects to be detected in frame
-const int MAX_NUM_OBJECTS=50;
-//minimum and maximum object area
-const int MIN_OBJECT_AREA = 20*20;
+void saveAsError(Mat toSave);
+int countGlob = 1;
 
 int main(){
 
+    Mat dst_output;
     // Create fileContent object
-    fileContent images;
-    images.readDirectory("DATASET");
+    fileContent contentF;
+    contentF.readDirectory("DATASET");
 
-    while( !images.fileNames.empty() ){
+    queue<string> images = contentF.getFileNames();
+
+    while( !images.empty() ){
 
         // Get image name and add the file path
-        string imageName = images.fileNames.front();
+        string imageName = images.front();
         imageName = "DATASET/" + imageName;
 
         // Open the image
@@ -45,7 +43,6 @@ int main(){
         inRange(image, Scalar(13, 15, 139), Scalar(85,56,210), output);
 
         // Resize and show the image
-
         resize(output, dst_output, Size(output.cols/5, output.rows/5));
         imshow("Output image: ", dst_output);
 
@@ -54,7 +51,7 @@ int main(){
         imshow("Last result", dst_image);
         waitKey();
 
-        images.fileNames.pop();
+        images.pop();
 
     }
 
@@ -70,11 +67,12 @@ void trackFilteredObject(Mat src, Mat original){
     //find contours of filtered image using openCV findContours function
     findContours(src,contours,hierarchy,CV_RETR_CCOMP,CV_CHAIN_APPROX_SIMPLE );
 
-    int numOfDetected = contours.size();
+    int numOfDetected = static_cast<int>(contours.size());
     int maxArea = 0;
     int required;
 
-    if(numOfDetected < 50 && numOfDetected != 0){
+
+    if(numOfDetected < 500 && numOfDetected != 0){
 
         // Find the contours that has largest area
         for (int index = 0; index >= 0; index = hierarchy[index][0]) {
@@ -88,22 +86,34 @@ void trackFilteredObject(Mat src, Mat original){
 
         }
 
+        // Get bounding rectangle
+        vector<Point> contours_points;
+        // Approximates a polygonal curve with the specified precision
+        approxPolyDP( Mat(contours[required]), contours_points, 3, true );
+        // Calculate the up-right bounding rectangle of a point set
+        Rect boundRect = boundingRect( Mat(contours_points) );
+
+
         // Draw contours
-        drawContours(original, contours, required, (0,255,0), 3);
+        // drawContours(original, contours, required, (0,0,0), 1);
+
+        // Draw the specified rectangle
+        rectangle( original, boundRect.tl(), boundRect.br(), (0,255,0), 2, 8, 0 );
 
     } else{
-        cout << "So much noise" << endl;
+        saveAsError(original);
     }
 
 
 }
 
-
-void print(Mat toPrint){
-
-    for(int i = 0; i < toPrint.rows; ++i){
-        for(int j = 0; j < toPrint.cols; ++j){
-            cout << toPrint.at<double>(i,j) << " ";
-        }
-    }
+void saveAsError(Mat toSave) {
+    // Create image name
+    char name[MAX_LENGTH];
+    sprintf(name, "LOG/negative-%d.jpg", countGlob);
+    cout << name << endl;
+    // save the image
+    imwrite(name, toSave);
+    countGlob ++;
 }
+
