@@ -26,6 +26,8 @@ void fileContent::readDirectory(const string &dirName) {
 
 }
 
-fileContent::fileContent() {
-    // cout << "constructor" << endl;
+queue<string> fileContent::getFileNames() {
+    return fileNames;
 }
+
+
