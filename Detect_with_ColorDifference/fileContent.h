@@ -13,8 +13,10 @@ using namespace std;
 class fileContent {
 
 public:
-    fileContent();
     void readDirectory(const string& dirName);
+    queue<string> getFileNames();
+
+private:
     queue<string> fileNames;
 };
 
