@@ -17,32 +17,50 @@ void callback(Server& server) {
     if(!cap.isOpened()) {
         err("cap.isOpened()");
         server.stop();
+        return;
     }
 
+    cap.set(cv::CAP_PROP_FRAME_WIDTH, 640);
+    cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);
+
     Mat frame;
-    cap >> frame;
-    MatConverter matConverter(frame);
+    MatConverter matConverter;
 
     volatile bool connectionActive = true;
     for(;connectionActive;) {
 
-        const vector<byte>& buffer = matConverter.byteStream(frame);
-        int size = (int) buffer.size();
+        cap >> frame;
 
-        if (server.send(&size, sizeof(int)) != sizeof(int)) {
+        pyrDown(frame, frame);
+
+        if(frame.empty()) {
+            cout << "Frame is empty" << endl;
+            connectionActive = false;
+            continue;
+        }
+
+        const vector<byte>& buffer = matConverter.byteStream(frame);
+        uint32_t bufferSize = (int) buffer.size();
+
+        cout << "bufferSize: " << bufferSize << endl;
+
+        if (server.send(&bufferSize, sizeof(uint32_t)) != sizeof(uint32_t)) {
             err("server.send()");
             connectionActive = false;
-        } else if (server.send(buffer) != size) {
+        } else if (server.send(buffer) != bufferSize) {
             err("server.send()");
             connectionActive = false;
         }
 
-        if (!connectionActive && errno != EPIPE ) // EPIPE if connection is closed by the client
+        if (!connectionActive && errno != EPIPE ) { // EPIPE if connection is closed by the client
             cout << "Some error happened" << endl;
 //            server.stop();
-        else
-            cap >> frame;
+        }
     }
+
+    cap.release();
+
+    cout << "Exiting" << endl;
 }
 
 int main(int argc, char** argv) {
