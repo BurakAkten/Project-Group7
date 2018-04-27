@@ -1,0 +1,20 @@
+Detecting C [-std=c11] compiler features failed to compile with the following output:
+Change Dir: /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_c4334/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_c4334.dir/build.make CMakeFiles/cmTC_c4334.dir/build
+CMakeFiles/cmTC_c4334.dir/build.make:64: *** target pattern contains no `%'.  Stop.
+make: *** [cmTC_c4334/fast] Error 2
+
+
+
+Detecting CXX [-std=c++1z] compiler features failed to compile with the following output:
+Change Dir: /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Realtime webcam streaming v2 (revised OOP Server:Client)/Server/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_1ef8a/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_1ef8a.dir/build.make CMakeFiles/cmTC_1ef8a.dir/build
+CMakeFiles/cmTC_1ef8a.dir/build.make:64: *** target pattern contains no `%'.  Stop.
+make: *** [cmTC_1ef8a/fast] Error 2
+
+
+
