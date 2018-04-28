@@ -61,24 +61,24 @@ namespace server_client {
         #if defined(__linux__) || defined(__APPLE__)
             ssize_t count = 0;
             if (ioctl(connection_sock_fd, FIONREAD, &count) == -1) {
-                char buffer[BUFFER_SIZE];
-                strerror_r(errno, buffer, BUFFER_SIZE);
-                throw NetworkableException(buffer);
+                std::stringstream message;
+                message << "ioctl(): errno = " << errno;
+                throw NetworkableException(message.str());
             }
             return count;
         #elif _WIN32
-            //TODO: implement
-            return 0;
+            u_long count = 0;
+            if (ioctlsocket(connection_sock_fd, FIONREAD, &count)  != NO_ERROR) {
+                std::stringstream message;
+                message << "ioctlsocket(): error = " << WSAGetLastError();
+                throw NetworkableException(message.str());
+            }
+            return (ssize_t)count;
         #endif
     }
 
     bool Networkable::hasDataPending() const {
-        #if defined(__linux__) || defined(__APPLE__)
-            return dataPending() != 0;
-        #elif _WIN32
-            //TODO: implement
-            return 0;
-        #endif
+        return dataPending() != 0;
     }
 
 

@@ -30,12 +30,12 @@ void callback(Client& client) {
     bool connectionActive = true;
     for (;connectionActive;) {
 
-//        if (client.hasDataPending()) {
-//            cout << "Data pending " << client.dataPending() << endl;
-//        }
-//        else {
-//            cout << "No data pending" << endl;
-//        }
+        if (client.hasDataPending()) {
+            cout << "Data pending " << client.dataPending() << endl;
+        }
+        else {
+            cout << "No data pending" << endl;
+        }
 
         if(client.receive(frame)) {
             err("client.receive()");

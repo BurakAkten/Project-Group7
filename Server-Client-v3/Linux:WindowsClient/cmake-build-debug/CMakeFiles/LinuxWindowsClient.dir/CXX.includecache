@@ -59,8 +59,8 @@ winsock2.h
 -
 Ws2tcpip.h
 -
-wrestart.h
-/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/wrestart.h
+supporting/wrestart.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/supporting/wrestart.h
 
 /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/NetworkableException.h
 iostream

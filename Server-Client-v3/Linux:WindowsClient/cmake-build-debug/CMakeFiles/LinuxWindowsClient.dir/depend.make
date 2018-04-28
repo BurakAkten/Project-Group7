@@ -18,6 +18,7 @@ CMakeFiles/LinuxWindowsClient.dir/Client.cpp.o: ../NetworkableException.h
 CMakeFiles/LinuxWindowsClient.dir/Client.cpp.o: ../supporting/restart.h
 CMakeFiles/LinuxWindowsClient.dir/Client.cpp.o: ../supporting/uici.h
 CMakeFiles/LinuxWindowsClient.dir/Client.cpp.o: ../supporting/uiciname.h
+CMakeFiles/LinuxWindowsClient.dir/Client.cpp.o: ../supporting/wrestart.h
 CMakeFiles/LinuxWindowsClient.dir/Client.cpp.o: /usr/local/include/boost/assert.hpp
 CMakeFiles/LinuxWindowsClient.dir/Client.cpp.o: /usr/local/include/boost/config.hpp
 CMakeFiles/LinuxWindowsClient.dir/Client.cpp.o: /usr/local/include/boost/config/compiler/borland.hpp
@@ -490,6 +491,7 @@ CMakeFiles/LinuxWindowsClient.dir/Networkable.cpp.o: ../NetworkableException.h
 CMakeFiles/LinuxWindowsClient.dir/Networkable.cpp.o: ../supporting/restart.h
 CMakeFiles/LinuxWindowsClient.dir/Networkable.cpp.o: ../supporting/uici.h
 CMakeFiles/LinuxWindowsClient.dir/Networkable.cpp.o: ../supporting/uiciname.h
+CMakeFiles/LinuxWindowsClient.dir/Networkable.cpp.o: ../supporting/wrestart.h
 CMakeFiles/LinuxWindowsClient.dir/Networkable.cpp.o: /usr/local/include/boost/assert.hpp
 CMakeFiles/LinuxWindowsClient.dir/Networkable.cpp.o: /usr/local/include/boost/config.hpp
 CMakeFiles/LinuxWindowsClient.dir/Networkable.cpp.o: /usr/local/include/boost/config/compiler/borland.hpp
@@ -730,6 +732,7 @@ CMakeFiles/LinuxWindowsClient.dir/main.cpp.o: ../main.cpp
 CMakeFiles/LinuxWindowsClient.dir/main.cpp.o: ../supporting/restart.h
 CMakeFiles/LinuxWindowsClient.dir/main.cpp.o: ../supporting/uici.h
 CMakeFiles/LinuxWindowsClient.dir/main.cpp.o: ../supporting/uiciname.h
+CMakeFiles/LinuxWindowsClient.dir/main.cpp.o: ../supporting/wrestart.h
 CMakeFiles/LinuxWindowsClient.dir/main.cpp.o: /usr/local/include/boost/assert.hpp
 CMakeFiles/LinuxWindowsClient.dir/main.cpp.o: /usr/local/include/boost/config.hpp
 CMakeFiles/LinuxWindowsClient.dir/main.cpp.o: /usr/local/include/boost/config/compiler/borland.hpp

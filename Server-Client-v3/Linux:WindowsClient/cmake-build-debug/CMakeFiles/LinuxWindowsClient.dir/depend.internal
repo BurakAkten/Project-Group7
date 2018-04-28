@@ -19,6 +19,7 @@ CMakeFiles/LinuxWindowsClient.dir/Client.cpp.o
  /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/supporting/restart.h
  /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/supporting/uici.h
  /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/supporting/uiciname.h
+ /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/supporting/wrestart.h
  /usr/local/include/boost/assert.hpp
  /usr/local/include/boost/config.hpp
  /usr/local/include/boost/config/compiler/borland.hpp
@@ -491,6 +492,7 @@ CMakeFiles/LinuxWindowsClient.dir/Networkable.cpp.o
  /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/supporting/restart.h
  /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/supporting/uici.h
  /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/supporting/uiciname.h
+ /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/supporting/wrestart.h
  /usr/local/include/boost/assert.hpp
  /usr/local/include/boost/config.hpp
  /usr/local/include/boost/config/compiler/borland.hpp
@@ -731,6 +733,7 @@ CMakeFiles/LinuxWindowsClient.dir/main.cpp.o
  /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/supporting/restart.h
  /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/supporting/uici.h
  /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/supporting/uiciname.h
+ /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/supporting/wrestart.h
  /usr/local/include/boost/assert.hpp
  /usr/local/include/boost/config.hpp
  /usr/local/include/boost/config/compiler/borland.hpp
