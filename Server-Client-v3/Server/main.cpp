@@ -13,6 +13,8 @@ using namespace server_client;
 
 void callback(Server& server) {
 
+    cout << "- CONNECTED -" << endl;
+
     VideoCapture cap(0);
     if(!cap.isOpened()) {
         err("cap.isOpened()");
@@ -24,52 +26,48 @@ void callback(Server& server) {
     cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);
 
     Mat frame;
-    MatConverter matConverter;
+    Mat compressedFrame;
 
     volatile bool connectionActive = true;
     for(;connectionActive;) {
 
         cap >> frame;
 
-        pyrDown(frame, frame);
-
         if(frame.empty()) {
-            cout << "Frame is empty" << endl;
+            err("frame.empty()");
             connectionActive = false;
             continue;
         }
 
-        const vector<byte>& buffer = matConverter.byteStream(frame);
-        uint32_t bufferSize = (int) buffer.size();
+        pyrDown(frame, compressedFrame);
 
-        cout << "bufferSize: " << bufferSize << endl;
-
-        if (server.send(&bufferSize, sizeof(uint32_t)) != sizeof(uint32_t)) {
-            err("server.send()");
-            connectionActive = false;
-        } else if (server.send(buffer) != bufferSize) {
+        if(server.send(compressedFrame)) {
             err("server.send()");
             connectionActive = false;
         }
 
         if (!connectionActive && errno != EPIPE ) { // EPIPE if connection is closed by the client
-            cout << "Some error happened" << endl;
+            err("Unknown error:");
 //            server.stop();
         }
     }
 
     cap.release();
 
-    cout << "Exiting" << endl;
+    cout << "- DISCONNECTED -" << endl;
 }
 
 int main(int argc, char** argv) {
+
+    cout << "- SERVER STARTED -" << endl;
 
     Server server(callback);
     if (server.run()) {
         err("server.run()");
         exit(1);
     }
+
+    cout << "- SERVER EXITED -" << endl;
 
     return 0;
 }

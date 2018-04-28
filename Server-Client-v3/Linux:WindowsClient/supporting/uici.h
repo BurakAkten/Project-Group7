@@ -1,3 +1,5 @@
+#if defined(__linux__) || defined(__APPLE__)
+
 #ifndef UICI_H
 #define UICI_H
 
@@ -26,6 +28,8 @@ int u_connect(u_port_t port,struct sockaddr_in* server);
 
 #if defined (__cplusplus)
 }
+#endif
+
 #endif
 
 #endif

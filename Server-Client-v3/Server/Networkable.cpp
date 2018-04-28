@@ -49,22 +49,44 @@ namespace server_client {
         return dataPending() != 0;
     }
 
-//    ssize_t Networkable::r_read_persistent(int fd, void *buf, size_t size) const {
-//        char *bufp;
-//        size_t bytestoread;
-//        ssize_t bytesread;
-//        size_t totalbytes;
-//
-//        for (bufp = (char *) buf, bytestoread = size, totalbytes = 0;
-//             bytestoread > 0;
-//             bufp += bytesread, bytestoread -= bytesread) {
-//            bytesread = read(fd, bufp, bytestoread);
-//            if ((bytesread) == -1 && (errno != EINTR))
-//                return -1;
-//            if (bytesread == -1)
-//                bytesread = 0;
-//            totalbytes += bytesread;
-//        }
-//        return totalbytes;
-//    }
+    int Networkable::send(const Mat& mat) const {
+        uint32_t matrixSize = (uint32_t) (mat.total() * mat.elemSize());
+        int type = mat.type();
+
+        if (send(&matrixSize, sizeof(uint32_t)) != sizeof(uint32_t))
+            return -1;
+        else if (send(&mat.rows, sizeof(int)) != sizeof(int))
+            return -1;
+        else if (send(&mat.cols, sizeof(int)) != sizeof(int))
+            return -1;
+        else if (send(&type, sizeof(int)) != sizeof(int))
+            return -1;
+        else if(send(mat.data, matrixSize) != matrixSize)
+            return -1;
+
+        return 0;
+    }
+
+    int Networkable::receive(Mat& mat) const {
+        uint32_t matrixSize = 0;
+        int rows = 0;
+        int cols = 0;
+        int type = 0;
+
+        if(receive(&matrixSize, sizeof(uint32_t)) != sizeof(uint32_t))
+            return -1;
+        else if(receive(&rows, sizeof(int)) != sizeof(int))
+            return -1;
+        else if(receive(&cols, sizeof(int)) != sizeof(int))
+            return -1;
+        else if(receive(&type, sizeof(int)) != sizeof(int))
+            return -1;
+
+        mat.create(rows,cols,type);
+
+        if(receive(mat.data, matrixSize) != matrixSize)
+            return -1;
+
+        return 0;
+    }
 }

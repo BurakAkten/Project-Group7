@@ -1,4 +1,6 @@
 /* uiciname.c  name resolution functions */
+#if defined(__linux__) || defined(__APPLE__)
+
 #include "uiciname.h"
 
 #ifndef REENTRANCY
@@ -144,5 +146,7 @@ int name2addr(char *name, in_addr_t *addrp) {
    freeaddrinfo(res);
    return 0;
 }
+
+#endif
 
 #endif

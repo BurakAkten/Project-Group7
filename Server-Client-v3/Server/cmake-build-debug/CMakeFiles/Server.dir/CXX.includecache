@@ -35,6 +35,10 @@ vector
 -
 sys/ioctl.h
 -
+opencv2/imgproc.hpp
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/opencv2/imgproc.hpp
+opencv2/highgui.hpp
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/opencv2/highgui.hpp
 supporting/uici.h
 /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/supporting/uici.h
 supporting/restart.h

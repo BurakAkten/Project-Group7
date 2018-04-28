@@ -2,8 +2,8 @@
 // Created by Vakhid Betrakhmadov on 31/03/2018.
 //
 
-#ifndef SERVER_SERVER_H
-#define SERVER_SERVER_H
+#ifndef SERVER_H
+#define SERVER_H
 
 #include "Networkable.h"
 
@@ -28,4 +28,4 @@ namespace server_client {
     };
 }
 
-#endif //SERVER_SERVER_H
+#endif //SERVER_H

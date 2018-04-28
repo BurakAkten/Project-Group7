@@ -25,41 +25,30 @@ void callback(Client& client) {
     namedWindow(WINDOW_NAME);
 
     Mat frame;
-    uint32_t bufferSize = 0;
-    vector<byte> buffer;
+    Mat decompressedFrame;
 
     bool connectionActive = true;
     for (;connectionActive;) {
 
-        if (client.hasDataPending()) {
-            cout << "Data pending " << client.dataPending() << endl;
-        }
-        else {
-            cout << "No data pending" << endl;
-        }
+//        if (client.hasDataPending()) {
+//            cout << "Data pending " << client.dataPending() << endl;
+//        }
+//        else {
+//            cout << "No data pending" << endl;
+//        }
 
-        if (client.receive(&bufferSize, sizeof(uint32_t)) != sizeof(uint32_t)) {
-            err("client.receive");
+        if(client.receive(frame)) {
+            err("client.receive()");
             connectionActive = false;
         } else {
-            cout << "bufferSize: " << bufferSize << endl;
 
-            buffer.reserve(bufferSize);
-            if (client.receive(buffer) != bufferSize) {
-                err("client.receive");
+            pyrUp(frame, decompressedFrame);
+
+            imshow(WINDOW_NAME, decompressedFrame);
+
+            if (waitKey(30) >= 0) {
+                client.disconnectFromServer();
                 connectionActive = false;
-            }
-            else {
-                frame = MatConverter::makeMat(buffer);
-
-                pyrUp(frame, frame);
-
-                imshow(WINDOW_NAME, frame);
-
-                if (waitKey(30) >= 0) {
-                    client.disconnectFromServer();
-                    connectionActive = false;
-                }
             }
         }
     }
@@ -69,26 +58,20 @@ void callback(Client& client) {
 
 int main() {
 
-    cout << "- SERVER HAS STARTED -" << endl;
+    cout << "- CLIENT STARTED -" << endl;
 
     const string ipAddress = "10.1.44.28";
 
-    #if defined(__linux__) || defined(__APPLE__)
-        Client client(ipAddress, callback);
-        if (client.connectToServer()) {
-            err("client.connect()");
-            exit(1);
-        }
-    #elif _WIN32
-        Client client(ipAddress, callback);
-        if (client.connectToServer()) {
+    Client client(ipAddress, callback);
+    if (client.connectToServer()) {
+        err("client.connect()");
+        #if _WIN32
             cout << WSAGetLastError() << endl;
-            err("client.connect()");
-            exit(1);
-        }
-    #endif
+        #endif
+        exit(1);
+    }
 
-    cout << "- SERVER HAS EXITED -" << endl;
+    cout << "- CLIENT EXITED -" << endl;
 
     return 0;
 }

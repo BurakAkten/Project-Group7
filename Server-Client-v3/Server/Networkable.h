@@ -2,18 +2,21 @@
 // Created by Vakhid Betrakhmadov on 03/04/2018.
 //
 
-#ifndef SERVER_NETWORKABLE_H
-#define SERVER_NETWORKABLE_H
+#ifndef NETWORKABLE_H
+#define NETWORKABLE_H
 
 #include <iostream>
 #include <cstdio>
 #include <vector>
 #include <sys/ioctl.h>
+#include "opencv2/imgproc.hpp"
+#include "opencv2/highgui.hpp"
 #include "supporting/uici.h"
 #include "supporting/restart.h"
 #include "NetworkableException.h"
 
 using namespace std;
+using cv::Mat;
 
 namespace server_client {
 
@@ -35,11 +38,13 @@ namespace server_client {
         ssize_t send(const void* buffer, size_t size) const;
         ssize_t receive(vector<byte> &buffer) const;
         ssize_t receive(void *buffer, size_t size) const ;
+
+        int send(const Mat& mat) const;
+        int receive(Mat& mat) const;
+
         bool hasDataPending() const;
         ssize_t dataPending() const;
-    private:
-//        ssize_t r_read_persistent(int fd, void *buf, size_t size) const;
     };
 }
 
-#endif //SERVER_NETWORKABLE_H
+#endif //NETWORKABLE_H

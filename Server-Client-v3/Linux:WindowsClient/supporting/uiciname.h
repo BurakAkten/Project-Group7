@@ -1,4 +1,6 @@
 /* uiciname.h  name resolution functions */
+#if defined(__linux__) || defined(__APPLE__)
+
 #ifndef UICINAME_H
 #define UICINAME_H
 
@@ -23,6 +25,8 @@ void addr2name(struct in_addr addr, char *name, int namelen);
  
 #if defined (__cplusplus)
 }
+#endif
+
 #endif
 
 #endif

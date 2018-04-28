@@ -96,6 +96,9 @@
 		<Unit filename="/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/Networkable.h">
 			<Option target="Server"/>
 		</Unit>
+		<Unit filename="/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/NetworkableException.h">
+			<Option target="Server"/>
+		</Unit>
 		<Unit filename="/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/Server.cpp">
 			<Option target="Server"/>
 		</Unit>

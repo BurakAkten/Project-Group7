@@ -80,4 +80,46 @@ namespace server_client {
             return 0;
         #endif
     }
+
+
+    int Networkable::send(const Mat& mat) const {
+        uint32_t matrixSize = (uint32_t) (mat.total() * mat.elemSize());
+        int type = mat.type();
+
+        if (send(&matrixSize, sizeof(uint32_t)) != sizeof(uint32_t))
+            return -1;
+        else if (send(&mat.rows, sizeof(int)) != sizeof(int))
+            return -1;
+        else if (send(&mat.cols, sizeof(int)) != sizeof(int))
+            return -1;
+        else if (send(&type, sizeof(int)) != sizeof(int))
+            return -1;
+        else if(send(mat.data, matrixSize) != matrixSize)
+            return -1;
+
+        return 0;
+    }
+
+    int Networkable::receive(Mat& mat) const {
+        uint32_t matrixSize = 0;
+        int rows = 0;
+        int cols = 0;
+        int type = 0;
+
+        if(receive(&matrixSize, sizeof(uint32_t)) != sizeof(uint32_t))
+            return -1;
+        else if(receive(&rows, sizeof(int)) != sizeof(int))
+            return -1;
+        else if(receive(&cols, sizeof(int)) != sizeof(int))
+            return -1;
+        else if(receive(&type, sizeof(int)) != sizeof(int))
+            return -1;
+
+        mat.create(rows,cols,type);
+
+        if(receive(mat.data, matrixSize) != matrixSize)
+            return -1;
+
+        return 0;
+    }
 }

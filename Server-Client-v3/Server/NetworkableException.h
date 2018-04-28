@@ -2,8 +2,8 @@
 // Created by Vakhid Betrakhmadov on 13/04/2018.
 //
 
-#ifndef SERVER_NETWORKABLEEXCEPTION_H
-#define SERVER_NETWORKABLEEXCEPTION_H
+#ifndef NETWORKABLEEXCEPTION_H
+#define NETWORKABLEEXCEPTION_H
 
 #include <iostream>
 
@@ -20,4 +20,4 @@ namespace server_client {
 
 }
 
-#endif //SERVER_NETWORKABLEEXCEPTION_H
+#endif //NETWORKABLEEXCEPTION_H
