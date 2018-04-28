@@ -48,10 +48,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Linux:WindowsClient
+CMAKE_SOURCE_DIR = /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Linux:WindowsClient/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Linux:WindowsClient/cmake-build-debug/CMakeFiles /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Linux:WindowsClient/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/cmake-build-debug/CMakeFiles /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Linux:WindowsClient/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named WindowsClient
+# Target rules for targets named LinuxWindowsClient
 
 # Build rule for target.
-WindowsClient: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 WindowsClient
-.PHONY : WindowsClient
+LinuxWindowsClient: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 LinuxWindowsClient
+.PHONY : LinuxWindowsClient
 
 # fast build rule for target.
-WindowsClient/fast:
-	$(MAKE) -f CMakeFiles/WindowsClient.dir/build.make CMakeFiles/WindowsClient.dir/build
-.PHONY : WindowsClient/fast
+LinuxWindowsClient/fast:
+	$(MAKE) -f CMakeFiles/LinuxWindowsClient.dir/build.make CMakeFiles/LinuxWindowsClient.dir/build
+.PHONY : LinuxWindowsClient/fast
 
 Client.o: Client.cpp.o
 
@@ -129,7 +129,7 @@ Client.o: Client.cpp.o
 
 # target to build an object file
 Client.cpp.o:
-	$(MAKE) -f CMakeFiles/WindowsClient.dir/build.make CMakeFiles/WindowsClient.dir/Client.cpp.o
+	$(MAKE) -f CMakeFiles/LinuxWindowsClient.dir/build.make CMakeFiles/LinuxWindowsClient.dir/Client.cpp.o
 .PHONY : Client.cpp.o
 
 Client.i: Client.cpp.i
@@ -138,7 +138,7 @@ Client.i: Client.cpp.i
 
 # target to preprocess a source file
 Client.cpp.i:
-	$(MAKE) -f CMakeFiles/WindowsClient.dir/build.make CMakeFiles/WindowsClient.dir/Client.cpp.i
+	$(MAKE) -f CMakeFiles/LinuxWindowsClient.dir/build.make CMakeFiles/LinuxWindowsClient.dir/Client.cpp.i
 .PHONY : Client.cpp.i
 
 Client.s: Client.cpp.s
@@ -147,7 +147,7 @@ Client.s: Client.cpp.s
 
 # target to generate assembly for a file
 Client.cpp.s:
-	$(MAKE) -f CMakeFiles/WindowsClient.dir/build.make CMakeFiles/WindowsClient.dir/Client.cpp.s
+	$(MAKE) -f CMakeFiles/LinuxWindowsClient.dir/build.make CMakeFiles/LinuxWindowsClient.dir/Client.cpp.s
 .PHONY : Client.cpp.s
 
 MatConverter.o: MatConverter.cpp.o
@@ -156,7 +156,7 @@ MatConverter.o: MatConverter.cpp.o
 
 # target to build an object file
 MatConverter.cpp.o:
-	$(MAKE) -f CMakeFiles/WindowsClient.dir/build.make CMakeFiles/WindowsClient.dir/MatConverter.cpp.o
+	$(MAKE) -f CMakeFiles/LinuxWindowsClient.dir/build.make CMakeFiles/LinuxWindowsClient.dir/MatConverter.cpp.o
 .PHONY : MatConverter.cpp.o
 
 MatConverter.i: MatConverter.cpp.i
@@ -165,7 +165,7 @@ MatConverter.i: MatConverter.cpp.i
 
 # target to preprocess a source file
 MatConverter.cpp.i:
-	$(MAKE) -f CMakeFiles/WindowsClient.dir/build.make CMakeFiles/WindowsClient.dir/MatConverter.cpp.i
+	$(MAKE) -f CMakeFiles/LinuxWindowsClient.dir/build.make CMakeFiles/LinuxWindowsClient.dir/MatConverter.cpp.i
 .PHONY : MatConverter.cpp.i
 
 MatConverter.s: MatConverter.cpp.s
@@ -174,7 +174,7 @@ MatConverter.s: MatConverter.cpp.s
 
 # target to generate assembly for a file
 MatConverter.cpp.s:
-	$(MAKE) -f CMakeFiles/WindowsClient.dir/build.make CMakeFiles/WindowsClient.dir/MatConverter.cpp.s
+	$(MAKE) -f CMakeFiles/LinuxWindowsClient.dir/build.make CMakeFiles/LinuxWindowsClient.dir/MatConverter.cpp.s
 .PHONY : MatConverter.cpp.s
 
 Networkable.o: Networkable.cpp.o
@@ -183,7 +183,7 @@ Networkable.o: Networkable.cpp.o
 
 # target to build an object file
 Networkable.cpp.o:
-	$(MAKE) -f CMakeFiles/WindowsClient.dir/build.make CMakeFiles/WindowsClient.dir/Networkable.cpp.o
+	$(MAKE) -f CMakeFiles/LinuxWindowsClient.dir/build.make CMakeFiles/LinuxWindowsClient.dir/Networkable.cpp.o
 .PHONY : Networkable.cpp.o
 
 Networkable.i: Networkable.cpp.i
@@ -192,7 +192,7 @@ Networkable.i: Networkable.cpp.i
 
 # target to preprocess a source file
 Networkable.cpp.i:
-	$(MAKE) -f CMakeFiles/WindowsClient.dir/build.make CMakeFiles/WindowsClient.dir/Networkable.cpp.i
+	$(MAKE) -f CMakeFiles/LinuxWindowsClient.dir/build.make CMakeFiles/LinuxWindowsClient.dir/Networkable.cpp.i
 .PHONY : Networkable.cpp.i
 
 Networkable.s: Networkable.cpp.s
@@ -201,7 +201,7 @@ Networkable.s: Networkable.cpp.s
 
 # target to generate assembly for a file
 Networkable.cpp.s:
-	$(MAKE) -f CMakeFiles/WindowsClient.dir/build.make CMakeFiles/WindowsClient.dir/Networkable.cpp.s
+	$(MAKE) -f CMakeFiles/LinuxWindowsClient.dir/build.make CMakeFiles/LinuxWindowsClient.dir/Networkable.cpp.s
 .PHONY : Networkable.cpp.s
 
 main.o: main.cpp.o
@@ -210,7 +210,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) -f CMakeFiles/WindowsClient.dir/build.make CMakeFiles/WindowsClient.dir/main.cpp.o
+	$(MAKE) -f CMakeFiles/LinuxWindowsClient.dir/build.make CMakeFiles/LinuxWindowsClient.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -219,7 +219,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles/WindowsClient.dir/build.make CMakeFiles/WindowsClient.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles/LinuxWindowsClient.dir/build.make CMakeFiles/LinuxWindowsClient.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -228,35 +228,116 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles/WindowsClient.dir/build.make CMakeFiles/WindowsClient.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles/LinuxWindowsClient.dir/build.make CMakeFiles/LinuxWindowsClient.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-wrestart.o: wrestart.cpp.o
+supporting/restart.o: supporting/restart.c.o
 
-.PHONY : wrestart.o
+.PHONY : supporting/restart.o
 
 # target to build an object file
-wrestart.cpp.o:
-	$(MAKE) -f CMakeFiles/WindowsClient.dir/build.make CMakeFiles/WindowsClient.dir/wrestart.cpp.o
-.PHONY : wrestart.cpp.o
+supporting/restart.c.o:
+	$(MAKE) -f CMakeFiles/LinuxWindowsClient.dir/build.make CMakeFiles/LinuxWindowsClient.dir/supporting/restart.c.o
+.PHONY : supporting/restart.c.o
 
-wrestart.i: wrestart.cpp.i
+supporting/restart.i: supporting/restart.c.i
 
-.PHONY : wrestart.i
+.PHONY : supporting/restart.i
 
 # target to preprocess a source file
-wrestart.cpp.i:
-	$(MAKE) -f CMakeFiles/WindowsClient.dir/build.make CMakeFiles/WindowsClient.dir/wrestart.cpp.i
-.PHONY : wrestart.cpp.i
+supporting/restart.c.i:
+	$(MAKE) -f CMakeFiles/LinuxWindowsClient.dir/build.make CMakeFiles/LinuxWindowsClient.dir/supporting/restart.c.i
+.PHONY : supporting/restart.c.i
 
-wrestart.s: wrestart.cpp.s
+supporting/restart.s: supporting/restart.c.s
 
-.PHONY : wrestart.s
+.PHONY : supporting/restart.s
 
 # target to generate assembly for a file
-wrestart.cpp.s:
-	$(MAKE) -f CMakeFiles/WindowsClient.dir/build.make CMakeFiles/WindowsClient.dir/wrestart.cpp.s
-.PHONY : wrestart.cpp.s
+supporting/restart.c.s:
+	$(MAKE) -f CMakeFiles/LinuxWindowsClient.dir/build.make CMakeFiles/LinuxWindowsClient.dir/supporting/restart.c.s
+.PHONY : supporting/restart.c.s
+
+supporting/uici.o: supporting/uici.c.o
+
+.PHONY : supporting/uici.o
+
+# target to build an object file
+supporting/uici.c.o:
+	$(MAKE) -f CMakeFiles/LinuxWindowsClient.dir/build.make CMakeFiles/LinuxWindowsClient.dir/supporting/uici.c.o
+.PHONY : supporting/uici.c.o
+
+supporting/uici.i: supporting/uici.c.i
+
+.PHONY : supporting/uici.i
+
+# target to preprocess a source file
+supporting/uici.c.i:
+	$(MAKE) -f CMakeFiles/LinuxWindowsClient.dir/build.make CMakeFiles/LinuxWindowsClient.dir/supporting/uici.c.i
+.PHONY : supporting/uici.c.i
+
+supporting/uici.s: supporting/uici.c.s
+
+.PHONY : supporting/uici.s
+
+# target to generate assembly for a file
+supporting/uici.c.s:
+	$(MAKE) -f CMakeFiles/LinuxWindowsClient.dir/build.make CMakeFiles/LinuxWindowsClient.dir/supporting/uici.c.s
+.PHONY : supporting/uici.c.s
+
+supporting/uiciname.o: supporting/uiciname.c.o
+
+.PHONY : supporting/uiciname.o
+
+# target to build an object file
+supporting/uiciname.c.o:
+	$(MAKE) -f CMakeFiles/LinuxWindowsClient.dir/build.make CMakeFiles/LinuxWindowsClient.dir/supporting/uiciname.c.o
+.PHONY : supporting/uiciname.c.o
+
+supporting/uiciname.i: supporting/uiciname.c.i
+
+.PHONY : supporting/uiciname.i
+
+# target to preprocess a source file
+supporting/uiciname.c.i:
+	$(MAKE) -f CMakeFiles/LinuxWindowsClient.dir/build.make CMakeFiles/LinuxWindowsClient.dir/supporting/uiciname.c.i
+.PHONY : supporting/uiciname.c.i
+
+supporting/uiciname.s: supporting/uiciname.c.s
+
+.PHONY : supporting/uiciname.s
+
+# target to generate assembly for a file
+supporting/uiciname.c.s:
+	$(MAKE) -f CMakeFiles/LinuxWindowsClient.dir/build.make CMakeFiles/LinuxWindowsClient.dir/supporting/uiciname.c.s
+.PHONY : supporting/uiciname.c.s
+
+supporting/wrestart.o: supporting/wrestart.cpp.o
+
+.PHONY : supporting/wrestart.o
+
+# target to build an object file
+supporting/wrestart.cpp.o:
+	$(MAKE) -f CMakeFiles/LinuxWindowsClient.dir/build.make CMakeFiles/LinuxWindowsClient.dir/supporting/wrestart.cpp.o
+.PHONY : supporting/wrestart.cpp.o
+
+supporting/wrestart.i: supporting/wrestart.cpp.i
+
+.PHONY : supporting/wrestart.i
+
+# target to preprocess a source file
+supporting/wrestart.cpp.i:
+	$(MAKE) -f CMakeFiles/LinuxWindowsClient.dir/build.make CMakeFiles/LinuxWindowsClient.dir/supporting/wrestart.cpp.i
+.PHONY : supporting/wrestart.cpp.i
+
+supporting/wrestart.s: supporting/wrestart.cpp.s
+
+.PHONY : supporting/wrestart.s
+
+# target to generate assembly for a file
+supporting/wrestart.cpp.s:
+	$(MAKE) -f CMakeFiles/LinuxWindowsClient.dir/build.make CMakeFiles/LinuxWindowsClient.dir/supporting/wrestart.cpp.s
+.PHONY : supporting/wrestart.cpp.s
 
 # Help Target
 help:
@@ -266,7 +347,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... WindowsClient"
+	@echo "... LinuxWindowsClient"
 	@echo "... Client.o"
 	@echo "... Client.i"
 	@echo "... Client.s"
@@ -279,9 +360,18 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... wrestart.o"
-	@echo "... wrestart.i"
-	@echo "... wrestart.s"
+	@echo "... supporting/restart.o"
+	@echo "... supporting/restart.i"
+	@echo "... supporting/restart.s"
+	@echo "... supporting/uici.o"
+	@echo "... supporting/uici.i"
+	@echo "... supporting/uici.s"
+	@echo "... supporting/uiciname.o"
+	@echo "... supporting/uiciname.i"
+	@echo "... supporting/uiciname.s"
+	@echo "... supporting/wrestart.o"
+	@echo "... supporting/wrestart.i"
+	@echo "... supporting/wrestart.s"
 .PHONY : help
 
 

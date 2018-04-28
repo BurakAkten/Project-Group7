@@ -1,4 +1,4 @@
-# Install script for directory: /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Linux:WindowsClient
+# Install script for directory: /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Linux:WindowsClient/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

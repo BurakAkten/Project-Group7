@@ -1,20 +1,20 @@
 Detecting C [-std=c11] compiler features failed to compile with the following output:
-Change Dir: /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Linux:WindowsClient/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_136f9/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_136f9.dir/build.make CMakeFiles/cmTC_136f9.dir/build
-CMakeFiles/cmTC_136f9.dir/build.make:64: *** target pattern contains no `%'.  Stop.
-make: *** [cmTC_136f9/fast] Error 2
+Run Build Command:"/usr/bin/make" "cmTC_bd7a5/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_bd7a5.dir/build.make CMakeFiles/cmTC_bd7a5.dir/build
+CMakeFiles/cmTC_bd7a5.dir/build.make:64: *** target pattern contains no `%'.  Stop.
+make: *** [cmTC_bd7a5/fast] Error 2
 
 
 
 Detecting CXX [-std=c++1z] compiler features failed to compile with the following output:
-Change Dir: /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Linux:WindowsClient/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_1477f/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_1477f.dir/build.make CMakeFiles/cmTC_1477f.dir/build
-CMakeFiles/cmTC_1477f.dir/build.make:64: *** target pattern contains no `%'.  Stop.
-make: *** [cmTC_1477f/fast] Error 2
+Run Build Command:"/usr/bin/make" "cmTC_78034/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_78034.dir/build.make CMakeFiles/cmTC_78034.dir/build
+CMakeFiles/cmTC_78034.dir/build.make:64: *** target pattern contains no `%'.  Stop.
+make: *** [cmTC_78034/fast] Error 2
 
 
 

@@ -16,7 +16,7 @@ namespace server_client {
               callback(theCallback) {
         sockaddr.sin_port = htons((short) port);
         sockaddr.sin_family = AF_INET;
-        #ifdef __linux__
+        #if defined(__linux__) || defined(__APPLE__)
             if (name2addr((char*) hostname.c_str(), &(sockaddr.sin_addr.s_addr)) == -1) {
                 std::stringstream message;
                 message << "name2addr(): errno = " << errno;
@@ -25,7 +25,9 @@ namespace server_client {
         #elif _WIN32
             sockaddr.sin_addr.s_addr = inet_addr(hostname.c_str());
             if(WSAStartup(MAKEWORD(2,2), &wsaData) != NO_ERROR) {
-                //TODO: throw Networkable exception
+                std::stringstream message;
+                message << "WSAStartup(): error = " << WSAGetLastError();
+                throw NetworkableException(message.str());
             }
         #endif
     }
@@ -37,7 +39,7 @@ namespace server_client {
     }
 
     int Client::connectToServer() {
-        #ifdef __linux__
+        #if defined(__linux__) || defined(__APPLE__)
             if ((connection_sock_fd = u_connect(port, &sockaddr)) == -1)
                 return -1;
         #elif _WIN32
@@ -52,7 +54,7 @@ namespace server_client {
     }
 
     void Client::disconnectFromServer() const {
-        #ifdef __linux__
+        #if defined(__linux__) || defined(__APPLE__)
             r_close(connection_sock_fd);
         #elif _WIN32
             shutdown(connection_sock_fd, SD_BOTH);

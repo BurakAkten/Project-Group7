@@ -54,45 +54,45 @@ RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Linux:WindowsClient
+CMAKE_SOURCE_DIR = /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Linux:WindowsClient/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/cmake-build-debug
 
 #=============================================================================
-# Target rules for target CMakeFiles/WindowsClient.dir
+# Target rules for target CMakeFiles/LinuxWindowsClient.dir
 
 # All Build rule for target.
-CMakeFiles/WindowsClient.dir/all:
-	$(MAKE) -f CMakeFiles/WindowsClient.dir/build.make CMakeFiles/WindowsClient.dir/depend
-	$(MAKE) -f CMakeFiles/WindowsClient.dir/build.make CMakeFiles/WindowsClient.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Linux:WindowsClient/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target WindowsClient"
-.PHONY : CMakeFiles/WindowsClient.dir/all
+CMakeFiles/LinuxWindowsClient.dir/all:
+	$(MAKE) -f CMakeFiles/LinuxWindowsClient.dir/build.make CMakeFiles/LinuxWindowsClient.dir/depend
+	$(MAKE) -f CMakeFiles/LinuxWindowsClient.dir/build.make CMakeFiles/LinuxWindowsClient.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9 "Built target LinuxWindowsClient"
+.PHONY : CMakeFiles/LinuxWindowsClient.dir/all
 
 # Include target in all.
-all: CMakeFiles/WindowsClient.dir/all
+all: CMakeFiles/LinuxWindowsClient.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/WindowsClient.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Linux:WindowsClient/cmake-build-debug/CMakeFiles 6
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/WindowsClient.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Linux:WindowsClient/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/WindowsClient.dir/rule
+CMakeFiles/LinuxWindowsClient.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/cmake-build-debug/CMakeFiles 9
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/LinuxWindowsClient.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/LinuxWindowsClient.dir/rule
 
 # Convenience name for target.
-WindowsClient: CMakeFiles/WindowsClient.dir/rule
+LinuxWindowsClient: CMakeFiles/LinuxWindowsClient.dir/rule
 
-.PHONY : WindowsClient
-
-# clean rule for target.
-CMakeFiles/WindowsClient.dir/clean:
-	$(MAKE) -f CMakeFiles/WindowsClient.dir/build.make CMakeFiles/WindowsClient.dir/clean
-.PHONY : CMakeFiles/WindowsClient.dir/clean
+.PHONY : LinuxWindowsClient
 
 # clean rule for target.
-clean: CMakeFiles/WindowsClient.dir/clean
+CMakeFiles/LinuxWindowsClient.dir/clean:
+	$(MAKE) -f CMakeFiles/LinuxWindowsClient.dir/build.make CMakeFiles/LinuxWindowsClient.dir/clean
+.PHONY : CMakeFiles/LinuxWindowsClient.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/LinuxWindowsClient.dir/clean
 
 .PHONY : clean
 

@@ -4,6 +4,8 @@
 
 #include "wrestart.h"
 
+#if _WIN32
+
 ssize_t r_send(SOCKET s, void* buf, size_t len) {
     char *bufp;
     size_t bytestowrite;
@@ -43,3 +45,5 @@ ssize_t r_recv(SOCKET s, void* buf, size_t len) {
     }
     return totalbytes;
 }
+
+#endif

@@ -8,13 +8,12 @@
 #include <iostream>
 #include <cstdio>
 #include <vector>
-//#include "NetworkableException.h"
+#include "NetworkableException.h"
 
-#ifdef __linux__
+#if defined(__linux__) || defined(__APPLE__)
     #include <sys/ioctl.h>
     #include "supporting/uici.h"
     #include "supporting/restart.h"
-    #include "NetworkableException.h"
 #elif _WIN32
     #ifndef UNICODE
     #define UNICODE
@@ -43,7 +42,7 @@ namespace server_client {
     class Networkable {
 
     protected:
-        #ifdef __linux__
+        #if defined(__linux__) || defined(__APPLE__)
             int connection_sock_fd;
         #elif _WIN32
             SOCKET connection_sock_fd;
@@ -56,10 +55,8 @@ namespace server_client {
         ssize_t send(const void* buffer, size_t size) const;
         ssize_t receive(vector<byte> &buffer) const;
         ssize_t receive(void *buffer, size_t size) const ;
-        #ifdef __linux__
-            bool hasDataPending() const;
-            ssize_t dataPending() const;
-        #endif
+        bool hasDataPending() const;
+        ssize_t dataPending() const;
     };
 }
 

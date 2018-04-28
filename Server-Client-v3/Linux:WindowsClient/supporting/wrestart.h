@@ -5,6 +5,8 @@
 #ifndef WRESTART_H
 #define WRESTART_H
 
+#if _WIN32
+
 #ifndef UNICODE
 #define UNICODE
 #endif
@@ -20,5 +22,7 @@
 
 ssize_t r_send(SOCKET s, void* buf, size_t len);  // return: SOCKET_ERROR or number of bytes sent
 ssize_t r_recv(SOCKET s, void* buf, size_t len);  // return: SOCKET_ERROR or number of bytes received
+
+#endif
 
 #endif //WRESTART_H

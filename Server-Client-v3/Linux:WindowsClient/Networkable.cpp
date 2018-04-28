@@ -11,7 +11,7 @@ namespace  {
 namespace server_client {
 
     Networkable::Networkable():
-                #ifdef __linux__
+                #if defined(__linux__) || defined(__APPLE__)
                     connection_sock_fd(0)
                 #elif _WIN32
                     connection_sock_fd(INVALID_SOCKET)
@@ -19,7 +19,7 @@ namespace server_client {
                 {}
 
     Networkable::~Networkable() {
-        #ifdef __linux__
+        #if defined(__linux__) || defined(__APPLE__)
             r_close(connection_sock_fd);
         #elif _WIN32
             if (connection_sock_fd != INVALID_SOCKET ) {
@@ -34,7 +34,7 @@ namespace server_client {
     }
 
     ssize_t Networkable::send(const void* buffer, size_t size) const {
-        #ifdef __linux__
+        #if defined(__linux__) || defined(__APPLE__)
             return r_write(connection_sock_fd, (void*) buffer, size);
         #elif _WIN32
             return  r_send(connection_sock_fd, (void*) buffer, size);
@@ -42,7 +42,7 @@ namespace server_client {
     }
 
     ssize_t Networkable::receive(vector<byte> &buffer) const {
-        #ifdef __linux__
+        #if defined(__linux__) || defined(__APPLE__)
             return readblock(connection_sock_fd, buffer.data(), buffer.capacity());
         #elif _WIN32
             return r_recv(connection_sock_fd, buffer.data(), buffer.capacity());
@@ -50,27 +50,34 @@ namespace server_client {
     }
 
     ssize_t Networkable::receive(void *buffer, size_t size) const {
-        #ifdef __linux__
+        #if defined(__linux__) || defined(__APPLE__)
             return readblock(connection_sock_fd, buffer, size);
         #elif _WIN32
             return r_recv(connection_sock_fd, buffer, size);
         #endif
     }
 
-    #ifdef __linux__
-        ssize_t Networkable::dataPending() const {
+    ssize_t Networkable::dataPending() const {
+        #if defined(__linux__) || defined(__APPLE__)
             ssize_t count = 0;
             if (ioctl(connection_sock_fd, FIONREAD, &count) == -1) {
                 char buffer[BUFFER_SIZE];
                 strerror_r(errno, buffer, BUFFER_SIZE);
                 throw NetworkableException(buffer);
             }
-
             return count;
-        }
+        #elif _WIN32
+            //TODO: implement
+            return 0;
+        #endif
+    }
 
-        bool Networkable::hasDataPending() const {
+    bool Networkable::hasDataPending() const {
+        #if defined(__linux__) || defined(__APPLE__)
             return dataPending() != 0;
-        }
-    #endif
+        #elif _WIN32
+            //TODO: implement
+            return 0;
+        #endif
+    }
 }
