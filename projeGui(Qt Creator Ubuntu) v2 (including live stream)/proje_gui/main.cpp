@@ -1,17 +1,14 @@
 #include "mainwindow.h"
 #include <QApplication>
 #include <iostream>
+
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    QApplication app(argc, argv);
     MainWindow w;
     w.show();
 
-    SecondWindow s;
- /*   if(w.isActiveWindow() == true)
-        s.show();
-*/
+    //SecondWindow s;
 
-
-    return a.exec();
+    return app.exec();
 }

@@ -6,21 +6,21 @@
 
 #IncludeRegexTransform: 
 
-/Users/vakhidbetrakhmadov/Desktop/CLion/Client/Client.cpp
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Client/Client.cpp
 Client.h
-/Users/vakhidbetrakhmadov/Desktop/CLion/Client/Client.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Client/Client.h
 
-/Users/vakhidbetrakhmadov/Desktop/CLion/Client/Client.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Client/Client.h
 sstream
 -
 Networkable.h
-/Users/vakhidbetrakhmadov/Desktop/CLion/Client/Networkable.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Client/Networkable.h
 
-/Users/vakhidbetrakhmadov/Desktop/CLion/Client/MatConverter.cpp
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Client/MatConverter.cpp
 MatConverter.h
-/Users/vakhidbetrakhmadov/Desktop/CLion/Client/MatConverter.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Client/MatConverter.h
 
-/Users/vakhidbetrakhmadov/Desktop/CLion/Client/MatConverter.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Client/MatConverter.h
 iostream
 -
 vector
@@ -28,15 +28,15 @@ vector
 exception
 -
 opencv2/imgproc.hpp
-/Users/vakhidbetrakhmadov/Desktop/CLion/Client/opencv2/imgproc.hpp
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Client/opencv2/imgproc.hpp
 opencv2/highgui.hpp
-/Users/vakhidbetrakhmadov/Desktop/CLion/Client/opencv2/highgui.hpp
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Client/opencv2/highgui.hpp
 
-/Users/vakhidbetrakhmadov/Desktop/CLion/Client/Networkable.cpp
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Client/Networkable.cpp
 Networkable.h
-/Users/vakhidbetrakhmadov/Desktop/CLion/Client/Networkable.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Client/Networkable.h
 
-/Users/vakhidbetrakhmadov/Desktop/CLion/Client/Networkable.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Client/Networkable.h
 iostream
 -
 cstdio
@@ -46,27 +46,33 @@ vector
 sys/ioctl.h
 -
 supporting/uici.h
-/Users/vakhidbetrakhmadov/Desktop/CLion/Client/supporting/uici.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Client/supporting/uici.h
 supporting/restart.h
-/Users/vakhidbetrakhmadov/Desktop/CLion/Client/supporting/restart.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Client/supporting/restart.h
+NetworkableException.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Client/NetworkableException.h
 
-/Users/vakhidbetrakhmadov/Desktop/CLion/Client/main.cpp
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Client/NetworkableException.h
+iostream
+-
+
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Client/main.cpp
 iostream
 -
 opencv2/imgproc.hpp
-/Users/vakhidbetrakhmadov/Desktop/CLion/Client/opencv2/imgproc.hpp
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Client/opencv2/imgproc.hpp
 opencv2/highgui.hpp
-/Users/vakhidbetrakhmadov/Desktop/CLion/Client/opencv2/highgui.hpp
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Client/opencv2/highgui.hpp
 supporting/uici.h
-/Users/vakhidbetrakhmadov/Desktop/CLion/Client/supporting/uici.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Client/supporting/uici.h
 supporting/restart.h
-/Users/vakhidbetrakhmadov/Desktop/CLion/Client/supporting/restart.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Client/supporting/restart.h
 MatConverter.h
-/Users/vakhidbetrakhmadov/Desktop/CLion/Client/MatConverter.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Client/MatConverter.h
 Client.h
-/Users/vakhidbetrakhmadov/Desktop/CLion/Client/Client.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Client/Client.h
 
-/Users/vakhidbetrakhmadov/Desktop/CLion/Client/supporting/restart.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Client/supporting/restart.h
 fcntl.h
 -
 unistd.h
@@ -76,7 +82,7 @@ sys/time.h
 sys/types.h
 -
 
-/Users/vakhidbetrakhmadov/Desktop/CLion/Client/supporting/uici.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Client/supporting/uici.h
 errno.h
 -
 signal.h
@@ -90,9 +96,9 @@ sys/select.h
 sys/socket.h
 -
 uiciname.h
-/Users/vakhidbetrakhmadov/Desktop/CLion/Client/supporting/uiciname.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Client/supporting/uiciname.h
 
-/Users/vakhidbetrakhmadov/Desktop/CLion/Client/supporting/uiciname.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Client/supporting/uiciname.h
 ctype.h
 -
 netdb.h

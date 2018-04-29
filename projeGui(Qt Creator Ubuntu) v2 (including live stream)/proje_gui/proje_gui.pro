@@ -5,9 +5,9 @@
 #-------------------------------------------------
 
 QT       += core gui
-QT += multimedia multimediawidgets
+QT += multimedia multimediawidgets charts
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 TARGET = proje_gui
 TEMPLATE = app
@@ -35,26 +35,31 @@ SOURCES += \
         main.cpp \
     secondwindow.cpp \
     mainwindow.cpp \
-    bolgeekle.cpp \
     Client/Client.cpp \
     Client/MatConverter.cpp \
     Client/Networkable.cpp \
     Client/runClient.cpp  \
     Client/supporting/restart.c \
     Client/supporting/uici.c \
-    Client/supporting/uiciname.c
+    Client/supporting/uiciname.c \
+    Client/run2.cpp \
+    qcustomplot.cpp \
+    bolgeekle.cpp \
+    rapor.cpp
 
 
 HEADERS += \
     secondwindow.h \
     mainwindow.h \
-    bolgeekle.h \
     Client/Client.h \
     Client/MatConverter.h \
     Client/Networkable.h \
     Client/supporting/restart.h \
     Client/supporting/uici.h \
-    Client/supporting/uiciname.h
+    Client/supporting/uiciname.h \
+    qcustomplot.h \
+    bolgeekle.h \
+    rapor.h
 
 FORMS += \
     secondwindow.ui \

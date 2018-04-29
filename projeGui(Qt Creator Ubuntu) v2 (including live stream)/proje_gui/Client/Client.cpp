@@ -2,7 +2,7 @@
 // Created by Vakhid Betrakhmadov on 03/04/2018.
 //
 
-#include "Client/Client.h"
+#include "Client.h"
 
 namespace server_client {
 
@@ -33,5 +33,9 @@ namespace server_client {
             callback(*this);
 
         return 0;
+    }
+
+    void Client::disconnect() const {
+        r_close(connection_sock_fd);
     }
 }

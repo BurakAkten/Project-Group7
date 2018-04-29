@@ -1,7 +1,6 @@
 #include <iostream>
 //#include "opencv2/imgproc.hpp"
 //#include "opencv2/highgui.hpp"
-#include "/home/furkan/Desktop/opencv-3.4.1/include/opencv2/opencv.hpp"
 #include "Client/supporting/uici.h"
 #include "Client/supporting/restart.h"
 #include "Client/MatConverter.h"

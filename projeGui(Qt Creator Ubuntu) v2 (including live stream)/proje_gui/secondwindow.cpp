@@ -35,16 +35,17 @@ SecondWindow::SecondWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::SecondWindow)
 {
+
     ui->setupUi(this);
 
     loadImages();
 
 
-    ui->tableWidget->setColumnCount(3);
-    for(int i = 0; i < 3; i++)
+    ui->tableWidget->setColumnCount(2);
+    for(int i = 0; i < 2; i++)
         ui->tableWidget->setColumnWidth(i, 257);
 
-    ui->tableWidget->setHorizontalHeaderLabels(QString("Bölge;Tarih;Görüntü Numarası").split(";"));
+    ui->tableWidget->setHorizontalHeaderLabels(QString("Bölge;Tarih").split(";"));
     QHeaderView* header = ui->tableWidget->horizontalHeader();
     header->setSectionResizeMode(QHeaderView::Stretch);
 
@@ -59,21 +60,21 @@ SecondWindow::~SecondWindow()
     delete ui;
 }
 
-
-
-void SecondWindow::on_bolge_ekle_2_clicked()    // bolge ekleme butonu
-{
-    bolge = new BolgeEkle(this);
-    bolge->show();
-
-
-}
-
 void SecondWindow::on_bolge_sec_2_clicked()
 {
-    //getTableInfo();
-
+    //RUN THE SYSTEM
 }
+
+void SecondWindow::on_bolge_ekle_2_clicked() {
+    bolge = new BolgeEkle(this, raports, 1);
+    bolge->show();
+}
+
+void SecondWindow::on_openDateGraph_clicked() {
+    bolge = new BolgeEkle(this, raports, 2);
+    bolge->show();
+}
+
 void SecondWindow::getListInfo(){
 
     QTextStream out(stdout);
@@ -154,7 +155,7 @@ void SecondWindow::getTableInfo(){
         in.readLine();      // cursor, o anki tablonun son row'una geldi
     }
 
-
+    this->raports.clear();
     QString line;
     QStringList tokens;
     for (int i = rowSize; i < lineNumber; ++i) {    // yeni row eklendi ve yeni itemler tabloya eklendi
@@ -162,9 +163,11 @@ void SecondWindow::getTableInfo(){
         line = in.readLine();
         QRegExp sep(";");
         tokens =  line.split(sep);
-        for (int j = 0; j < 3; ++j) {   // 3 column var : Bölge;Tarih;Görüntü Numarası
+
+        Rapor newRapor(i, tokens.at(0).toStdString(), tokens.at(1).toStdString());
+        this->raports.push_back(newRapor);
+        for (int j = 0; j < 2; ++j) {   // 2 column var : Bölge;Tarih
             QTableWidgetItem *item = new QTableWidgetItem();
-            //item->setFlags(item->flags() ^ Qt::ItemIsEditable);
             item->setText(tokens.at(j));
             table->setItem   ( i, j, item);
         }
@@ -212,55 +215,73 @@ void SecondWindow::loadImages(){
 */
 void SecondWindow::callback(Client& client) {
 
-   // namedWindow(WINDOW_NAME);
-
     Mat frame;
-    unsigned long bufferSize = 0;
+    uint32_t bufferSize = 0;
     vector<byte> buffer;
+
     QImage image1;
     bool connectionActive = true;
     for (;connectionActive;) {
 
-        if (client.receive(&bufferSize, sizeof(long)) != sizeof(long)) {
+        if (client.hasDataPending()) {
+            cout << "Data pending " << client.dataPending() << endl;
+        }
+        else {
+            cout << "No data pending" << endl;
+        }
+
+        if (client.receive(&bufferSize, sizeof(uint32_t)) != sizeof(uint32_t)) {
             err("client.receive");
             connectionActive = false;
         } else {
+            cout << "bufferSize: " << bufferSize << endl;
+
             buffer.reserve(bufferSize);
-            if ((unsigned long)client.receive(buffer) != bufferSize) {
+            if (client.receive(buffer) != bufferSize) {
                 err("client.receive");
                 connectionActive = false;
             }
+            else {
+                frame = MatConverter::makeMat(buffer);
+
+                pyrUp(frame, frame);
+
+
+                cvtColor(frame, frame, CV_BGR2RGB);    //  renkleri Qt ye uygun hale getirmek için
+                image1= QImage((uchar*) frame.data, frame.cols, frame.rows, frame.step, QImage::Format_RGB888);
+
+
+                ui->video->setPixmap(QPixmap::fromImage(image1));
+                ui->video->setScaledContents( true );
+                ui->video->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
+                ui->video->show();
+
+                //imshow(WINDOW_NAME, frame);
+
+                if (waitKey(30) >= 0 || stop == true) {
+                    client.disconnect();
+                    connectionActive = false;
+                }
+            }
         }
-
-        frame = MatConverter::makeMat(buffer);
-
-        cvtColor(frame, frame, CV_BGR2RGB);    //  renkleri Qt ye uygun hale getirmek için
-        image1= QImage((uchar*) frame.data, frame.cols, frame.rows, frame.step, QImage::Format_RGB888);
-
-
-        ui->video->setPixmap(QPixmap::fromImage(image1));
-        ui->video->setScaledContents( true );
-        ui->video->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
-        ui->video->show();
-
-        //imshow(WINDOW_NAME, frame);
-        if (waitKey(30) >= 0 || stop == true) break;
-
     }
+
     image1 = QImage();
     ui->video->setPixmap(QPixmap::fromImage(image1));
-    ui->video->show();  // biterken ekranı boşaltmak için
+    ui->video->show();  // biterken ekranı boşaltmak için*/
+
+   // destroyAllWindows();
 }
 
 /*
 Play butonuna tıkalndıgında client server'a istek yolluyor
 */
-void SecondWindow::on_play_clicked()
-{
+void SecondWindow::on_play_clicked() {
     stop = false;
+
     auto f = bind(&SecondWindow::callback, this, std::placeholders::_1);
 
-    Client client("localhost", f);
+    Client client("localhost", f); //10.1.44.28
     if (client.connect()) {
         err("client.connect()");
         exit(1);
@@ -268,13 +289,33 @@ void SecondWindow::on_play_clicked()
 }
 
 
-void SecondWindow::on_stop_clicked()
-{
+void SecondWindow::on_stop_clicked() {
     stop = true;
+    if (isFullScreen == true) {
+        this->show();
+        ui->frame->setWindowFlags(Qt::Widget);  //    and to go back make it a widget again:
+        ui->frame->show();
+        isFullScreen = false;
+    }
 }
 
-void SecondWindow::closeEvent (QCloseEvent *event)
-{
+
+void SecondWindow::on_fullScreen_clicked() {
+    if (isFullScreen == false) {
+        ui->frame->setWindowFlags(Qt::Window);
+        ui->frame->showFullScreen();
+        isFullScreen = true;
+        this->hide();
+
+    } else {
+        this->show();
+        ui->frame->setWindowFlags(Qt::Widget);  //    and to go back make it a widget again:
+        ui->frame->show();
+        isFullScreen = false;
+    }
+}
+
+void SecondWindow::closeEvent (QCloseEvent *event) {
     QMessageBox::StandardButton resBtn = QMessageBox::question( this, "Quit",
                                                                 tr("Are you sure?\n"),
                                                                 QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes,
@@ -283,7 +324,6 @@ void SecondWindow::closeEvent (QCloseEvent *event)
         event->ignore();
     } else {
         stop = true;
-
         event->accept();
     }
 }

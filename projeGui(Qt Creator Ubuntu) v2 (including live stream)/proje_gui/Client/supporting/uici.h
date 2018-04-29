@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include <sys/select.h>
 #include <sys/socket.h>
-#include "Client/supporting/uiciname.h"
+#include "uiciname.h"
 
 #ifndef MAXBACKLOG
 #define MAXBACKLOG 50

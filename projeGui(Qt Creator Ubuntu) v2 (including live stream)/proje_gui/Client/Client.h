@@ -2,17 +2,19 @@
 // Created by Vakhid Betrakhmadov on 03/04/2018.
 //
 
-#ifndef CLIENT_CLIENT_H
-#define CLIENT_CLIENT_H
+#ifndef CLIENT_H
+#define CLIENT_H
 
 #include <sstream>
-#include "Client/Networkable.h"
+#include "Networkable.h"
 #include <functional> // bind
+
 
 namespace server_client {
 
-    class Client;
+    typedef unsigned short u_port_t;
 
+    class Client;
     typedef function<void(Client& client)> callback_t;
 
     class Client: public Networkable {
@@ -26,8 +28,8 @@ namespace server_client {
         Client(u_port_t thePort, const string& theHostname, callback_t theCallback);
         virtual ~Client();
         int connect();
+        void disconnect() const;
     };
 }
 
-
-#endif //CLIENT_CLIENT_H
+#endif //CLIENT_H

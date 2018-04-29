@@ -14,6 +14,7 @@ CMakeFiles/Client.dir/supporting/uiciname.c.o: ../supporting/uiciname.h
 CMakeFiles/Client.dir/Client.cpp.o: ../Client.cpp
 CMakeFiles/Client.dir/Client.cpp.o: ../Client.h
 CMakeFiles/Client.dir/Client.cpp.o: ../Networkable.h
+CMakeFiles/Client.dir/Client.cpp.o: ../NetworkableException.h
 CMakeFiles/Client.dir/Client.cpp.o: ../supporting/restart.h
 CMakeFiles/Client.dir/Client.cpp.o: ../supporting/uici.h
 CMakeFiles/Client.dir/Client.cpp.o: ../supporting/uiciname.h
@@ -254,6 +255,7 @@ CMakeFiles/Client.dir/MatConverter.cpp.o: /usr/local/include/opencv2/xfeatures2d
 
 CMakeFiles/Client.dir/Networkable.cpp.o: ../Networkable.cpp
 CMakeFiles/Client.dir/Networkable.cpp.o: ../Networkable.h
+CMakeFiles/Client.dir/Networkable.cpp.o: ../NetworkableException.h
 CMakeFiles/Client.dir/Networkable.cpp.o: ../supporting/restart.h
 CMakeFiles/Client.dir/Networkable.cpp.o: ../supporting/uici.h
 CMakeFiles/Client.dir/Networkable.cpp.o: ../supporting/uiciname.h
@@ -261,6 +263,7 @@ CMakeFiles/Client.dir/Networkable.cpp.o: ../supporting/uiciname.h
 CMakeFiles/Client.dir/main.cpp.o: ../Client.h
 CMakeFiles/Client.dir/main.cpp.o: ../MatConverter.h
 CMakeFiles/Client.dir/main.cpp.o: ../Networkable.h
+CMakeFiles/Client.dir/main.cpp.o: ../NetworkableException.h
 CMakeFiles/Client.dir/main.cpp.o: ../main.cpp
 CMakeFiles/Client.dir/main.cpp.o: ../supporting/restart.h
 CMakeFiles/Client.dir/main.cpp.o: ../supporting/uici.h

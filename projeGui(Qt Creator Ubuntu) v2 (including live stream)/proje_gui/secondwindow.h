@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "bolgeekle.h"
+#include "rapor.h"
 
 #include "Client/Client.h"
 
@@ -24,15 +25,22 @@ public:
 
 private slots:
     void on_bolge_sec_2_clicked();
+
     void on_bolge_ekle_2_clicked();
+
+    void on_openDateGraph_clicked();
 
     void on_play_clicked();
 
     void on_stop_clicked();
 
+    void on_fullScreen_clicked();
+
 private:
-    bool stop=false;
+    bool stop = false;
+    bool isFullScreen = false;
     Ui::SecondWindow *ui;
+    vector<Rapor> raports;
     BolgeEkle* bolge;
     void getTableInfo();
     void getListInfo();
