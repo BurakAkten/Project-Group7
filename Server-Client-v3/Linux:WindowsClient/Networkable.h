@@ -56,10 +56,9 @@ namespace server_client {
         virtual ~Networkable();
         ssize_t send(const vector<byte>& buffer) const;
         ssize_t send(const void* buffer, size_t size) const;
+        int send(const Mat& mat) const;
         ssize_t receive(vector<byte> &buffer) const;
         ssize_t receive(void *buffer, size_t size) const ;
-
-        int send(const Mat& mat) const;
         int receive(Mat& mat) const;
 
         bool hasDataPending() const;

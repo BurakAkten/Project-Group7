@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/Command.h
+
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/Data.h
+
 /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/MatConverter.cpp
 MatConverter.h
 /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/MatConverter.h
@@ -75,6 +79,10 @@ MatConverter.h
 /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/MatConverter.h
 Server.h
 /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/Server.h
+Command.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/Command.h
+Data.h
+/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/Data.h
 
 /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/supporting/restart.h
 fcntl.h

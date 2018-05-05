@@ -84,6 +84,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/Command.h">
+			<Option target="Server"/>
+		</Unit>
+		<Unit filename="/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/Data.h">
+			<Option target="Server"/>
+		</Unit>
 		<Unit filename="/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/MatConverter.cpp">
 			<Option target="Server"/>
 		</Unit>

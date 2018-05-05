@@ -723,6 +723,8 @@ CMakeFiles/Server.dir/Server.cpp.o
  /usr/local/include/opencv2/videostab/wobble_suppression.hpp
  /usr/local/include/opencv2/xfeatures2d/cuda.hpp
 CMakeFiles/Server.dir/main.cpp.o
+ /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/Command.h
+ /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/Data.h
  /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/MatConverter.h
  /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/Networkable.h
  /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/NetworkableException.h

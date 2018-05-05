@@ -725,6 +725,8 @@ CMakeFiles/LinuxWindowsClient.dir/Networkable.cpp.o: /usr/local/include/opencv2/
 CMakeFiles/LinuxWindowsClient.dir/Networkable.cpp.o: /usr/local/include/opencv2/xfeatures2d/cuda.hpp
 
 CMakeFiles/LinuxWindowsClient.dir/main.cpp.o: ../Client.h
+CMakeFiles/LinuxWindowsClient.dir/main.cpp.o: ../Command.h
+CMakeFiles/LinuxWindowsClient.dir/main.cpp.o: ../Data.h
 CMakeFiles/LinuxWindowsClient.dir/main.cpp.o: ../MatConverter.h
 CMakeFiles/LinuxWindowsClient.dir/main.cpp.o: ../Networkable.h
 CMakeFiles/LinuxWindowsClient.dir/main.cpp.o: ../NetworkableException.h

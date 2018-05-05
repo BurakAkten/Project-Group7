@@ -90,6 +90,12 @@
 		<Unit filename="/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/Client.h">
 			<Option target="LinuxWindowsClient"/>
 		</Unit>
+		<Unit filename="/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/Command.h">
+			<Option target="LinuxWindowsClient"/>
+		</Unit>
+		<Unit filename="/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/Data.h">
+			<Option target="LinuxWindowsClient"/>
+		</Unit>
 		<Unit filename="/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/MatConverter.cpp">
 			<Option target="LinuxWindowsClient"/>
 		</Unit>

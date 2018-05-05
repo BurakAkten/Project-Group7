@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/vakhidbetrakhmadov/Desktop/Motor/Motor.cpp
+Motor.h
+/Users/vakhidbetrakhmadov/Desktop/Motor/Motor.h
+
+/Users/vakhidbetrakhmadov/Desktop/Motor/Motor.h
+wiringPi.h
+-
+sys/time.h
+-
+csignal
+-
+cstring
+-
+cmath
+-
+iostream
+-
+sstream
+-
+MotorException.h
+/Users/vakhidbetrakhmadov/Desktop/Motor/MotorException.h
+
+/Users/vakhidbetrakhmadov/Desktop/Motor/MotorException.h
+iostream
+-
+
+/Users/vakhidbetrakhmadov/Desktop/Motor/main.cpp
+iostream
+-
+Motor.h
+/Users/vakhidbetrakhmadov/Desktop/Motor/Motor.h
+

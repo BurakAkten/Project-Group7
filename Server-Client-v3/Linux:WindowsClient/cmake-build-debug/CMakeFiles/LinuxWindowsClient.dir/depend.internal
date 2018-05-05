@@ -726,6 +726,8 @@ CMakeFiles/LinuxWindowsClient.dir/Networkable.cpp.o
  /usr/local/include/opencv2/xfeatures2d/cuda.hpp
 CMakeFiles/LinuxWindowsClient.dir/main.cpp.o
  /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/Client.h
+ /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/Command.h
+ /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/Data.h
  /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/MatConverter.h
  /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/Networkable.h
  /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Linux:WindowsClient/NetworkableException.h

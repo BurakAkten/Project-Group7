@@ -23,7 +23,9 @@ add_executable(LinuxWindowsClient
         supporting/uici.h
         supporting/uiciname.c
         supporting/uiciname.h
-        NetworkableException.h)
+        NetworkableException.h
+        Command.h
+        Data.h)
 
 
 IF(WIN32)

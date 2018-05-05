@@ -6,6 +6,8 @@
 #include "supporting/restart.h"
 #include "MatConverter.h"
 #include "Server.h"
+#include "Command.h"
+#include "Data.h"
 
 using namespace cv;
 using namespace std;
@@ -29,6 +31,16 @@ void callback(Server& server) {
     Mat compressedFrame;
 
     volatile bool connectionActive = true;
+
+    Command command = Command::none;
+    for(;connectionActive && command != Command::start;) {
+        if(server.receive(&command, sizeof(Command)) != sizeof(Command)) {
+            err("server.receive()");
+            connectionActive = false;
+        }
+        cout << command << endl;
+    }
+
     for(;connectionActive;) {
 
         cap >> frame;
@@ -44,6 +56,10 @@ void callback(Server& server) {
         if(server.send(compressedFrame)) {
             err("server.send()");
             connectionActive = false;
+        }
+
+        if(server.hasDataPending()) {
+            //TODO: See what command is and act according
         }
 
         if (!connectionActive && errno != EPIPE ) { // EPIPE if connection is closed by the client

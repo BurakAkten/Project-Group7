@@ -3,6 +3,8 @@
 #include "opencv2/highgui.hpp"
 #include "MatConverter.h"
 #include "Client.h"
+#include "Command.h"
+#include "Data.h"
 
 #if defined(__linux__) || defined(__APPLE__)
     #include "supporting/uici.h"
@@ -19,7 +21,6 @@ using cv::destroyAllWindows;
 using namespace std;
 using namespace server_client;
 
-
 void callback(Client& client) {
 
     namedWindow(WINDOW_NAME);
@@ -28,14 +29,21 @@ void callback(Client& client) {
     Mat decompressedFrame;
 
     bool connectionActive = true;
+
+    Command command = Command::start;
+    if(client.send(&command, sizeof(Command)) != sizeof(Command)) {
+        err("client.send()");
+        connectionActive = false;
+    }
+
     for (;connectionActive;) {
 
-        if (client.hasDataPending()) {
-            cout << "Data pending " << client.dataPending() << endl;
-        }
-        else {
-            cout << "No data pending" << endl;
-        }
+//        if (client.hasDataPending()) {
+//            cout << "Data pending " << client.dataPending() << endl;
+//        }
+//        else {
+//            cout << "No data pending" << endl;
+//        }
 
         if(client.receive(frame)) {
             err("client.receive()");
@@ -60,7 +68,7 @@ int main() {
 
     cout << "- CLIENT STARTED -" << endl;
 
-    const string ipAddress = "10.1.44.28";
+    const string ipAddress = "10.1.130.128"; //10.1.44.28
 
     Client client(ipAddress, callback);
     if (client.connectToServer()) {
