@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 QT += multimedia multimediawidgets charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
@@ -45,7 +45,8 @@ SOURCES += \
     Client/run2.cpp \
     qcustomplot.cpp \
     bolgeekle.cpp \
-    rapor.cpp
+    rapor.cpp \
+    Client/supporting/wrestart.cpp
 
 
 HEADERS += \
@@ -59,7 +60,8 @@ HEADERS += \
     Client/supporting/uiciname.h \
     qcustomplot.h \
     bolgeekle.h \
-    rapor.h
+    rapor.h \
+    Client/supporting/wrestart.h
 
 FORMS += \
     secondwindow.ui \

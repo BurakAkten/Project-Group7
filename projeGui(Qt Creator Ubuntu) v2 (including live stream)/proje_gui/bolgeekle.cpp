@@ -138,11 +138,8 @@ void BolgeEkle::createDateGraph() {
       QVector<QCPGraphData> timeData(250);
       for (int i=0; i<250; ++i)
       {
-        timeData[i].key = now + 24*3600*i;
-        if (i == 0)
-          timeData[i].value = (i/50.0+1)*(rand()/(double)RAND_MAX-0.5);
-        else
-          timeData[i].value = qFabs(timeData[i-1].value)*(1+0.02/4.0*(4-gi)) + (i/50.0+1)*(rand()/(double)RAND_MAX-0.5);
+        timeData[i].key = now - 24*3600*i;
+        timeData[i].value = rand() % 50;
       }
       ui->customPlot->graph()->data()->set(timeData);
     }
@@ -170,7 +167,7 @@ void BolgeEkle::createDateGraph() {
     ui->customPlot->xAxis2->setTickLabels(false);
     ui->customPlot->yAxis2->setTickLabels(false);
     // set axis ranges to show all data:
-    ui->customPlot->xAxis->setRange(now, now+24*3600*249);
+    ui->customPlot->xAxis->setRange(now-24*3600*249, now);
     ui->customPlot->yAxis->setRange(0, 60);
     // show legend with slightly transparent background brush:
     ui->customPlot->legend->setVisible(true);

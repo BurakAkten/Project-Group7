@@ -1,3 +1,5 @@
+#if defined(__linux__) || defined(__APPLE__)
+
 #ifndef RESTART_H
 #define RESTART_H
 
@@ -33,6 +35,8 @@ int waitfdtimed(int fd, struct timeval end);
 
 #if defined (__cplusplus)
 }
+#endif
+
 #endif
 
 #endif

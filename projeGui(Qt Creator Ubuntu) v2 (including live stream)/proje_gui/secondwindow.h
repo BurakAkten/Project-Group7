@@ -2,6 +2,7 @@
 #define SECONDWINDOW_H
 
 #include <QMainWindow>
+#include <QtSql/QSqlDatabase>
 #include "bolgeekle.h"
 #include "rapor.h"
 
@@ -42,6 +43,7 @@ private:
     Ui::SecondWindow *ui;
     vector<Rapor> raports;
     BolgeEkle* bolge;
+    QSqlDatabase db;
     void getTableInfo();
     void getListInfo();
     void loadImages();

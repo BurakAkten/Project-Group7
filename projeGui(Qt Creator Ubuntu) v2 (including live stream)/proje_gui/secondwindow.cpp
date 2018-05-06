@@ -40,6 +40,12 @@ SecondWindow::SecondWindow(QWidget *parent) :
 
     loadImages();
 
+    db.setHostName("bigblue");
+    db.setDatabaseName("flightdb");
+    db.setUserName("acarlson");
+    db.setPassword("1uTbSbAs");
+    bool ok = db.open();
+
 
     ui->tableWidget->setColumnCount(2);
     for(int i = 0; i < 2; i++)
@@ -51,6 +57,7 @@ SecondWindow::SecondWindow(QWidget *parent) :
 
     ui->listWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);     // edit engellemek için
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);    // edit engellemek için
+    ui->tableWidget->setSortingEnabled(true);
     getTableInfo();
     getListInfo();
 }
@@ -150,8 +157,7 @@ void SecondWindow::getTableInfo(){
     int rowSize = table->rowCount();
 
     in.readLine();
-    for(int i=0; i< rowSize; ++i)
-    {
+    for(int i=0; i< rowSize; ++i) {
         in.readLine();      // cursor, o anki tablonun son row'una geldi
     }
 
@@ -176,6 +182,7 @@ void SecondWindow::getTableInfo(){
     table->viewport()->repaint();
     return;
 }
+
 void SecondWindow::loadImages(){
 
     QPixmap *image = new QPixmap(":/Resources/images/gtu.png");
@@ -215,37 +222,27 @@ void SecondWindow::loadImages(){
 */
 void SecondWindow::callback(Client& client) {
 
+
     Mat frame;
-    uint32_t bufferSize = 0;
-    vector<byte> buffer;
+        Mat decompressedFrame;
+        QImage image1;
 
-    QImage image1;
-    bool connectionActive = true;
-    for (;connectionActive;) {
+        bool connectionActive = true;
+        for (;connectionActive;) {
 
-        if (client.hasDataPending()) {
-            cout << "Data pending " << client.dataPending() << endl;
-        }
-        else {
-            cout << "No data pending" << endl;
-        }
-
-        if (client.receive(&bufferSize, sizeof(uint32_t)) != sizeof(uint32_t)) {
-            err("client.receive");
-            connectionActive = false;
-        } else {
-            cout << "bufferSize: " << bufferSize << endl;
-
-            buffer.reserve(bufferSize);
-            if (client.receive(buffer) != bufferSize) {
-                err("client.receive");
-                connectionActive = false;
+            if (client.hasDataPending()) {
+                cout << "Data pending " << client.dataPending() << endl;
             }
             else {
-                frame = MatConverter::makeMat(buffer);
+                cout << "No data pending" << endl;
+            }
 
-                pyrUp(frame, frame);
+            if(client.receive(frame)) {
+                err("client.receive()");
+                connectionActive = false;
+            } else {
 
+                pyrUp(frame, decompressedFrame);
 
                 cvtColor(frame, frame, CV_BGR2RGB);    //  renkleri Qt ye uygun hale getirmek için
                 image1= QImage((uchar*) frame.data, frame.cols, frame.rows, frame.step, QImage::Format_RGB888);
@@ -258,13 +255,12 @@ void SecondWindow::callback(Client& client) {
 
                 //imshow(WINDOW_NAME, frame);
 
-                if (waitKey(30) >= 0 || stop == true) {
-                    client.disconnect();
+                if (cv::waitKey(30) >= 0 || stop == true) {
+                    client.disconnectFromServer();
                     connectionActive = false;
                 }
             }
         }
-    }
 
     image1 = QImage();
     ui->video->setPixmap(QPixmap::fromImage(image1));
@@ -281,11 +277,23 @@ void SecondWindow::on_play_clicked() {
 
     auto f = bind(&SecondWindow::callback, this, std::placeholders::_1);
 
-    Client client("localhost", f); //10.1.44.28
-    if (client.connect()) {
+
+    cout << "- CLIENT STARTED -" << endl;
+
+    const string ipAddress = "10.1.130.243";
+    const string localIp = "localhost";
+
+    Client client(localIp, f);
+    if (client.connectToServer()) {
         err("client.connect()");
+        #if _WIN32
+            cout << WSAGetLastError() << endl;
+        #endif
         exit(1);
     }
+
+    cout << "- CLIENT EXITED -" << endl;
+
 }
 
 
@@ -318,7 +326,7 @@ void SecondWindow::on_fullScreen_clicked() {
 void SecondWindow::closeEvent (QCloseEvent *event) {
     QMessageBox::StandardButton resBtn = QMessageBox::question( this, "Quit",
                                                                 tr("Are you sure?\n"),
-                                                                QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes,
+                                                                QMessageBox::No | QMessageBox::Yes,
                                                                 QMessageBox::Yes);
     if (resBtn != QMessageBox::Yes) {
         event->ignore();

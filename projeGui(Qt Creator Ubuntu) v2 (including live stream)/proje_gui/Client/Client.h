@@ -9,7 +9,6 @@
 #include "Networkable.h"
 #include <functional> // bind
 
-
 namespace server_client {
 
     typedef unsigned short u_port_t;
@@ -23,12 +22,16 @@ namespace server_client {
         struct sockaddr_in sockaddr;
         callback_t callback;
 
+        #if _WIN32
+            WSADATA wsaData;
+        #endif
+
     public:
         Client(const string& theHostname, callback_t theCallback);
         Client(u_port_t thePort, const string& theHostname, callback_t theCallback);
         virtual ~Client();
-        int connect();
-        void disconnect() const;
+        int connectToServer();
+        void disconnectFromServer() const;
     };
 }
 

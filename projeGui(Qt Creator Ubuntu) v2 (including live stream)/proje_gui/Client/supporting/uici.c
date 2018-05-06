@@ -1,4 +1,6 @@
 /* uici.c  sockets implementation */
+#if defined(__linux__) || defined(__APPLE__)
+
 #include "uici.h"
 
 /*
@@ -134,3 +136,5 @@ int u_connect(u_port_t port,struct sockaddr_in* server) {
    }
    return sock;
 }
+
+#endif

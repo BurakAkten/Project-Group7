@@ -2,8 +2,8 @@
 // Created by Vakhid Betrakhmadov on 31/03/2018.
 //
 
-#ifndef SERVER_MATCONVERTER_H
-#define SERVER_MATCONVERTER_H
+#ifndef MATCONVERTER_H
+#define MATCONVERTER_H
 
 #include <iostream>
 #include <vector>
@@ -12,7 +12,7 @@
 #include "opencv2/highgui.hpp"
 
 using namespace std;
-using namespace cv;
+using cv::Mat;
 
 namespace server_client {
 
@@ -30,4 +30,4 @@ namespace server_client {
     };
 }
 
-#endif //SERVER_MATCONVERTER_H
+#endif //MATCONVERTER_H

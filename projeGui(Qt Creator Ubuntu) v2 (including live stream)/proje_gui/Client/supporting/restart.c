@@ -1,3 +1,5 @@
+#if defined(__linux__) || defined(__APPLE__)
+
 #include <errno.h>
 #include <fcntl.h>
 #include <limits.h>
@@ -230,3 +232,5 @@ int waitfdtimed(int fd, struct timeval end) {
         return -1;
     return 0;
 }
+
+#endif
