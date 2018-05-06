@@ -5,12 +5,13 @@
 #-------------------------------------------------
 
 QT       += core gui sql
-QT += multimedia multimediawidgets charts
+QT += multimedia multimediawidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 TARGET = proje_gui
 TEMPLATE = app
+INCLUDEPATH += .
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -44,10 +45,10 @@ SOURCES += \
     Client/supporting/uiciname.c \
     Client/run2.cpp \
     qcustomplot.cpp \
-    bolgeekle.cpp \
     rapor.cpp \
-    Client/supporting/wrestart.cpp
-
+    Client/supporting/wrestart.cpp \
+    graphs.cpp \
+    bolgeekle.cpp
 
 HEADERS += \
     secondwindow.h \
@@ -59,13 +60,15 @@ HEADERS += \
     Client/supporting/uici.h \
     Client/supporting/uiciname.h \
     qcustomplot.h \
-    bolgeekle.h \
     rapor.h \
-    Client/supporting/wrestart.h
+    Client/supporting/wrestart.h \
+    graphs.h \
+    bolgeekle.h
 
 FORMS += \
     secondwindow.ui \
     mainwindow.ui \
+    graphs.ui \
     bolgeekle.ui
 
 RESOURCES += \

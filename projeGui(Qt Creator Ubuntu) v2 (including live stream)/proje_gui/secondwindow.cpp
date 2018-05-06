@@ -6,7 +6,6 @@
 #include <QString>
 #include <QStringList>
 #include <QHeaderView>
-#include <QTextStream>
 
 #include <QMessageBox>
 
@@ -56,6 +55,7 @@ SecondWindow::SecondWindow(QWidget *parent) :
     header->setSectionResizeMode(QHeaderView::Stretch);
 
     ui->listWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);     // edit engellemek için
+    ui->listWidget->setSelectionMode(QAbstractItemView::ExtendedSelection); // çoklu seçim için
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);    // edit engellemek için
     ui->tableWidget->setSortingEnabled(true);
     getTableInfo();
@@ -67,19 +67,37 @@ SecondWindow::~SecondWindow()
     delete ui;
 }
 
-void SecondWindow::on_bolge_sec_2_clicked()
+void SecondWindow::on_secVeBaslat_clicked()
 {
     //RUN THE SYSTEM
+
+    if(isSystemRun == false){
+        ui->ekle->setVisible(false);
+        ui->cikar->setVisible(false);
+        ui->secVeBaslat->setText("Durdur");
+        isSystemRun = true;
+    }
+    else {
+        ui->ekle->setVisible(true);
+        ui->cikar->setVisible(true);
+        ui->secVeBaslat->setText("Seç ve Başlat");
+        isSystemRun = false;
+    }
+
+
+
 }
 
-void SecondWindow::on_bolge_ekle_2_clicked() {
-    bolge = new BolgeEkle(this, raports, 1);
-    bolge->show();
+void SecondWindow::on_bolgeGrafigi_clicked() {
+    graph = new Graphs(this, raports, 1);
+    graph->setWindowTitle("Bölge Grafiği");
+    graph->show();
 }
 
 void SecondWindow::on_openDateGraph_clicked() {
-    bolge = new BolgeEkle(this, raports, 2);
-    bolge->show();
+    graph = new Graphs(this, raports, 2);
+    graph->setWindowTitle("Tarih Grafiği");
+    graph->show();
 }
 
 void SecondWindow::getListInfo(){
@@ -255,7 +273,7 @@ void SecondWindow::callback(Client& client) {
 
                 //imshow(WINDOW_NAME, frame);
 
-                if (cv::waitKey(30) >= 0 || stop == true) {
+                if (cv::waitKey(30) >= 0 || isLiveStream == false) {
                     client.disconnectFromServer();
                     connectionActive = false;
                 }
@@ -273,32 +291,36 @@ void SecondWindow::callback(Client& client) {
 Play butonuna tıkalndıgında client server'a istek yolluyor
 */
 void SecondWindow::on_play_clicked() {
-    stop = false;
-
-    auto f = bind(&SecondWindow::callback, this, std::placeholders::_1);
 
 
-    cout << "- CLIENT STARTED -" << endl;
+    if(isLiveStream == false){
+        auto f = bind(&SecondWindow::callback, this, std::placeholders::_1);
 
-    const string ipAddress = "10.1.130.243";
-    const string localIp = "localhost";
 
-    Client client(localIp, f);
-    if (client.connectToServer()) {
-        err("client.connect()");
-        #if _WIN32
-            cout << WSAGetLastError() << endl;
-        #endif
-        exit(1);
+        cout << "- CLIENT STARTED -" << endl;
+
+        const string ipAddress = "10.1.130.243";
+        const string localIp = "localhost";
+
+        Client client(localIp, f);
+
+        isLiveStream = true;
+        if (client.connectToServer()) {
+            err("client.connect()");
+            #if _WIN32
+                cout << WSAGetLastError() << endl;
+            #endif
+            exit(1);
+        }
+
+        cout << "- CLIENT EXITED -" << endl;
     }
-
-    cout << "- CLIENT EXITED -" << endl;
 
 }
 
 
 void SecondWindow::on_stop_clicked() {
-    stop = true;
+    isLiveStream = false;
     if (isFullScreen == true) {
         this->show();
         ui->frame->setWindowFlags(Qt::Widget);  //    and to go back make it a widget again:
@@ -331,8 +353,20 @@ void SecondWindow::closeEvent (QCloseEvent *event) {
     if (resBtn != QMessageBox::Yes) {
         event->ignore();
     } else {
-        stop = true;
+        isLiveStream = false;
         event->accept();
     }
 }
 
+
+void SecondWindow::on_ekle_clicked()
+{
+    bolge = new BolgeEkle(this, ui->listWidget);
+    bolge->show();
+
+}
+
+void SecondWindow::on_cikar_clicked()
+{
+
+}

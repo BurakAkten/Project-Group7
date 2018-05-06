@@ -2,7 +2,7 @@
 #define BOLGEEKLE_H
 
 #include <QDialog>
-#include "rapor.h"
+#include <QListWidget>
 
 namespace Ui {
 class BolgeEkle;
@@ -13,16 +13,16 @@ class BolgeEkle : public QDialog
     Q_OBJECT
 
 public:
-    BolgeEkle(QWidget *parent, vector<Rapor> raports, int graphType);
+    explicit BolgeEkle(QWidget *parent = 0);
+    explicit BolgeEkle(QWidget *parent=0, QListWidget* list=0);
     ~BolgeEkle();
+
+private slots:
+    void on_ekle_clicked();
 
 private:
     Ui::BolgeEkle *ui;
-    vector<Rapor> raports;
-    int raportNumberByArea[4] = {0, 0, 0, 0};
-    void createAreaGraph();
-    void createDateGraph();
-    void setRaportNumberByArea();
+    QListWidget *list;
 };
 
 #endif // BOLGEEKLE_H

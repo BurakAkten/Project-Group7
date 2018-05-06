@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QtSql/QSqlDatabase>
+#include "graphs.h"
 #include "bolgeekle.h"
 #include "rapor.h"
 
@@ -10,6 +11,15 @@
 
 using namespace std;
 using namespace server_client;
+
+/*
+typedef struct Regions
+{
+    string name;
+    double x;
+    double y;
+}Regions;
+*/
 
 namespace Ui {
 class SecondWindow;
@@ -25,9 +35,9 @@ public:
     ~SecondWindow();
 
 private slots:
-    void on_bolge_sec_2_clicked();
+    void on_secVeBaslat_clicked();
 
-    void on_bolge_ekle_2_clicked();
+    void on_bolgeGrafigi_clicked();
 
     void on_openDateGraph_clicked();
 
@@ -37,11 +47,18 @@ private slots:
 
     void on_fullScreen_clicked();
 
+    void on_ekle_clicked();
+
+    void on_cikar_clicked();
+
 private:
-    bool stop = false;
+    bool isSystemRun = false;
+    bool isLiveStream = false;
     bool isFullScreen = false;
     Ui::SecondWindow *ui;
     vector<Rapor> raports;
+   // vector<Regions> regions;
+    Graphs* graph;
     BolgeEkle* bolge;
     QSqlDatabase db;
     void getTableInfo();
