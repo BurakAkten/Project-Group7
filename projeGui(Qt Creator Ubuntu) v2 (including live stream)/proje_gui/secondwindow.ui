@@ -277,7 +277,7 @@
            <enum>QFrame::Raised</enum>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
-           <item row="0" column="0">
+           <item row="1" column="0">
             <layout class="QVBoxLayout" name="verticalLayout_2">
              <item>
               <layout class="QVBoxLayout" name="verticalLayout">
@@ -334,6 +334,13 @@
                 </widget>
                </item>
               </layout>
+             </item>
+             <item>
+              <widget class="QPushButton" name="sec">
+               <property name="text">
+                <string>Seç</string>
+               </property>
+              </widget>
              </item>
              <item>
               <widget class="QPushButton" name="bolgeGrafigi">

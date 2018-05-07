@@ -60,6 +60,8 @@ SecondWindow::SecondWindow(QWidget *parent) :
     ui->tableWidget->setSortingEnabled(true);
     getTableInfo();
     getListInfo();
+
+    ui->sec->setVisible(false);
 }
 
 SecondWindow::~SecondWindow()
@@ -75,12 +77,14 @@ void SecondWindow::on_secVeBaslat_clicked()
         ui->ekle->setVisible(false);
         ui->cikar->setVisible(false);
         ui->secVeBaslat->setText("Durdur");
+        ui->sec->setVisible(true);
         isSystemRun = true;
     }
     else {
         ui->ekle->setVisible(true);
         ui->cikar->setVisible(true);
         ui->secVeBaslat->setText("Seç ve Başlat");
+        ui->sec->setVisible(false);
         isSystemRun = false;
     }
 
