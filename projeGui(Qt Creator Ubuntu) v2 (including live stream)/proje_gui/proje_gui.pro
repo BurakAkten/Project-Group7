@@ -30,7 +30,7 @@ CONFIG += \
 
 PKGCONFIG += opencv
 
-LIBS += -L/home/furkan/Desktop/opencv-3.4.1/build/lib \         # buraya opencv kütüphanesi path 'i verilmeli
+LIBS += -L/usr/lib -lmysqlcppconn \         # buraya opencv kütüphanesi path 'i verilmeli
 
 SOURCES += \
         main.cpp \
@@ -48,7 +48,8 @@ SOURCES += \
     rapor.cpp \
     Client/supporting/wrestart.cpp \
     graphs.cpp \
-    bolgeekle.cpp
+    bolgeekle.cpp \
+    dbconnection.cpp
 
 HEADERS += \
     secondwindow.h \
@@ -63,7 +64,8 @@ HEADERS += \
     rapor.h \
     Client/supporting/wrestart.h \
     graphs.h \
-    bolgeekle.h
+    bolgeekle.h \
+    dbconnection.h
 
 FORMS += \
     secondwindow.ui \

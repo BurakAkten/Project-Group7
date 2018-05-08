@@ -38,13 +38,13 @@ SecondWindow::SecondWindow(QWidget *parent) :
     ui->setupUi(this);
 
     loadImages();
-
-    db.setHostName("bigblue");
-    db.setDatabaseName("flightdb");
-    db.setUserName("acarlson");
-    db.setPassword("1uTbSbAs");
-    bool ok = db.open();
-
+    sql::ResultSet *res = db.getLastFiftyRaport();
+    while (res->next()) {
+        /* Access column data by numeric offset, 1 is the first column */
+        cout << "Col 1: " << res->getString(1) << endl;
+        cout << "Col 2: " << res->getString(2) << endl;
+        cout << "Col 3: " << res->getString(3) << endl;
+      }
 
     ui->tableWidget->setColumnCount(2);
     for(int i = 0; i < 2; i++)
@@ -73,22 +73,19 @@ void SecondWindow::on_secVeBaslat_clicked()
 {
     //RUN THE SYSTEM
 
-    if(isSystemRun == false){
+    if (isSystemRun == false) {
         ui->ekle->setVisible(false);
         ui->cikar->setVisible(false);
         ui->secVeBaslat->setText("Durdur");
         ui->sec->setVisible(true);
         isSystemRun = true;
-    }
-    else {
+    } else {
         ui->ekle->setVisible(true);
         ui->cikar->setVisible(true);
         ui->secVeBaslat->setText("Seç ve Başlat");
         ui->sec->setVisible(false);
         isSystemRun = false;
     }
-
-
 
 }
 
@@ -154,7 +151,7 @@ void SecondWindow::getListInfo(){
 
 void SecondWindow::getTableInfo(){
 
-    QTextStream out(stdout);
+    /*QTextStream out(stdout);
     QFile file(":/Resources/Files/determined.csv");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
@@ -172,33 +169,34 @@ void SecondWindow::getTableInfo(){
 
     in.flush();
     in.reset();
-    in.seek(0);
+    in.seek(0);*/
+
+
+    sql::ResultSet *res = db.getLastFiftyRaport();
 
 
     QTableWidget* table = ui->tableWidget;
-    int rowSize = table->rowCount();
-
-    in.readLine();
-    for(int i=0; i< rowSize; ++i) {
-        in.readLine();      // cursor, o anki tablonun son row'una geldi
-    }
+    int rowSize = res->rowsCount();
 
     this->raports.clear();
     QString line;
     QStringList tokens;
-    for (int i = rowSize; i < lineNumber; ++i) {    // yeni row eklendi ve yeni itemler tabloya eklendi
+    int i = 0;
+    while (res->next()) {    // yeni row eklendi ve yeni itemler tabloya eklendi
         table->insertRow(i);
-        line = in.readLine();
-        QRegExp sep(";");
-        tokens =  line.split(sep);
 
-        Rapor newRapor(i, tokens.at(0).toStdString(), tokens.at(1).toStdString());
-        this->raports.push_back(newRapor);
-        for (int j = 0; j < 2; ++j) {   // 2 column var : Bölge;Tarih
-            QTableWidgetItem *item = new QTableWidgetItem();
-            item->setText(tokens.at(j));
-            table->setItem   ( i, j, item);
-        }
+        int area = res->getInt(3);
+        string date = res->getString(4);
+
+        QTableWidgetItem *item1 = new QTableWidgetItem();
+        item1->setText(QString::fromStdString("Bölge" + to_string(area)));
+        table->setItem(i, 0, item1);
+
+        QTableWidgetItem *item2 = new QTableWidgetItem();
+        item2->setText(QString::fromStdString(date));
+        table->setItem(i, 1, item2);
+
+        ++i;
     }
 
     table->viewport()->repaint();

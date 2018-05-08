@@ -2,10 +2,10 @@
 #define SECONDWINDOW_H
 
 #include <QMainWindow>
-#include <QtSql/QSqlDatabase>
 #include "graphs.h"
 #include "bolgeekle.h"
 #include "rapor.h"
+#include "dbconnection.h"
 
 #include "Client/Client.h"
 
@@ -60,7 +60,7 @@ private:
    // vector<Regions> regions;
     Graphs* graph;
     BolgeEkle* bolge;
-    QSqlDatabase db;
+    DbConnection db;
     void getTableInfo();
     void getListInfo();
     void loadImages();
