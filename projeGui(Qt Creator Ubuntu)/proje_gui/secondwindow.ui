@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>949</width>
-    <height>743</height>
+    <width>1014</width>
+    <height>741</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -20,7 +20,7 @@
    <string>İSG CABLE-CAM</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_6">
+   <layout class="QGridLayout" name="gridLayout_7">
     <item row="0" column="0">
      <layout class="QVBoxLayout" name="verticalLayout_4">
       <item>
@@ -98,18 +98,18 @@
        </widget>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <layout class="QHBoxLayout" name="horizontalLayout_6">
         <item>
          <widget class="QFrame" name="frame">
           <property name="minimumSize">
            <size>
-            <width>511</width>
+            <width>600</width>
             <height>311</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>800</width>
+            <width>16777215</width>
             <height>16777215</height>
            </size>
           </property>
@@ -123,7 +123,7 @@
            <item row="0" column="0">
             <layout class="QVBoxLayout" name="verticalLayout_3">
              <item>
-              <widget class="QFrame" name="frame_2">
+              <widget class="QFrame" name="videoFrame">
                <property name="minimumSize">
                 <size>
                  <width>491</width>
@@ -136,6 +136,21 @@
                <property name="frameShadow">
                 <enum>QFrame::Raised</enum>
                </property>
+               <layout class="QGridLayout" name="gridLayout_6">
+                <item row="0" column="0">
+                 <widget class="QLabel" name="video">
+                  <property name="minimumSize">
+                   <size>
+                    <width>491</width>
+                    <height>261</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </widget>
              </item>
              <item>
@@ -245,7 +260,7 @@
          <widget class="QFrame" name="frame_3">
           <property name="minimumSize">
            <size>
-            <width>271</width>
+            <width>260</width>
             <height>311</height>
            </size>
           </property>
@@ -262,64 +277,84 @@
            <enum>QFrame::Raised</enum>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
-           <item row="0" column="0">
-            <layout class="QVBoxLayout" name="verticalLayout">
+           <item row="1" column="0">
+            <layout class="QVBoxLayout" name="verticalLayout_2">
              <item>
-              <widget class="QLabel" name="label_3">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Bölgeler&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QListWidget" name="listWidget">
-               <property name="minimumSize">
-                <size>
-                 <width>261</width>
-                 <height>200</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>500</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <layout class="QVBoxLayout" name="verticalLayout">
                <item>
-                <widget class="QPushButton" name="bolge_sec_2">
+                <widget class="QLabel" name="label_3">
                  <property name="text">
-                  <string>Seç</string>
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Bölgeler&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <spacer name="horizontalSpacer_2">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+                <layout class="QHBoxLayout" name="horizontalLayout_2">
+                 <item>
+                  <widget class="QListWidget" name="listWidget">
+                   <property name="minimumSize">
+                    <size>
+                     <width>250</width>
+                     <height>200</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>500</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_5">
+               <item>
+                <widget class="QPushButton" name="secVeBaslat">
+                 <property name="text">
+                  <string>Seç ve Başlat</string>
                  </property>
-                 <property name="sizeType">
-                  <enum>QSizePolicy::Fixed</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
+                </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="bolge_ekle_2">
+                <widget class="QPushButton" name="ekle">
                  <property name="text">
                   <string>Ekle</string>
                  </property>
                 </widget>
                </item>
+               <item>
+                <widget class="QPushButton" name="cikar">
+                 <property name="text">
+                  <string>Çıkar</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
+             </item>
+             <item>
+              <widget class="QPushButton" name="sec">
+               <property name="text">
+                <string>Seç</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="bolgeGrafigi">
+               <property name="text">
+                <string>Bölge Grafiği</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="openDateGraph">
+               <property name="text">
+                <string>Tarih Grafiği</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -329,7 +364,7 @@
        </layout>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <layout class="QVBoxLayout" name="_2">
         <item>
          <widget class="QFrame" name="frame_4">
           <property name="frameShape">
@@ -432,7 +467,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>949</width>
+     <width>1014</width>
      <height>22</height>
     </rect>
    </property>

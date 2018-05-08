@@ -29,17 +29,11 @@ MainWindow::~MainWindow()
 }
 
 
-
-
-
 void MainWindow::on_pushButton_clicked()
 {
-    this->hide();
-    //close();
+    //this->hide();
+    this->close();
     secWindow = new SecondWindow(this);
     secWindow->show();
-
-
-
 }
 
