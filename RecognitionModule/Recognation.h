@@ -4,6 +4,7 @@
 #define RECOGNATION_H
 
 #include "variables.h"
+#include "Detected.h"
 #include <iostream>
 #include <queue>
 
@@ -14,18 +15,21 @@ class Recognation {
 
 
 public:
-    int run();
+    Mat run(Mat cameraFeed);
+    ~Recognation();
 
 private:
     Mat cameraFeed;
+
     Mat ROI; // Region of Interest
-    Mat rangeOut; // inRange function output
-    std::vector<Scalar> colors;
+    Detected *detectedHelmet;
 
     Mat criticalRegion(Mat image);
 
-    void trackFilteredObject(std::vector<Mat> src, Mat original);
-    std::vector<Mat> detectBody(Mat frame);
+    void trackFilteredObject(std::vector<Mat> src, Mat original, int index);
+    void detectBody(Mat frame);
+
+    void alarm();
 };
 
 

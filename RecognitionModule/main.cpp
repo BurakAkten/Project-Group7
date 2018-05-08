@@ -9,6 +9,8 @@ queue<string> readDirectory(const string &dirName);
 
 int main() {
     std::cout << "Here we begin!" << std::endl;
+
+    // Open images
 //    queue<string> files = readDirectory("DATASET");
 //
 //    while( !(files.empty())){
@@ -21,8 +23,39 @@ int main() {
 //        files.pop();
 //    }
 
+    // Open video
+//    VideoCapture capture;
+//    capture.open("cam.mp4");
+//
+//    Mat cameraFeed;
+//
+//    while(true){
+//        // Take frame
+//        capture >> cameraFeed;
+//
+//        Recognation module;
+//        module.run(cameraFeed);
+//
+//    }
+
+    // Open cam
+    //Video capture object to acquire webcam feed
+
     Recognation module;
-    module.run();
+    Mat cameraFeed;
+
+    VideoCapture capture;
+    capture.open(0);
+
+    while(true){
+        capture >> cameraFeed;
+
+        Mat result = module.run(cameraFeed);
+        imshow("No helmet", result);
+        imwrite("red.jpg", result);
+        if( waitKey(20) == ESC){ break; }
+    }
+
 
     return 0;
 }
