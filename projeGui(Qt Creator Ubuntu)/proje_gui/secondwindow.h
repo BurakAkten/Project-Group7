@@ -9,17 +9,12 @@
 
 #include "Client/Client.h"
 
+#include "region.h"
+
+
 using namespace std;
 using namespace server_client;
 
-/*
-typedef struct Regions
-{
-    string name;
-    double x;
-    double y;
-}Regions;
-*/
 
 namespace Ui {
 class SecondWindow;
@@ -51,13 +46,15 @@ private slots:
 
     void on_cikar_clicked();
 
+    void on_sec_clicked();
+
 private:
     bool isSystemRun = false;
     bool isLiveStream = false;
     bool isFullScreen = false;
     Ui::SecondWindow *ui;
     vector<Rapor> raports;
-   // vector<Regions> regions;
+    vector<Region> regions;
     Graphs* graph;
     BolgeEkle* bolge;
     DbConnection db;

@@ -33,17 +33,15 @@ PKGCONFIG += opencv
 LIBS += -L/usr/lib -lmysqlcppconn \         # buraya opencv kütüphanesi path 'i verilmeli
 
 SOURCES += \
-        main.cpp \
+    main.cpp \
     secondwindow.cpp \
     mainwindow.cpp \
     Client/Client.cpp \
     Client/MatConverter.cpp \
     Client/Networkable.cpp \
-    Client/runClient.cpp  \
     Client/supporting/restart.c \
     Client/supporting/uici.c \
     Client/supporting/uiciname.c \
-    Client/run2.cpp \
     qcustomplot.cpp \
     rapor.cpp \
     Client/supporting/wrestart.cpp \
@@ -65,7 +63,8 @@ HEADERS += \
     Client/supporting/wrestart.h \
     graphs.h \
     bolgeekle.h \
-    dbconnection.h
+    dbconnection.h \
+    region.h
 
 FORMS += \
     secondwindow.ui \

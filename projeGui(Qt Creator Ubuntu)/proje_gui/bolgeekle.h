@@ -4,6 +4,9 @@
 #include <QDialog>
 #include <QListWidget>
 
+#include "region.h"
+
+
 namespace Ui {
 class BolgeEkle;
 }
@@ -22,7 +25,7 @@ private slots:
 
 private:
     Ui::BolgeEkle *ui;
-    QListWidget *list;
+    QListWidget *listWidget;
 };
 
 #endif // BOLGEEKLE_H

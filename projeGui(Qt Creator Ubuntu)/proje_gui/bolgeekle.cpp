@@ -18,7 +18,10 @@ BolgeEkle::BolgeEkle(QWidget *parent, QListWidget* list) :
     ui(new Ui::BolgeEkle)
 {
     ui->setupUi(this);
-    this->list = list;
+    this->listWidget = list;
+
+    ui->lineEdit_X->setValidator(new QDoubleValidator());
+    ui->lineEdit_Y->setValidator(new QDoubleValidator());
 
 }
 
@@ -30,56 +33,55 @@ BolgeEkle::~BolgeEkle()
 void BolgeEkle::on_ekle_clicked()
 {
     QTextStream out(stdout);
-    QFile file("/home/furkan/Qt Projects/proje_gui/Files/coordinates.csv");  // :/Resources/Files/   ---- dosya konumu elle verilmeli !!!!!!!!!!!!!
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-    {
-        out << "File is not opened!!" << endl;
-        return;
-    }
-
-    QTextStream in(&file);
-    in.readLine();              // dosyanın ilk satırı eklenmeyecek ; ilk satır okunmadı
-
-
-    QVector<QString> lines;
-    QStringList tokens;
-    while (!in.atEnd()) {
-        QRegExp sep(";");
-        tokens =  in.readLine().split(sep);
-        lines.push_back(tokens.at(0));
-    }
-
-    file.flush();
-    file.close();
 
     QString regionName = ui->lineEdit_Name->text().trimmed();
+    QString x=ui->lineEdit_X->text(), y= ui->lineEdit_Y->text();
 
-    if(!(std::find(lines.begin(), lines.end(), regionName) != lines.end()))
+    if(regionName.size() ==0 || x.size() ==0 || y.size()==0){
+        ui->label_5->setText("Tüm bilgileri doldurun !!");
+        ui->label_5->setStyleSheet("QLabel { color : red; }");
+        ui->label_5->setAlignment(Qt::AlignCenter);
+    }
+    else
     {
-        QString x=ui->lineEdit_X->text(), y= ui->lineEdit_Y->text();
-
-        QListWidgetItem *item = new QListWidgetItem();
-        item->setText(regionName);
-        list->addItem(item);
-        list->viewport()->repaint();
-
-        QFile file2("/home/furkan/Qt Projects/proje_gui/Files/coordinates.csv");
-        if (file2.open(QIODevice::WriteOnly | QIODevice::Append)) {
-            QTextStream stream(&file2);
-            stream << regionName+";"+x+";"+y << endl;
+        int listSize = listWidget->count();
+        bool found= false;
+        for (int i = 0; i < listSize; ++i) {
+            QListWidgetItem* item = listWidget->item(i);
+            if(item->text() == regionName){     // aynı isimli bölge var mı ?
+                found = true;
+            }
         }
-        else
-        {
-            out << "qsdas dasd asdasd";
-            return;
-        }
-        file2.close();
+        if(!found){     // yeni bölge
+            QFile file("/home/furkan/Qt Projects/proje_gui/Files/coordinates.csv");
+            if (file.open(QIODevice::WriteOnly | QIODevice::Append)) {
+                QTextStream stream(&file);
+                stream << regionName+";"+x+";"+y << endl;   // dosyaya eklendi
 
-        close();
+                Region region;
+                region.name = regionName.toStdString();
+                region.x    = x.toDouble();
+                region.y    = y.toDouble();
+
+
+                QListWidgetItem *item = new QListWidgetItem();
+                item->setData(Qt::UserRole, QVariant::fromValue(region));
+                item->setText(regionName);
+                listWidget->addItem(item);  // listeye eklendi
+                close();
+            }
+            else
+            {
+                out << "Dosya açılamadı!";
+                return;
+            }
+        }else {
+            ui->label_5->setText("Bölge ismi farklı olmalı !!");
+            ui->label_5->setStyleSheet("QLabel { color : red; }");
+            ui->label_5->setAlignment(Qt::AlignCenter);
+        }
     }
-    else{
-        ui->label_5->setText("Bölge ismi farklı olmalı !!");
-    }
+
 
 
 

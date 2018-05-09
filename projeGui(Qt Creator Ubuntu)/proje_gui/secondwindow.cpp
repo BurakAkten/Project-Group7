@@ -73,18 +73,51 @@ void SecondWindow::on_secVeBaslat_clicked()
 {
     //RUN THE SYSTEM
 
-    if (isSystemRun == false) {
-        ui->ekle->setVisible(false);
-        ui->cikar->setVisible(false);
-        ui->secVeBaslat->setText("Durdur");
-        ui->sec->setVisible(true);
-        isSystemRun = true;
-    } else {
+    QList<QListWidgetItem*> items;
+    int size, i;
+
+    items = ui->listWidget->selectedItems();
+    size = items.size();
+
+
+    if(isSystemRun == true){
+        ui->label_3->setText("Bölgeler");
+        ui->label_3->setStyleSheet("QLabel { color : black; }");
+
         ui->ekle->setVisible(true);
         ui->cikar->setVisible(true);
         ui->secVeBaslat->setText("Seç ve Başlat");
         ui->sec->setVisible(false);
         isSystemRun = false;
+        isLiveStream = false;
+    }
+    else if (size != 0 && isSystemRun == false) {
+        ui->label_3->setText("Bölgeler");
+        ui->label_3->setStyleSheet("QLabel { color : black; }");
+
+        ui->ekle->setVisible(false);
+        ui->cikar->setVisible(false);
+        ui->secVeBaslat->setText("Durdur");
+        ui->sec->setVisible(true);
+        isSystemRun = true;
+
+        Region *arr = new Region[size];
+        i=0;
+        foreach(QListWidgetItem * item, items)
+        {
+            Region reg = item->data(Qt::UserRole).value<Region>();
+            arr[i++] = reg;
+        }
+        // send  arr to server
+
+        delete [] arr;
+
+    }
+    else
+    {
+        ui->label_3->setText("Lütfen Bölge Seçin !");
+        ui->label_3->setStyleSheet("QLabel { color : red; }");
+        ui->label_3->setAlignment(Qt::AlignCenter);
     }
 
 }
@@ -132,8 +165,7 @@ void SecondWindow::getListInfo(){
     {
         in.readLine();      // cursor, o anki listenin sonuna geldi
     }
-
-
+/*
     QString line;
     QStringList tokens;
     for (int i = listSize; i < lineNumber; ++i) {    // satır split edildi ve bölge adı listeye eklendi
@@ -141,6 +173,25 @@ void SecondWindow::getListInfo(){
         QRegExp sep(";");
         tokens =  line.split(sep);
         QListWidgetItem *item = new QListWidgetItem();
+        item->setText(tokens.at(0));
+        list->addItem(item);
+    }*/
+
+    QString line;
+    QStringList tokens;
+    for (int i = listSize; i < lineNumber; ++i) {    // satır split edildi ve bölge adı listeye eklendi
+        line = in.readLine();
+        QRegExp sep(";");
+        tokens =  line.split(sep);
+
+        Region region;
+        region.name = ((QString)tokens.at(0)).toStdString();
+        region.x    = ((QString)tokens.at(1)).toDouble();
+        region.y    = ((QString)tokens.at(2)).toDouble();
+
+
+        QListWidgetItem *item = new QListWidgetItem();
+        item->setData(Qt::UserRole ,QVariant::fromValue(region));
         item->setText(tokens.at(0));
         list->addItem(item);
     }
@@ -176,7 +227,7 @@ void SecondWindow::getTableInfo(){
 
 
     QTableWidget* table = ui->tableWidget;
-    int rowSize = res->rowsCount();
+    //int rowSize = res->rowsCount();
 
     this->raports.clear();
     QString line;
@@ -275,7 +326,7 @@ void SecondWindow::callback(Client& client) {
 
                 //imshow(WINDOW_NAME, frame);
 
-                if (cv::waitKey(30) >= 0 || isLiveStream == false) {
+                if (cv::waitKey(30) >= 0 || isLiveStream == false || isSystemRun == false) {
                     client.disconnectFromServer();
                     connectionActive = false;
                 }
@@ -295,7 +346,7 @@ Play butonuna tıkalndıgında client server'a istek yolluyor
 void SecondWindow::on_play_clicked() {
 
 
-    if(isLiveStream == false){
+    if(isLiveStream == false && isSystemRun){
         auto f = bind(&SecondWindow::callback, this, std::placeholders::_1);
 
 
@@ -333,17 +384,19 @@ void SecondWindow::on_stop_clicked() {
 
 
 void SecondWindow::on_fullScreen_clicked() {
-    if (isFullScreen == false) {
-        ui->frame->setWindowFlags(Qt::Window);
-        ui->frame->showFullScreen();
-        isFullScreen = true;
-        this->hide();
+    if(isLiveStream){   // sadece canlı yayın açıkken
+        if (isFullScreen == false) {
+            ui->frame->setWindowFlags(Qt::Window);
+            ui->frame->showFullScreen();
+            isFullScreen = true;
+            this->hide();
 
-    } else {
-        this->show();
-        ui->frame->setWindowFlags(Qt::Widget);  //    and to go back make it a widget again:
-        ui->frame->show();
-        isFullScreen = false;
+        } else {
+            this->show();
+            ui->frame->setWindowFlags(Qt::Widget);  //    and to go back make it a widget again:
+            ui->frame->show();
+            isFullScreen = false;
+        }
     }
 }
 
@@ -370,5 +423,60 @@ void SecondWindow::on_ekle_clicked()
 
 void SecondWindow::on_cikar_clicked()
 {
+    QList<QListWidgetItem*> items = ui->listWidget->selectedItems();
+    QString selected="";
+    foreach(QListWidgetItem * item, items)
+    {
+        selected += item->text()+" ";
+    }
 
+    QMessageBox::StandardButton reply;
+
+    reply = QMessageBox::question(this, "Çıkar", selected+" silinecek, emin misin?",
+         QMessageBox::Yes | QMessageBox::Cancel);
+
+    if (reply == QMessageBox::Yes) {
+        qDeleteAll(ui->listWidget->selectedItems());
+
+        int listSize = ui->listWidget->count();
+        string lines = "regionName;X;Y\n";
+
+        for (int i = 0; i < listSize; ++i) {
+            QListWidgetItem* item = ui->listWidget->item(i);
+            Region reg = item->data(Qt::UserRole).value<Region>();
+            lines += reg.name + ";" + to_string(reg.x) + ";" + to_string(reg.y) + "\n";
+        }
+
+        QFile file("/home/furkan/Qt Projects/proje_gui/Files/coordinates.csv");
+        if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+            QTextStream stream(&file);
+            stream << QString::fromStdString(lines);
+        }
+    }
+    if (reply == QMessageBox::Discard)
+    {
+        // toDo
+    }
+}
+
+void SecondWindow::on_sec_clicked()
+{
+    QList<QListWidgetItem*> items;
+    int size, i;
+
+    items = ui->listWidget->selectedItems();
+    size = items.size();
+
+    if(size != 0){
+        Region *arr = new Region[size];
+        i=0;
+        foreach(QListWidgetItem * item, items)
+        {
+            Region reg = item->data(Qt::UserRole).value<Region>();
+            arr[i++] = reg;
+        }
+        // send  arr to server
+
+        delete [] arr;
+    }
 }
