@@ -56,14 +56,17 @@ SecondWindow::SecondWindow(QWidget *parent) :
     QHeaderView* header = ui->tableWidget->horizontalHeader();
     header->setSectionResizeMode(QHeaderView::Stretch);
 
-    ui->listWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);     // edit engellemek için
-    ui->listWidget->setSelectionMode(QAbstractItemView::ExtendedSelection); // çoklu seçim için
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);    // edit engellemek için
     ui->tableWidget->setSortingEnabled(true);
+    ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);  // tüm row'u seçmek için
+
+    ui->listWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);     // edit engellemek için
+    ui->listWidget->setSelectionMode(QAbstractItemView::ExtendedSelection); // çoklu seçim için
     getTableInfo();
     getListInfo();
 
     ui->sec->setVisible(false);
+    ui->detectedImage->setVisible(false);
 }
 
 SecondWindow::~SecondWindow()
@@ -119,9 +122,9 @@ void SecondWindow::on_secVeBaslat_clicked()
     {
         QMessageBox msgBox(this);
         msgBox.setStyleSheet("QLabel { color : red; qproperty-alignment: AlignCenter;}");
-        msgBox.setWindowTitle("Hata!");
-        msgBox.setText(tr("Lütfen Bölge Seçin !"));
-        msgBox.addButton(tr("Tamam"), QMessageBox::NoRole);
+        msgBox.setWindowTitle("Uyarı!");
+        msgBox.setText(tr("Lütfen Bölge Seçin !\n"));
+        msgBox.addButton(tr("Tamam"), QMessageBox::YesRole);
         msgBox.exec();
         return;
         /*  ui->label_3->setText("Lütfen Bölge Seçin !");
@@ -381,11 +384,16 @@ void SecondWindow::on_fullScreen_clicked() {
 }
 
 void SecondWindow::closeEvent (QCloseEvent *event) {
-    QMessageBox::StandardButton resBtn = QMessageBox::question( this, "Quit",
-                                                                tr("Are you sure?\n"),
-                                                                QMessageBox::No | QMessageBox::Yes,
-                                                                QMessageBox::Yes);
-    if (resBtn != QMessageBox::Yes) {
+
+    QMessageBox msgBox(this);
+    msgBox.setStyleSheet("QLabel { color : red; qproperty-alignment: AlignCenter;}");
+    msgBox.setWindowTitle("Çıkış!");
+    msgBox.setText(tr("Emin misin ?\n"));
+    QPushButton *yes = msgBox.addButton(tr("Evet"), QMessageBox::YesRole);
+    msgBox.addButton(tr("Hayır"), QMessageBox::NoRole);
+    msgBox.exec();
+
+    if (msgBox.clickedButton() != yes) {
         event->ignore();
     } else {
         isLiveStream = false;
@@ -408,9 +416,9 @@ void SecondWindow::on_cikar_clicked()
 
         QMessageBox msgBox(this);
         msgBox.setStyleSheet("QLabel { color : red; qproperty-alignment: AlignCenter;}");
-        msgBox.setWindowTitle("Hata!");
-        msgBox.setText(tr("Lütfen Çıkarılacak Bölge Seçin !"));
-        msgBox.addButton(tr("Tamam"), QMessageBox::NoRole);
+        msgBox.setWindowTitle("Uyarı!");
+        msgBox.setText(tr("Lütfen Çıkarılacak Bölge Seçin !\n"));
+        msgBox.addButton(tr("Tamam"), QMessageBox::YesRole);
         msgBox.exec();
         return;
     }
@@ -421,12 +429,17 @@ void SecondWindow::on_cikar_clicked()
         selected += item->text()+" ";
     }
 
-    QMessageBox::StandardButton reply;
 
-    reply = QMessageBox::question(this, "Çıkar", selected+" silinecek, emin misin?",
-         QMessageBox::Yes | QMessageBox::Cancel);
+    QMessageBox msgBox(this);
+    msgBox.setStyleSheet("QLabel { color : red; qproperty-alignment: AlignCenter;}");
+    msgBox.setWindowTitle("Çıkar");
+    msgBox.setText(selected+" silinecek, emin misin?\n");
+    QPushButton *yes = msgBox.addButton(tr("Evet"), QMessageBox::YesRole);
+    msgBox.addButton(tr("İptal"), QMessageBox::NoRole);
+    msgBox.exec();
 
-    if (reply == QMessageBox::Yes) {
+    if (msgBox.clickedButton() == yes)
+    {
         qDeleteAll(ui->listWidget->selectedItems());
 
         int listSize = ui->listWidget->count();
@@ -443,10 +456,6 @@ void SecondWindow::on_cikar_clicked()
             QTextStream stream(&file);
             stream << QString::fromStdString(lines);
         }
-    }
-    if (reply == QMessageBox::Discard)
-    {
-        // toDo
     }
 }
 
@@ -470,4 +479,29 @@ void SecondWindow::on_sec_clicked()
 
         delete [] arr;
     }
+}
+
+
+void SecondWindow::on_tableWidget_cellDoubleClicked(int row, int column)
+{
+    QTextStream out(stdout);
+    out << "double clicked to table" << endl;
+
+    if(isSystemRun) // sistem çalışıyorsa
+    {
+        ui->label_3->setText("Yakalanan Resim");
+        ui->label_3->setStyleSheet("QLabel { color : red; }");
+        ui->label_3->setAlignment(Qt::AlignCenter);
+
+        //ui->label_3->setVisible(false);
+        ui->listWidget->setVisible(false);
+        ui->detectedImage->setVisible(true);
+
+
+        ui->detectedImage->setPixmap(QPixmap(":/Resources/images/gtu.png"));     // basılan row biliniyor , ona göre db den foto alınacak
+        ui->detectedImage->setScaledContents(true);
+        ui->detectedImage->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
+    }
+
+
 }

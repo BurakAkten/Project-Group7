@@ -260,8 +260,8 @@
          <widget class="QFrame" name="frame_3">
           <property name="minimumSize">
            <size>
-            <width>260</width>
-            <height>311</height>
+            <width>386</width>
+            <height>352</height>
            </size>
           </property>
           <property name="maximumSize">
@@ -283,8 +283,21 @@
               <layout class="QVBoxLayout" name="verticalLayout">
                <item>
                 <widget class="QLabel" name="label_3">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>17</height>
+                  </size>
+                 </property>
                  <property name="text">
                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Bölgeler&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="detectedImage">
+                 <property name="text">
+                  <string>Detected Image</string>
                  </property>
                 </widget>
                </item>

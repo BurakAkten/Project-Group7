@@ -48,6 +48,8 @@ private slots:
 
     void on_sec_clicked();
 
+    void on_tableWidget_cellDoubleClicked(int row, int column);
+
 private:
     bool isSystemRun = false;
     bool isLiveStream = false;
