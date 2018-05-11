@@ -27,6 +27,8 @@
 #include "QCloseEvent"
 #include <functional> // bind
 
+#include <algorithm>
+
 #define WINDOW_NAME "WINDOW"
 
 
@@ -80,9 +82,9 @@ void SecondWindow::on_secVeBaslat_clicked()
     size = items.size();
 
 
-    if(isSystemRun == true){
-        ui->label_3->setText("Bölgeler");
-        ui->label_3->setStyleSheet("QLabel { color : black; }");
+    if(isSystemRun == true){    // sistem durduruldu, (durdur clicked)
+        //ui->label_3->setText("Bölgeler");
+        //ui->label_3->setStyleSheet("QLabel { color : black; }");
 
         ui->ekle->setVisible(true);
         ui->cikar->setVisible(true);
@@ -92,8 +94,8 @@ void SecondWindow::on_secVeBaslat_clicked()
         isLiveStream = false;
     }
     else if (size != 0 && isSystemRun == false) {
-        ui->label_3->setText("Bölgeler");
-        ui->label_3->setStyleSheet("QLabel { color : black; }");
+        //ui->label_3->setText("Bölgeler");
+        //ui->label_3->setStyleSheet("QLabel { color : black; }");
 
         ui->ekle->setVisible(false);
         ui->cikar->setVisible(false);
@@ -108,16 +110,23 @@ void SecondWindow::on_secVeBaslat_clicked()
             Region reg = item->data(Qt::UserRole).value<Region>();
             arr[i++] = reg;
         }
-        // send  arr to server
+        // send  arr to server  , size = i
 
         delete [] arr;
 
     }
     else
     {
-        ui->label_3->setText("Lütfen Bölge Seçin !");
+        QMessageBox msgBox(this);
+        msgBox.setStyleSheet("QLabel { color : red; qproperty-alignment: AlignCenter;}");
+        msgBox.setWindowTitle("Hata!");
+        msgBox.setText(tr("Lütfen Bölge Seçin !"));
+        msgBox.addButton(tr("Tamam"), QMessageBox::NoRole);
+        msgBox.exec();
+        return;
+        /*  ui->label_3->setText("Lütfen Bölge Seçin !");
         ui->label_3->setStyleSheet("QLabel { color : red; }");
-        ui->label_3->setAlignment(Qt::AlignCenter);
+        ui->label_3->setAlignment(Qt::AlignCenter);*/
     }
 
 }
@@ -146,50 +155,21 @@ void SecondWindow::getListInfo(){
 
     QTextStream in(&file);
     in.readLine();              // ilk satır okunmadı
-    int lineNumber =0;
-    while (!in.atEnd()) {
-        in.readLine();
-        ++lineNumber;           // satır sayısı bulundu
-    }
-
-    in.flush();
-    in.reset();
-    in.seek(0);
-
 
     QListWidget* list = ui->listWidget;
-    int listSize = list->sizeHintForColumn(0);
-
-    in.readLine();
-    for(int i=0; i< listSize; ++i)
-    {
-        in.readLine();      // cursor, o anki listenin sonuna geldi
-    }
-/*
     QString line;
     QStringList tokens;
-    for (int i = listSize; i < lineNumber; ++i) {    // satır split edildi ve bölge adı listeye eklendi
-        line = in.readLine();
-        QRegExp sep(";");
-        tokens =  line.split(sep);
-        QListWidgetItem *item = new QListWidgetItem();
-        item->setText(tokens.at(0));
-        list->addItem(item);
-    }*/
-
-    QString line;
-    QStringList tokens;
-    for (int i = listSize; i < lineNumber; ++i) {    // satır split edildi ve bölge adı listeye eklendi
+    while (!in.atEnd()) {        // satır split edildi ve bölge adı listeye eklendi
         line = in.readLine();
         QRegExp sep(";");
         tokens =  line.split(sep);
 
         Region region;
-        region.name = ((QString)tokens.at(0)).toStdString();
-        region.x    = ((QString)tokens.at(1)).toDouble();
-        region.y    = ((QString)tokens.at(2)).toDouble();
+        region.name = ((QString)tokens.at(0)).trimmed().toStdString();
+        region.x    = ((QString)tokens.at(1)).trimmed().replace(",",".").toDouble();
+        region.y    = ((QString)tokens.at(2)).trimmed().replace(",",".").toDouble();
 
-
+        //out << QString::fromStdString(region.name) <<" " << QString::fromStdString(to_string(region.x)) <<" "   << QString::fromStdString(to_string(region.y)) <<"\n" ;
         QListWidgetItem *item = new QListWidgetItem();
         item->setData(Qt::UserRole ,QVariant::fromValue(region));
         item->setText(tokens.at(0));
@@ -326,7 +306,7 @@ void SecondWindow::callback(Client& client) {
 
                 //imshow(WINDOW_NAME, frame);
 
-                if (cv::waitKey(30) >= 0 || isLiveStream == false || isSystemRun == false) {
+                if (cv::waitKey(30) >= 0 || !isLiveStream || !isSystemRun) {
                     client.disconnectFromServer();
                     connectionActive = false;
                 }
@@ -346,7 +326,7 @@ Play butonuna tıkalndıgında client server'a istek yolluyor
 void SecondWindow::on_play_clicked() {
 
 
-    if(isLiveStream == false && isSystemRun){
+    if(!isLiveStream && isSystemRun){
         auto f = bind(&SecondWindow::callback, this, std::placeholders::_1);
 
 
@@ -374,7 +354,7 @@ void SecondWindow::on_play_clicked() {
 
 void SecondWindow::on_stop_clicked() {
     isLiveStream = false;
-    if (isFullScreen == true) {
+    if (isFullScreen) {
         this->show();
         ui->frame->setWindowFlags(Qt::Widget);  //    and to go back make it a widget again:
         ui->frame->show();
@@ -385,7 +365,7 @@ void SecondWindow::on_stop_clicked() {
 
 void SecondWindow::on_fullScreen_clicked() {
     if(isLiveStream){   // sadece canlı yayın açıkken
-        if (isFullScreen == false) {
+        if (!isFullScreen) {
             ui->frame->setWindowFlags(Qt::Window);
             ui->frame->showFullScreen();
             isFullScreen = true;
@@ -424,6 +404,17 @@ void SecondWindow::on_ekle_clicked()
 void SecondWindow::on_cikar_clicked()
 {
     QList<QListWidgetItem*> items = ui->listWidget->selectedItems();
+    if(items.size() == 0){
+
+        QMessageBox msgBox(this);
+        msgBox.setStyleSheet("QLabel { color : red; qproperty-alignment: AlignCenter;}");
+        msgBox.setWindowTitle("Hata!");
+        msgBox.setText(tr("Lütfen Çıkarılacak Bölge Seçin !"));
+        msgBox.addButton(tr("Tamam"), QMessageBox::NoRole);
+        msgBox.exec();
+        return;
+    }
+
     QString selected="";
     foreach(QListWidgetItem * item, items)
     {

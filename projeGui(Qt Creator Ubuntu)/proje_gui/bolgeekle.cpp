@@ -59,9 +59,9 @@ void BolgeEkle::on_ekle_clicked()
                 stream << regionName+";"+x+";"+y << endl;   // dosyaya eklendi
 
                 Region region;
-                region.name = regionName.toStdString();
-                region.x    = x.toDouble();
-                region.y    = y.toDouble();
+                region.name = regionName.trimmed().toStdString();
+                region.x    = x.trimmed().replace(",",".").toDouble();
+                region.y    = y.trimmed().replace(",",".").toDouble();
 
 
                 QListWidgetItem *item = new QListWidgetItem();
