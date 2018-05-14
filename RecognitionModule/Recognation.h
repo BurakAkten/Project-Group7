@@ -5,6 +5,8 @@
 
 #include "variables.h"
 #include "Detected.h"
+#include <wiringPi.h>
+#include <stdio.h>
 #include <iostream>
 #include <queue>
 
@@ -15,14 +17,16 @@ class Recognation {
 
 
 public:
-    Mat run(Mat cameraFeed);
+    bool run(Mat cameraFeed, Mat* result);
     ~Recognation();
+    void clearNoHelmet();
 
 private:
     Mat cameraFeed;
 
     Mat ROI; // Region of Interest
     Detected *detectedHelmet;
+    vector<Mat*> noHelmetFrames;
 
     Mat criticalRegion(Mat image);
 
