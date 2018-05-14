@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "graphs.h"
 #include "bolgeekle.h"
+#include "editregion.h"
 #include "rapor.h"
 #include "dbconnection.h"
 
@@ -30,7 +31,7 @@ public:
     ~SecondWindow();
 
 private slots:
-    void on_secVeBaslat_clicked();
+    void on_baslat_clicked();
 
     void on_bolgeGrafigi_clicked();
 
@@ -46,7 +47,7 @@ private slots:
 
     void on_cikar_clicked();
 
-    void on_sec_clicked();
+   // void on_sec_clicked();
 
     void on_tableWidget_cellDoubleClicked(int row, int column);
 
@@ -59,9 +60,11 @@ private:
     vector<Region> regions;
     Graphs* graph;
     BolgeEkle* bolge;
+    EditRegion* region;
     DbConnection db;
     void getTableInfo();
     void getListInfo();
+    void getBoxInfo();
     void loadImages();
     void callback(Client& client);
     void closeEvent (QCloseEvent *event);

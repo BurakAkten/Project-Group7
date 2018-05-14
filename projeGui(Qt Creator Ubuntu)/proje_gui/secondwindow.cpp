@@ -58,8 +58,15 @@ SecondWindow::SecondWindow(QWidget *parent) :
     getTableInfo();
     getListInfo();
 
-    ui->sec->setVisible(false);
-    ui->detectedImage->setVisible(false);
+    getBoxInfo();
+    ui->comboBox->setCurrentIndex(-1);
+
+   // ui->detectedImage->setVisible(false);
+    ui->cikar->setVisible(false);
+    ui->ekle->setText("Düzenle"); // Düzenle butonu
+
+    ui->listWidget->setVisible(false); // bölge listesi
+    ui->label_3->setVisible(false);    // bölge etiketi
 
 }
 
@@ -68,7 +75,7 @@ SecondWindow::~SecondWindow()
     delete ui;
 }
 
-void SecondWindow::on_secVeBaslat_clicked()
+void SecondWindow::on_baslat_clicked()
 {
     //RUN THE SYSTEM
 
@@ -84,20 +91,18 @@ void SecondWindow::on_secVeBaslat_clicked()
         //ui->label_3->setStyleSheet("QLabel { color : black; }");
 
         ui->ekle->setVisible(true);
-        ui->cikar->setVisible(true);
-        ui->secVeBaslat->setText("Seç ve Başlat");
-        ui->sec->setVisible(false);
+        //ui->cikar->setVisible(true);
+        ui->baslat->setText("Başlat");
         isSystemRun = false;
         isLiveStream = false;
     }
-    else if (size != 0 && isSystemRun == false) {
+    else /*if (size != 0 && isSystemRun == false)*/ {
         //ui->label_3->setText("Bölgeler");
         //ui->label_3->setStyleSheet("QLabel { color : black; }");
 
         ui->ekle->setVisible(false);
-        ui->cikar->setVisible(false);
-        ui->secVeBaslat->setText("Durdur");
-        ui->sec->setVisible(true);
+        //ui->cikar->setVisible(false);
+        ui->baslat->setText("Durdur");
         isSystemRun = true;
 
         Region *arr = new Region[size];
@@ -111,7 +116,7 @@ void SecondWindow::on_secVeBaslat_clicked()
 
         delete [] arr;
 
-    }
+    }/*
     else
     {
         QMessageBox msgBox(this);
@@ -123,8 +128,8 @@ void SecondWindow::on_secVeBaslat_clicked()
         return;
         /*  ui->label_3->setText("Lütfen Bölge Seçin !");
         ui->label_3->setStyleSheet("QLabel { color : red; }");
-        ui->label_3->setAlignment(Qt::AlignCenter);*/
-    }
+        ui->label_3->setAlignment(Qt::AlignCenter);
+    }*/
 
 }
 
@@ -135,9 +140,30 @@ void SecondWindow::on_bolgeGrafigi_clicked() {
 }
 
 void SecondWindow::on_openDateGraph_clicked() {
-    graph = new Graphs(this, db.getCountByArea());
+    graph = new Graphs(this, db.getDateByArea());
     graph->setWindowTitle("Tarih Grafiği");
     graph->show();
+}
+
+void SecondWindow::getBoxInfo(){
+
+    sql::ResultSet *res = db.getAllAreas();
+    QComboBox* comboB = ui->comboBox;
+    int i = 1;
+
+    while (res->next()) {
+        Region region;
+        region.name = "Bölge " + to_string(res->getInt(1));
+        region.x1 = res->getInt(2);
+        region.x2 = res->getInt(3);
+        region.y = res->getInt(4);
+
+        comboB->addItem(QString::fromStdString(region.name) , QVariant::fromValue(region));
+        ++i;
+    }
+
+    comboB->repaint();
+    return;
 }
 
 void SecondWindow::getListInfo(){
@@ -184,7 +210,7 @@ void SecondWindow::getListInfo(){
         Region region;
         region.name = "Bölge " + to_string(res->getInt(1));
         region.x1 = res->getInt(2);
-        region.x1 = res->getInt(3);
+        region.x2 = res->getInt(3);
         region.y = res->getInt(4);
 
         QListWidgetItem *item = new QListWidgetItem();
@@ -234,6 +260,10 @@ void SecondWindow::loadImages(){
     int w = ui->gtu->width();
     int h = ui->gtu->height();
     ui->gtu->setPixmap(image->scaled(w, h, Qt::KeepAspectRatio));
+    //ui->gtu->setPixmap(QPixmap(":/Resources/images/gtu.png"));
+    //ui->gtu->setScaledContents(true);
+    //ui->gtu->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
+
 
     image = new QPixmap(":/Resources/images/dikkat.png");
     w = ui->dikkat1->width();
@@ -331,14 +361,21 @@ void SecondWindow::on_play_clicked() {
 
         Client client("localhost", f);
 
-        isLiveStream = true;
         if (client.connectToServer()) {
             err("client.connect()");
             #if _WIN32
                 cout << WSAGetLastError() << endl;
             #endif
-            exit(1);
-        }
+            //exit(1);
+            QMessageBox msgBox(this);
+            msgBox.setStyleSheet("QLabel { color : red; qproperty-alignment: AlignCenter;}");
+            msgBox.setWindowTitle("Uyarı!");
+            msgBox.setText(tr("Server'a Bağlanılamadı !\n"));
+            msgBox.addButton(tr("Tamam"), QMessageBox::YesRole);
+            msgBox.exec();
+        }else
+            isLiveStream = true;
+
 
         cout << "- CLIENT EXITED -" << endl;
     }
@@ -350,8 +387,9 @@ void SecondWindow::on_stop_clicked() {
     isLiveStream = false;
     if (isFullScreen) {
         this->show();
-        ui->frame->setWindowFlags(Qt::Widget);  //    and to go back make it a widget again:
-        ui->frame->show();
+        ui->videoPart->setWindowFlags(Qt::Widget);  //    and to go back make it a widget again:
+        ui->videoPart->close();
+        ui->videoPart->show();
         isFullScreen = false;
     }
 }
@@ -360,15 +398,16 @@ void SecondWindow::on_stop_clicked() {
 void SecondWindow::on_fullScreen_clicked() {
     if(isLiveStream){   // sadece canlı yayın açıkken
         if (!isFullScreen) {
-            ui->frame->setWindowFlags(Qt::Window);
-            ui->frame->showFullScreen();
+            ui->videoPart->setWindowFlags(Qt::Window);
+            ui->videoPart->showFullScreen();
             isFullScreen = true;
             this->hide();
 
         } else {
             this->show();
-            ui->frame->setWindowFlags(Qt::Widget);  //    and to go back make it a widget again:
-            ui->frame->show();
+            ui->videoPart->setWindowFlags(Qt::Widget);  //    and to go back make it a widget again:
+            ui->videoPart->close();
+            ui->videoPart->show();
             isFullScreen = false;
         }
     }
@@ -393,10 +432,36 @@ void SecondWindow::closeEvent (QCloseEvent *event) {
 }
 
 
-void SecondWindow::on_ekle_clicked()
+void SecondWindow::on_ekle_clicked()    // edit region
 {
+    QTextStream out(stdout);
+    /*
     bolge = new BolgeEkle(this, ui->listWidget);
-    bolge->show();
+    bolge->show();*/
+
+    int index = ui->comboBox->currentIndex();
+
+    if(index != -1)
+    {
+        QVariant item = ui->comboBox->itemData(index);
+        Region currRegion= item.value<Region>();
+
+        region = new EditRegion(this, &currRegion);
+        region->exec();
+
+        ui->comboBox->setItemData(index, QVariant::fromValue(currRegion));
+        db.updateArea(currRegion);
+    }
+    else {
+        QMessageBox msgBox(this);
+        msgBox.setStyleSheet("QLabel { color : red; qproperty-alignment: AlignCenter;}");
+        msgBox.setWindowTitle("Uyarı!");
+        msgBox.setText(tr("Lütfen Düzenlenecek Bölge Seçin !\n"));
+        msgBox.addButton(tr("Tamam"), QMessageBox::YesRole);
+        msgBox.exec();
+        return;
+    }
+
 
 }
 
@@ -449,7 +514,7 @@ void SecondWindow::on_cikar_clicked()
         }
     }
 }
-
+/*
 void SecondWindow::on_sec_clicked()
 {
     QList<QListWidgetItem*> items;
@@ -470,7 +535,7 @@ void SecondWindow::on_sec_clicked()
 
         delete [] arr;
     }
-}
+}*/
 
 
 void SecondWindow::on_tableWidget_cellDoubleClicked(int row, int column)

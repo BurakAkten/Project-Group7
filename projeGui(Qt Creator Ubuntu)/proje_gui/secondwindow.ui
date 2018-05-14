@@ -24,7 +24,7 @@
     <item row="0" column="0">
      <layout class="QVBoxLayout" name="verticalLayout_4">
       <item>
-       <widget class="QFrame" name="frame_5">
+       <widget class="QFrame" name="mainLabel">
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
         </property>
@@ -98,9 +98,9 @@
        </widget>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_6">
+       <layout class="QHBoxLayout" name="horizontalLayout_7">
         <item>
-         <widget class="QFrame" name="frame">
+         <widget class="QFrame" name="videoPart">
           <property name="minimumSize">
            <size>
             <width>600</width>
@@ -137,7 +137,7 @@
                 <enum>QFrame::Raised</enum>
                </property>
                <layout class="QGridLayout" name="gridLayout_6">
-                <item row="0" column="0">
+                <item row="0" column="1">
                  <widget class="QLabel" name="video">
                   <property name="minimumSize">
                    <size>
@@ -257,7 +257,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QFrame" name="frame_3">
+         <widget class="QFrame" name="managePart">
           <property name="minimumSize">
            <size>
             <width>386</width>
@@ -277,7 +277,7 @@
            <enum>QFrame::Raised</enum>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
-           <item row="1" column="0">
+           <item row="0" column="0">
             <layout class="QVBoxLayout" name="verticalLayout_2">
              <item>
               <layout class="QVBoxLayout" name="verticalLayout">
@@ -324,11 +324,36 @@
               </layout>
              </item>
              <item>
+              <widget class="QPushButton" name="baslat">
+               <property name="text">
+                <string>Başlat</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_6">
+               <item>
+                <widget class="QPushButton" name="bolgeGrafigi">
+                 <property name="text">
+                  <string>Bölge Grafiği</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="openDateGraph">
+                 <property name="text">
+                  <string>Tarih Grafiği</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
               <layout class="QHBoxLayout" name="horizontalLayout_5">
                <item>
-                <widget class="QPushButton" name="secVeBaslat">
-                 <property name="text">
-                  <string>Seç ve Başlat</string>
+                <widget class="QComboBox" name="comboBox">
+                 <property name="currentText">
+                  <string/>
                  </property>
                 </widget>
                </item>
@@ -347,27 +372,6 @@
                 </widget>
                </item>
               </layout>
-             </item>
-             <item>
-              <widget class="QPushButton" name="sec">
-               <property name="text">
-                <string>Seç</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="bolgeGrafigi">
-               <property name="text">
-                <string>Bölge Grafiği</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="openDateGraph">
-               <property name="text">
-                <string>Tarih Grafiği</string>
-               </property>
-              </widget>
              </item>
             </layout>
            </item>

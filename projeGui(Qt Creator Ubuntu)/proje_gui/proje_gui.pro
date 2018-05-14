@@ -47,7 +47,8 @@ SOURCES += \
     Client/supporting/wrestart.cpp \
     graphs.cpp \
     bolgeekle.cpp \
-    dbconnection.cpp
+    dbconnection.cpp \
+    editregion.cpp
 
 HEADERS += \
     secondwindow.h \
@@ -64,13 +65,15 @@ HEADERS += \
     graphs.h \
     bolgeekle.h \
     dbconnection.h \
-    region.h
+    region.h \
+    editregion.h
 
 FORMS += \
     secondwindow.ui \
     mainwindow.ui \
     graphs.ui \
-    bolgeekle.ui
+    bolgeekle.ui \
+    editregion.ui
 
 RESOURCES += \
     recources.qrc
