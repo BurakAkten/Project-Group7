@@ -13,16 +13,14 @@ class Graphs : public QDialog
     Q_OBJECT
 
 public:
-    Graphs(QWidget *parent, vector<Rapor> raports, int graphType);
+    Graphs(QWidget *parent, vector<int> areaCounts);
+    Graphs(QWidget *parent, map<string, int> dateByAreas);
     ~Graphs();
 
 private:
     Ui::Graphs *ui;
-    vector<Rapor> raports;
-    int raportNumberByArea[4] = {0, 0, 0, 0};
-    void createAreaGraph();
-    void createDateGraph();
-    void setRaportNumberByArea();
+    void createAreaGraph(vector<int> areaCounts);
+    void createDateGraph(map<string, int> dateByAreas);
 };
 
 #endif // GRAPHS_H

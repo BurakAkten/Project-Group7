@@ -60,7 +60,7 @@ void BolgeEkle::on_ekle_clicked()
 
                 Region region;
                 region.name = regionName.trimmed().toStdString();
-                region.x    = x.trimmed().replace(",",".").toDouble();
+                //region.x    = x.trimmed().replace(",",".").toDouble();
                 region.y    = y.trimmed().replace(",",".").toDouble();
 
 

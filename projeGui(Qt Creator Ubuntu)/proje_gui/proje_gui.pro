@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql
+QT += core gui
 QT += multimedia multimediawidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
@@ -30,7 +30,7 @@ CONFIG += \
 
 PKGCONFIG += opencv
 
-LIBS += -L/usr/lib -lmysqlcppconn \         # buraya opencv kütüphanesi path 'i verilmeli
+LIBS += -L/usr/lib -lmysqlcppconn \
 
 SOURCES += \
     main.cpp \

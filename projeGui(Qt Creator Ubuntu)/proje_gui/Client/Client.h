@@ -7,14 +7,14 @@
 
 #include <sstream>
 #include "Networkable.h"
-#include <functional> // bind
+#include <functional>
 
 namespace server_client {
 
     typedef unsigned short u_port_t;
 
     class Client;
-    typedef function<void(Client& client)> callback_t;
+    typedef function<void (Client& client)> callback_t;
 
     class Client: public Networkable {
         u_port_t port;

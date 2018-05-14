@@ -40,13 +40,6 @@ SecondWindow::SecondWindow(QWidget *parent) :
     ui->setupUi(this);
 
     loadImages();
-    sql::ResultSet *res = db.getLastFiftyRaport();
-    while (res->next()) {
-        /* Access column data by numeric offset, 1 is the first column */
-        cout << "Col 1: " << res->getString(1) << endl;
-        cout << "Col 2: " << res->getString(2) << endl;
-        cout << "Col 3: " << res->getString(3) << endl;
-      }
 
     ui->tableWidget->setColumnCount(2);
     for(int i = 0; i < 2; i++)
@@ -67,6 +60,7 @@ SecondWindow::SecondWindow(QWidget *parent) :
 
     ui->sec->setVisible(false);
     ui->detectedImage->setVisible(false);
+
 }
 
 SecondWindow::~SecondWindow()
@@ -135,20 +129,20 @@ void SecondWindow::on_secVeBaslat_clicked()
 }
 
 void SecondWindow::on_bolgeGrafigi_clicked() {
-    graph = new Graphs(this, raports, 1);
+    graph = new Graphs(this, db.getCountByArea());
     graph->setWindowTitle("Bölge Grafiği");
     graph->show();
 }
 
 void SecondWindow::on_openDateGraph_clicked() {
-    graph = new Graphs(this, raports, 2);
+    graph = new Graphs(this, db.getCountByArea());
     graph->setWindowTitle("Tarih Grafiği");
     graph->show();
 }
 
 void SecondWindow::getListInfo(){
 
-    QTextStream out(stdout);
+    /*QTextStream out(stdout);
     QFile file(":/Resources/Files/coordinates.csv");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
@@ -180,43 +174,40 @@ void SecondWindow::getListInfo(){
     }
 
     list->viewport()->repaint();
+    return;*/
+
+    sql::ResultSet *res = db.getAllAreas();
+    QListWidget* list = ui->listWidget;
+    int i = 1;
+
+    while (res->next()) {
+        Region region;
+        region.name = "Bölge " + to_string(res->getInt(1));
+        region.x1 = res->getInt(2);
+        region.x1 = res->getInt(3);
+        region.y = res->getInt(4);
+
+        QListWidgetItem *item = new QListWidgetItem();
+        item->setData(Qt::UserRole ,QVariant::fromValue(region));
+        item->setText(QString::fromStdString(region.name));
+        list->addItem(item);
+        ++i;
+    }
+
+    list->viewport()->repaint();
     return;
 }
 
 void SecondWindow::getTableInfo(){
 
-    /*QTextStream out(stdout);
-    QFile file(":/Resources/Files/determined.csv");
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-    {
-        out << "File is not opened!!" << endl;
-        return;
-    }
-
-    QTextStream in(&file);
-    in.readLine();              // dosyanın ilk satırı eklenmeyecek ; ilk satır okunmadı
-    int lineNumber =0;
-    while (!in.atEnd()) {
-        in.readLine();
-        ++lineNumber;           // satır sayısı bulundu
-    }
-
-    in.flush();
-    in.reset();
-    in.seek(0);*/
-
-
     sql::ResultSet *res = db.getLastFiftyRaport();
-
 
     QTableWidget* table = ui->tableWidget;
     //int rowSize = res->rowsCount();
 
     this->raports.clear();
-    QString line;
-    QStringList tokens;
     int i = 0;
-    while (res->next()) {    // yeni row eklendi ve yeni itemler tabloya eklendi
+    while (res->next()) {
         table->insertRow(i);
 
         int area = res->getInt(3);
@@ -338,7 +329,7 @@ void SecondWindow::on_play_clicked() {
         const string ipAddress = "10.1.130.243";
         const string localIp = "localhost";
 
-        Client client(localIp, f);
+        Client client("localhost", f);
 
         isLiveStream = true;
         if (client.connectToServer()) {
@@ -448,7 +439,7 @@ void SecondWindow::on_cikar_clicked()
         for (int i = 0; i < listSize; ++i) {
             QListWidgetItem* item = ui->listWidget->item(i);
             Region reg = item->data(Qt::UserRole).value<Region>();
-            lines += reg.name + ";" + to_string(reg.x) + ";" + to_string(reg.y) + "\n";
+            //lines += reg.name + ";" + to_string(reg.x) + ";" + to_string(reg.y) + "\n";
         }
 
         QFile file("/home/furkan/Qt Projects/proje_gui/Files/coordinates.csv");

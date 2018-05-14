@@ -10,24 +10,18 @@
 
 using namespace std;
 
-Graphs::Graphs(QWidget *parent, vector<Rapor> raports, int graphType) :
+Graphs::Graphs(QWidget *parent, vector<int> areaCounts) :
     QDialog(parent),
     ui(new Ui::Graphs)
 {
     ui->setupUi(this);
-    this->raports = raports;
-    switch (graphType) {
-    case 1: {
-        setRaportNumberByArea();
-        Graphs::createAreaGraph();
-        break;
-    }
-    case 2: {
-        Graphs::createDateGraph();
-        break;
-    }
-    }
+    Graphs::createAreaGraph(areaCounts);
+}
 
+Graphs::Graphs(QWidget *parent, map<string, int> dateByAreas)
+{
+    ui->setupUi(this);
+    Graphs::createDateGraph(dateByAreas);
 }
 
 Graphs::~Graphs()
@@ -35,7 +29,7 @@ Graphs::~Graphs()
     delete ui;
 }
 
-void Graphs::createAreaGraph() {
+void Graphs::createAreaGraph(vector<int> areaCounts) {
     // set dark background gradient:
     QLinearGradient gradient(0, 0, 0, 400);
     gradient.setColorAt(0, QColor(90, 90, 90));
@@ -78,7 +72,7 @@ void Graphs::createAreaGraph() {
     ui->customPlot->xAxis->setTickLabelRotation(60);
     ui->customPlot->xAxis->setSubTicks(false);
     ui->customPlot->xAxis->setTickLength(0, 4);
-    ui->customPlot->xAxis->setRange(0, 5);
+    ui->customPlot->xAxis->setRange(0, 5); // Bölge sayısı
     ui->customPlot->xAxis->setBasePen(QPen(Qt::white));
     ui->customPlot->xAxis->setTickPen(QPen(Qt::white));
     ui->customPlot->xAxis->grid()->setVisible(true);
@@ -87,7 +81,7 @@ void Graphs::createAreaGraph() {
     ui->customPlot->xAxis->setLabelColor(Qt::white);
 
     // prepare y axis:
-    ui->customPlot->yAxis->setRange(0, 12.1);
+    ui->customPlot->yAxis->setRange(0, 300); // y eksen sınırları
     ui->customPlot->yAxis->setPadding(5); // a bit more space to the left border
     ui->customPlot->yAxis->setLabel("Bölgelere göre\nrapor sayısı");
     ui->customPlot->yAxis->setBasePen(QPen(Qt::white));
@@ -101,7 +95,7 @@ void Graphs::createAreaGraph() {
 
     // Add data:
     QVector<double> raportNumberData; //nuclearData, regenData;
-    raportNumberData  << raportNumberByArea[0] << raportNumberByArea[1] << raportNumberByArea[2] << raportNumberByArea[3];
+    raportNumberData  << areaCounts[0] << areaCounts[1] << areaCounts[2] << areaCounts[3];
     //nuclearData << 0.08*10.5 << 0.12*5.5 << 0.12*5.5 << 0.40*5.8 << 0.09*5.2 << 0.00*4.2 << 0.07*11.2;
     //regenData   << 0.06*10.5 << 0.05*5.5 << 0.04*5.5 << 0.06*5.8 << 0.02*5.2 << 0.07*4.2 << 0.25*11.2;
     raportNumber->setData(ticks, raportNumberData);
@@ -119,7 +113,7 @@ void Graphs::createAreaGraph() {
     ui->customPlot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
 }
 
-void Graphs::createDateGraph() {
+void Graphs::createDateGraph(map<string, int> dateByAreas) {
     // set locale to english, so we get english month names:
     ui->customPlot->setLocale(QLocale(QLocale::Turkish));
     // seconds of current time, we'll use it as starting point in time for data:
@@ -172,19 +166,4 @@ void Graphs::createDateGraph() {
     // show legend with slightly transparent background brush:
     ui->customPlot->legend->setVisible(true);
     ui->customPlot->legend->setBrush(QColor(255, 255, 255, 150));
-}
-
-void Graphs::setRaportNumberByArea()
-{
-    for (uint64_t i = 0; i < this->raports.size(); ++i) {
-        if (raports.at(i).getArea().compare("Bölge 1") == 0) {
-            ++this->raportNumberByArea[0];
-        } else if (raports.at(i).getArea().compare("Bölge 2") == 0) {
-            ++this->raportNumberByArea[1];
-        } else if (raports.at(i).getArea().compare("Bölge 3") == 0) {
-            ++this->raportNumberByArea[2];
-        } else {
-            ++this->raportNumberByArea[3];
-        }
-    }
 }
