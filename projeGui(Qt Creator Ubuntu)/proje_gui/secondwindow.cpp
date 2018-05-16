@@ -23,11 +23,12 @@
 #include "Client/MatConverter.h"
 #include "Client/Client.h"
 
-
 #include "QCloseEvent"
 #include <functional> // bind
 
 #include <algorithm>
+
+#include <pthread.h>
 
 #define WINDOW_NAME "WINDOW"
 
@@ -572,20 +573,16 @@ void SecondWindow::on_tableWidget_cellDoubleClicked(int row, int column)
 void SecondWindow::on_comboBox_activated(int index)
 {
     QTextStream out(stdout);
-    if(index == 0){
-        out << ui->comboBox->currentText() << endl;     // get info from db
+    if(index == 0)
+    {
+        out << ui->comboBox->currentText() << endl;     // get info from db, all regions
+        getTableInfo();
     }
     else if (index == 1) {
-        out << ui->comboBox->currentText() << endl;     // get info from db
-    }
-    else if (index == 2) {
-        out << ui->comboBox->currentText() << endl;     // get info from db
-    }
-    else if (index == 3) {
-        out << ui->comboBox->currentText() << endl;     // get info from db
-    }
+        out << ui->comboBox->currentText() << endl;     // get info from db, region 2-4 m
+    }    
     else
     {
-        out << ui->comboBox->currentText() << endl;     // get info from db
+        out << ui->comboBox->currentText() << endl;     // get info from db, region 6-8 m
     }
 }
