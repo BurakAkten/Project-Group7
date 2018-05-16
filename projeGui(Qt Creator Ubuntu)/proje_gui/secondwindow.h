@@ -51,6 +51,8 @@ private slots:
 
     void on_tableWidget_cellDoubleClicked(int row, int column);
 
+    void on_comboBox_activated(int index);
+
 private:
     bool isSystemRun = false;
     bool isLiveStream = false;

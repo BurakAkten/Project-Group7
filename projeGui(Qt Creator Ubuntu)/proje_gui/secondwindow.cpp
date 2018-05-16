@@ -63,10 +63,12 @@ SecondWindow::SecondWindow(QWidget *parent) :
 
    // ui->detectedImage->setVisible(false);
     ui->cikar->setVisible(false);
-    ui->ekle->setText("Düzenle"); // Düzenle butonu
+    ui->ekle->setVisible(false);
+    //ui->ekle->setText("Düzenle"); // Düzenle butonu
 
     ui->listWidget->setVisible(false); // bölge listesi
     ui->label_3->setVisible(false);    // bölge etiketi
+
 
 }
 
@@ -90,21 +92,25 @@ void SecondWindow::on_baslat_clicked()
         //ui->label_3->setText("Bölgeler");
         //ui->label_3->setStyleSheet("QLabel { color : black; }");
 
-        ui->ekle->setVisible(true);
+        //ui->ekle->setVisible(true);
         //ui->cikar->setVisible(true);
         ui->baslat->setText("Başlat");
         isSystemRun = false;
         isLiveStream = false;
+        //QImage image1 = ;
+        ui->detectedImage->setPixmap(QPixmap::fromImage(QImage()));
+        ui->detectedImage->show();  // biterken ekranı boşaltmak için*/
     }
     else /*if (size != 0 && isSystemRun == false)*/ {
         //ui->label_3->setText("Bölgeler");
         //ui->label_3->setStyleSheet("QLabel { color : black; }");
 
-        ui->ekle->setVisible(false);
+        //ui->ekle->setVisible(false);
         //ui->cikar->setVisible(false);
         ui->baslat->setText("Durdur");
         isSystemRun = true;
 
+        /*
         Region *arr = new Region[size];
         i=0;
         foreach(QListWidgetItem * item, items)
@@ -112,9 +118,10 @@ void SecondWindow::on_baslat_clicked()
             Region reg = item->data(Qt::UserRole).value<Region>();
             arr[i++] = reg;
         }
+        delete [] arr; */
+
         // send  arr to server  , size = i
 
-        delete [] arr;
 
     }/*
     else
@@ -361,21 +368,21 @@ void SecondWindow::on_play_clicked() {
 
         Client client("localhost", f);
 
-        if (client.connectToServer()) {
+        isLiveStream = true;
+        if (client.connectToServer() == -1) {
             err("client.connect()");
             #if _WIN32
                 cout << WSAGetLastError() << endl;
             #endif
             //exit(1);
+            isLiveStream = false;
             QMessageBox msgBox(this);
             msgBox.setStyleSheet("QLabel { color : red; qproperty-alignment: AlignCenter;}");
             msgBox.setWindowTitle("Uyarı!");
             msgBox.setText(tr("Server'a Bağlanılamadı !\n"));
             msgBox.addButton(tr("Tamam"), QMessageBox::YesRole);
             msgBox.exec();
-        }else
-            isLiveStream = true;
-
+        }
 
         cout << "- CLIENT EXITED -" << endl;
     }
@@ -560,4 +567,25 @@ void SecondWindow::on_tableWidget_cellDoubleClicked(int row, int column)
     }
 
 
+}
+
+void SecondWindow::on_comboBox_activated(int index)
+{
+    QTextStream out(stdout);
+    if(index == 0){
+        out << ui->comboBox->currentText() << endl;     // get info from db
+    }
+    else if (index == 1) {
+        out << ui->comboBox->currentText() << endl;     // get info from db
+    }
+    else if (index == 2) {
+        out << ui->comboBox->currentText() << endl;     // get info from db
+    }
+    else if (index == 3) {
+        out << ui->comboBox->currentText() << endl;     // get info from db
+    }
+    else
+    {
+        out << ui->comboBox->currentText() << endl;     // get info from db
+    }
 }
