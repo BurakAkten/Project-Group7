@@ -47,12 +47,27 @@ int main() {
     VideoCapture capture;
     capture.open(0);
 
+    int count = 0;
+    Mat result;
+
     while(true){
         capture >> cameraFeed;
 
-        Mat result = module.run(cameraFeed);
-        imshow("No helmet", result);
-        imwrite("red.jpg", result);
+        bool res = module.run(cameraFeed, &result);
+
+        if(res){
+            cout << "Baret yok" << endl;
+            imshow("No helmet", result);
+        }
+        else{
+            imshow("Baret var", cameraFeed);
+        }
+
+        if(count == fps){
+            count = 0;
+            module.clearNoHelmet();
+        }
+        count ++;
         if( waitKey(20) == ESC){ break; }
     }
 
