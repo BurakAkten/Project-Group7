@@ -39,6 +39,6 @@ const int lineType = 8;
 
 const int fps = 25;
 
-const int BuzzerPin = 26;
+const int BuzzerPin = 25;
 
 #endif //VARIABLES_H
