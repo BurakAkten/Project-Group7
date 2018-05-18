@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <queue>
+#include <SoftTone.h>
 
 
 using namespace cv;
