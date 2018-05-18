@@ -169,19 +169,24 @@ void Recognation::detectBody(Mat frame) {
 
 void Recognation::alarm() {
 
+    wiringPiSetup();
     pinMode(BuzzerPin,  OUTPUT);
-        time_t timeBegin = time(0);
-        time_t timeEnd;
-        while(1){
-        digitalWrite(BuzzerPin, HIGH);
+    softToneCreate(BuzzerPin);
+
+    int count=0;
+    while(1){
+        softToneWrite(BuzzerPin, 500);
         delay(100);
-        digitalWrite(BuzzerPin, LOW);
+        softToneWrite(BuzzerPin, 0);
+        count++;
         delay(100);
-        timeEnd = time(0);
-        if(timeEnd-timeBegin == 2){
-            digitalWrite(BuzzerPin, LOW);
+
+        if(count == 2){
+            softToneWrite(BuzzerPin, LOW);
+            break;
         }
     }
+
 }
 
 Recognation::~Recognation() {
