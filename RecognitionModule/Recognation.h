@@ -5,7 +5,8 @@
 
 #include "variables.h"
 #include "Detected.h"
-//#include <wiringPi.h>
+#include <wiringPi.h>
+#include <softTone.h>
 #include <iostream>
 #include <queue>
 
