@@ -3,31 +3,30 @@
 using namespace cv;
 using namespace std;
 
-bool Recognation::run(Mat cameraFeed, Mat* result){
-
+bool Recognation::run(Mat& cameraFeed, Mat& result){
 
     // Call constructor
-    detectedHelmet = new Detected(cameraFeed);
+    Detected detectedHelmet(cameraFeed);
 
-    // Critical Region Operations
-    ROI = criticalRegion(cameraFeed);
+    // Copy the cameraFeed
+    ROI = cameraFeed;
 
     // Detect upper body
-    detectBody(ROI);
-    vector<Mat> sendTracking;
+    detectBody(ROI, detectedHelmet);
 
+    vector<Mat> sendTracking;
     Mat redOut, greenOut, yellowOut;
 
-    if( !detectedHelmet->detectedFrames.empty() ) {
+    if( !detectedHelmet.detectedFrames.empty() ) {
 
-        for(int i = 0; i < detectedHelmet->detectedFrames.size(); i+=1 ){
+        for(int i = 0; i < detectedHelmet.detectedFrames.size(); i+=1 ){
 
             Mat cutTheDetected;
-            detectedHelmet->detectedFrames.at(i).copyTo(cutTheDetected);
-            resize(cutTheDetected, cutTheDetected, Size(cutTheDetected.cols, cutTheDetected.rows - 20));
+            detectedHelmet.detectedFrames.at(i).copyTo(cutTheDetected);
+            resize(cutTheDetected, cutTheDetected, Size(cutTheDetected.cols, cutTheDetected.rows/2));
 
             // Find red helmet
-//            inRange(detectedHelmet->detectedFrames.at(i), redLower, redUpper, redOut);
+//            inRange(detectedHelmet.detectedFrames.at(i), redLower, redUpper, redOut);
             inRange(cutTheDetected, redLower, redUpper, redOut);
             sendTracking.push_back(redOut);
 
@@ -39,20 +38,20 @@ bool Recognation::run(Mat cameraFeed, Mat* result){
 //            inRange(cutTheDetected, yellowLower, yellowUpper, yellowOut);
 //            sendTracking.push_back(yellowOut);
 
-            trackFilteredObject(sendTracking, cameraFeed, i);
+            trackFilteredObject(sendTracking, cameraFeed, i, detectedHelmet);
             sendTracking.clear();
         }
 
     }
 
     // Draw function
-    detectedHelmet->draw();
-    detectedHelmet->drawRects();
+    detectedHelmet.draw();
+    detectedHelmet.drawRects();
 
-    if( !detectedHelmet->noHemletRects.empty()){
+    if( !detectedHelmet.noHemletRects.empty()){
         // If there is no helmet
-        noHelmetFrames.push_back(&detectedHelmet->mainFrame);
-        detectedHelmet->mainFrame.copyTo(*result);
+        noHelmetFrames.push_back(&detectedHelmet.mainFrame);
+        detectedHelmet.mainFrame.copyTo(result);
         alarm();
         return true;
     }
@@ -68,7 +67,7 @@ Mat Recognation::criticalRegion(Mat image) {
     return image;
 }
 
-void Recognation::trackFilteredObject(vector<Mat> frames, Mat original, int index) {
+void Recognation::trackFilteredObject(vector<Mat>& frames, Mat& original, int index, Detected& detectedHelmet) {
 
     for (size_t i = 0; i < frames.size(); i++)
     {
@@ -112,22 +111,19 @@ void Recognation::trackFilteredObject(vector<Mat> frames, Mat original, int inde
 
             // Draw contours
 //            drawContours(original, contours, required, (0,0,0), 1);
-
-
-
-            //rectangle(original, boundRect.tl(), boundRect.br(), colors[i], 2, 8, 0);
+//            rectangle(original, boundRect.tl(), boundRect.br(), colors[i], 2, 8, 0);
 
         }
         else {
             // There is no helmet
-            Rect noHelmet = detectedHelmet->detectedRects.at(index);
-            detectedHelmet->noHemletRects.push_back(noHelmet);
+            Rect noHelmet = detectedHelmet.detectedRects.at(index);
+            detectedHelmet.noHemletRects.push_back(noHelmet);
         }
 
     }
 }
 
-void Recognation::detectBody(Mat frame) {
+void Recognation::detectBody(Mat& frame, Detected& detectedHelmet) {
 
     // prepare cascadeClassifier
     CascadeClassifier detectorUpper;
@@ -149,7 +145,7 @@ void Recognation::detectBody(Mat frame) {
     detectorUpper.detectMultiScale(img, detectedHeads, scaleFactor, minNeighbours, flag, minSize, maxSize);
     Rect head;
 
-    detectedHelmet->detectedRects = detectedHeads;
+    detectedHelmet.detectedRects = detectedHeads;
 
     // Draw results from detectorUpper into original colored image
     if ( !detectedHeads.empty() ) {
@@ -160,7 +156,7 @@ void Recognation::detectBody(Mat frame) {
             crp = frame(head);
             resize(crp, crp, croppedSize);
 
-            detectedHelmet->detectedFrames.push_back(crp);
+            detectedHelmet.detectedFrames.push_back(crp);
 
         }
     }
@@ -169,31 +165,29 @@ void Recognation::detectBody(Mat frame) {
 
 void Recognation::alarm() {
 
-    wiringPiSetup();
-    pinMode(BuzzerPin,  OUTPUT);
-    softToneCreate(BuzzerPin);
-
-    int count=0;
-    while(1){
-        softToneWrite(BuzzerPin, 500);
-        delay(100);
-        softToneWrite(BuzzerPin, 0);
-        count++;
-        delay(100);
-
-        if(count == 2){
-            softToneWrite(BuzzerPin, LOW);
-            break;
-        }
-    }
-
-}
-
-Recognation::~Recognation() {
-    free(detectedHelmet);
+//    wiringPiSetup();
+//    pinMode(BuzzerPin,  OUTPUT);
+//    softToneCreate(BuzzerPin);
+//
+//    int count=0;
+//    while(1){
+//        softToneWrite(BuzzerPin, 500);
+//        delay(100);
+//        softToneWrite(BuzzerPin, 0);
+//        count++;
+//        delay(100);
+//
+//        if(count == 2){
+//            softToneWrite(BuzzerPin, LOW);
+//            break;
+//        }
+//    }
 
 }
+
 
 void Recognation::clearNoHelmet() {
     noHelmetFrames.clear();
 }
+
+

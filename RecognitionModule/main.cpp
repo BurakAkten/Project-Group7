@@ -40,7 +40,6 @@ int main() {
 
     // Open cam
     //Video capture object to acquire webcam feed
-
     Recognation module;
     Mat cameraFeed;
 
@@ -53,14 +52,14 @@ int main() {
     while(true){
         capture >> cameraFeed;
 
-        bool res = module.run(cameraFeed, &result);
+        bool res = module.run(cameraFeed, result);
 
         if(res){
             cout << "Baret yok" << endl;
-            imshow("No helmet", result);
+            imshow("Result", result);
         }
         else{
-            imshow("Baret var", cameraFeed);
+            imshow("Result", cameraFeed);
         }
 
         if(count == fps){
