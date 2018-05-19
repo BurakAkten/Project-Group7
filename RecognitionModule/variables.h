@@ -38,6 +38,6 @@ const int thickness = 2;
 const int lineType = 8;
 
 
-const int BuzzerPin = 26;
+const int BuzzerPin = 25;
 
 #endif //VARIABLES_H
