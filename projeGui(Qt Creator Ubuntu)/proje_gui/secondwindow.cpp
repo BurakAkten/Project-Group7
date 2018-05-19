@@ -70,6 +70,15 @@ SecondWindow::SecondWindow(QWidget *parent) :
     ui->listWidget->setVisible(false); // bölge listesi
     ui->label_3->setVisible(false);    // bölge etiketi
 
+    auto f = bind(&SecondWindow::callback, this, std::placeholders::_1);
+
+
+    cout << "- CLIENT STARTED -" << endl;
+
+    const string ipAddress = "10.1.130.243";
+    const string localIp = "localhost";
+
+    this->client = new Client("localhost", f);
 
 }
 
@@ -139,6 +148,29 @@ void SecondWindow::on_baslat_clicked()
         ui->label_3->setAlignment(Qt::AlignCenter);
     }*/
 
+    if (client.connectToServer() == -1) {
+        err("client.connect()");
+        #if _WIN32
+            cout << WSAGetLastError() << endl;
+        #endif
+        //exit(1);
+        isLiveStream = false;
+        QMessageBox msgBox(this);
+        msgBox.setStyleSheet("QLabel { color : red; qproperty-alignment: AlignCenter;}");
+        msgBox.setWindowTitle("Uyarı!");
+        msgBox.setText(tr("Server'a Bağlanılamadı !\n"));
+        msgBox.addButton(tr("Tamam"), QMessageBox::YesRole);
+        msgBox.exec();
+    }
+
+}
+
+void SecondWindow::sendStartSignal(Client& client) {
+    Command command = Command::start;
+    if(client.send(&command, sizeof(Command)) != sizeof(Command)) {
+        err("client.send()");
+        connectionActive = false;
+    }
 }
 
 void SecondWindow::on_bolgeGrafigi_clicked() {
@@ -359,15 +391,6 @@ void SecondWindow::on_play_clicked() {
 
 
     if(!isLiveStream && isSystemRun){
-        auto f = bind(&SecondWindow::callback, this, std::placeholders::_1);
-
-
-        cout << "- CLIENT STARTED -" << endl;
-
-        const string ipAddress = "10.1.130.243";
-        const string localIp = "localhost";
-
-        Client client("localhost", f);
 
         isLiveStream = true;
         if (client.connectToServer() == -1) {

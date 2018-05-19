@@ -57,6 +57,7 @@ private:
     bool isSystemRun = false;
     bool isLiveStream = false;
     bool isFullScreen = false;
+    Client *client;
     Ui::SecondWindow *ui;
     vector<Rapor> raports;
     vector<Region> regions;

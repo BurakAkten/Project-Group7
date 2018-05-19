@@ -66,7 +66,8 @@ HEADERS += \
     bolgeekle.h \
     dbconnection.h \
     region.h \
-    editregion.h
+    editregion.h \
+    Client/Command.h
 
 FORMS += \
     secondwindow.ui \

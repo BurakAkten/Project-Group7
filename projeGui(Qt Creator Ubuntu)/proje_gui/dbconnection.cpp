@@ -32,7 +32,7 @@ vector<int> DbConnection::getCountByArea() {
 
 map<string, int> DbConnection::getDateByArea() {
     map<string, int> dateByAreas;
-    res = con->createStatement()->executeQuery("SELECT date, areaid FROM test.reports ORDER BY date LIMIT 500;");
+    res = con->createStatement()->executeQuery("SELECT date, areaid FROM test.reports ORDER BY date DESC LIMIT 500;");
     while (res->next()) {
         dateByAreas[res->getString(1)] = res->getInt(2);
     }
