@@ -17,17 +17,13 @@ class Recognation {
 
 public:
     bool run(Mat& cameraFeed, Mat& result);
-    void clearNoHelmet();
-
+    void clearDatabaseFrames();
+    const vector<Mat>& getDatabaseFrames();
+    vector<Mat> databaseFrames;
 private:
     Mat ROI; // Region of Interest
-    vector<Mat*> noHelmetFrames;
-
-    Mat criticalRegion(Mat image);
-
     void trackFilteredObject(std::vector<Mat>& src, Mat& original, int index, Detected& detectedHelmet);
     void detectBody(Mat& frame, Detected& detectedHelmet);
-
     void alarm();
 };
 

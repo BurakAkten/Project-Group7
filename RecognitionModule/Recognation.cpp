@@ -48,10 +48,11 @@ bool Recognation::run(Mat& cameraFeed, Mat& result){
     detectedHelmet.draw();
     detectedHelmet.drawRects();
 
+
     if( !detectedHelmet.noHemletRects.empty()){
         // If there is no helmet
-        noHelmetFrames.push_back(&detectedHelmet.mainFrame);
-        detectedHelmet.mainFrame.copyTo(result);
+        databaseFrames.push_back(detectedHelmet.mainFrame.clone());
+        result = detectedHelmet.mainFrame;
         alarm();
         return true;
     }
@@ -59,12 +60,6 @@ bool Recognation::run(Mat& cameraFeed, Mat& result){
         return false;
 
 
-}
-
-Mat Recognation::criticalRegion(Mat image) {
-    // Critical region operations
-    // All pixel that out of critical region mark as 0.
-    return image;
 }
 
 void Recognation::trackFilteredObject(vector<Mat>& frames, Mat& original, int index, Detected& detectedHelmet) {
@@ -186,8 +181,13 @@ void Recognation::alarm() {
 }
 
 
-void Recognation::clearNoHelmet() {
-    noHelmetFrames.clear();
+void Recognation::clearDatabaseFrames() {
+    databaseFrames.clear();
+}
+
+const vector<Mat>& Recognation::getDatabaseFrames() {
+    cout << databaseFrames.size() << endl;
+    return databaseFrames;
 }
 
 

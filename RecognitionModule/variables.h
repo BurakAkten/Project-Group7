@@ -37,8 +37,7 @@ const Scalar drawColor = Scalar(0, 0, 255);
 const int thickness = 2;
 const int lineType = 8;
 
-const int fps = 25;
 
-const int BuzzerPin = 25;
+const int BuzzerPin = 26;
 
 #endif //VARIABLES_H

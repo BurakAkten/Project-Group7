@@ -16,8 +16,7 @@ class Detected{
 public:
     Detected(Mat mainFrame);
     void setMainFrame(Mat frame);
-    Mat getMainFrame();
-    Mat drawRects();
+    void drawRects();
     void draw();
 private:
     Mat mainFrame;

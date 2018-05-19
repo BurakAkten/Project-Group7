@@ -2,6 +2,7 @@
 #include <dirent.h>
 #include <queue>
 #include "Recognation.h"
+#include <sstream> // for ostringstream
 
 using namespace std;
 
@@ -45,9 +46,11 @@ int main() {
 
     VideoCapture capture;
     capture.open(0);
+    vector<Mat> databaseFrames;
 
-    int count = 0;
+    int fCount = 0;
     Mat result;
+    std::ostringstream out;
 
     while(true){
         capture >> cameraFeed;
@@ -62,11 +65,23 @@ int main() {
             imshow("Result", cameraFeed);
         }
 
-        if(count == fps){
-            count = 0;
-            module.clearNoHelmet();
+
+        if(fCount == 300){
+            databaseFrames = module.getDatabaseFrames();
+            cout << "result size: " << databaseFrames.size() << endl;
+            for(int i = 0; i < databaseFrames.size(); ++i){
+                if(i == 0 || i == databaseFrames.size()-1 || i == databaseFrames.size()/2){
+                    out << "OUTPUT/" << i << "_noHelmet.jpg";
+                    imwrite(out.str(), databaseFrames.at(i));
+                    imshow(out.str(), databaseFrames.at(i));
+                    waitKey(0);
+                    out.str("");
+                }
+            }
+            module.clearDatabaseFrames();
+            break;
         }
-        count ++;
+        fCount ++;
         if( waitKey(20) == ESC){ break; }
     }
 
