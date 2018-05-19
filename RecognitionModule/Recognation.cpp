@@ -160,23 +160,23 @@ void Recognation::detectBody(Mat& frame, Detected& detectedHelmet) {
 
 void Recognation::alarm() {
 
-//    wiringPiSetup();
-//    pinMode(BuzzerPin,  OUTPUT);
-//    softToneCreate(BuzzerPin);
-//
-//    int count=0;
-//    while(1){
-//        softToneWrite(BuzzerPin, 500);
-//        delay(100);
-//        softToneWrite(BuzzerPin, 0);
-//        count++;
-//        delay(100);
-//
-//        if(count == 2){
-//            softToneWrite(BuzzerPin, LOW);
-//            break;
-//        }
-//    }
+   wiringPiSetup();
+   pinMode(BuzzerPin,  OUTPUT);
+   softToneCreate(BuzzerPin);
+
+   int count=0;
+   while(1){
+       softToneWrite(BuzzerPin, 500);
+       delay(100);
+       softToneWrite(BuzzerPin, 0);
+       count++;
+       delay(100);
+
+       if(count == 2){
+           softToneWrite(BuzzerPin, LOW);
+           break;
+       }
+   }
 
 }
 
