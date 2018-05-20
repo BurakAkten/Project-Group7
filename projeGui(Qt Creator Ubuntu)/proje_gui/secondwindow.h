@@ -43,31 +43,16 @@ private slots:
 
     void on_fullScreen_clicked();
 
-    void on_ekle_clicked();
-
-    void on_cikar_clicked();
-
-   // void on_sec_clicked();
-
-    void on_tableWidget_cellDoubleClicked(int row, int column);
-
-    void on_comboBox_activated(int index);
+    void on_tableWidget_cellDoubleClicked(int row, int column); 
 
 private:
     bool isSystemRun = false;
     bool isLiveStream = false;
     bool isFullScreen = false;
-    Client *client;
     Ui::SecondWindow *ui;
-    vector<Rapor> raports;
-    vector<Region> regions;
     Graphs* graph;
-    BolgeEkle* bolge;
-    EditRegion* region;
     DbConnection db;
     void getTableInfo();
-    void getListInfo();
-    void getBoxInfo();
     void loadImages();
     void callback(Client& client);
     void closeEvent (QCloseEvent *event);

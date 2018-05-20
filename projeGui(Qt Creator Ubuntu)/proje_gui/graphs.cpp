@@ -119,10 +119,10 @@ void Graphs::createDateGraph(map<string, int> dateByAreas) {
     // set locale to english, so we get english month names:
     ui->customPlot->setLocale(QLocale(QLocale::Turkish));
     // seconds of current time, we'll use it as starting point in time for data:
-    QDateTime nowDate = QDateTime::currentDateTime();
-    double now = nowDate.toTime_t();
+    QDateTime currentDate = QDateTime::currentDateTime();
+    double now = currentDate.toTime_t();
     // create multiple graphs:
-    for (int gi=1; gi<5; ++gi)
+    for (int gi=1; gi<4; ++gi)
     {
       ui->customPlot->addGraph();
       QColor color(20+200/4.0*gi,70*(1.6-gi/4.0), 150, 150);
@@ -130,35 +130,53 @@ void Graphs::createDateGraph(map<string, int> dateByAreas) {
       ui->customPlot->graph()->setLineStyle(QCPGraph::lsLine);
       ui->customPlot->graph()->setPen(QPen(color.lighter(200)));
       ui->customPlot->graph()->setBrush(QBrush(color));
-
-      QVector<QCPGraphData> timeData(1000);
-      for (auto const& x : dateByAreas) {
-          QString date_string_on_db = QString::fromStdString(x.first);
+      // generate random walk data:
+      QVector<QCPGraphData> timeData(150);
+      int index;
+      int lastIndex = 0;
+      int cumul = 2;
+      auto iter = dateByAreas.rbegin();
+      bool isFirst = true;
+      while (iter != dateByAreas.rend()) {
+          QString date_string_on_db = QString::fromStdString(iter->first);
           QDateTime Date = QDateTime::fromString(date_string_on_db,"yyyy-MM-dd hh:mm:ss");
-          int index = Date.daysTo(nowDate);
-          timeData[index].key = now + Date.toTime_t();
-          cout << "Now: " << nowDate.toString().toStdString() << endl
-               << "Past: " << Date.toString().toStdString() << endl
-               << "Day diff: " << index << endl;
-          if (x.second == gi) {
-              timeData[index].value = 4 * gi;
-          } else {
-              timeData[Date.daysTo(nowDate)].value = 0;
+          index = Date.daysTo(currentDate);
+          if (isFirst) {
+              isFirst = false;
+              lastIndex = index;
           }
+          timeData[index].key = now + 24*3600*index;
+          if (iter->second == gi) {
+              if (index == lastIndex) {
+                  cumul += 2;
+              } else {
+                  timeData[lastIndex].value = cumul;
+                  for (int i = lastIndex + 1; i < index; ++i) {
+                      timeData[index].key = now + 24*3600*i;
+                      timeData[i].value = 0;
+                  }
+                  //cout << "gi: " << gi << " index: " << index << " lastIndex: " << lastIndex << " cumul: " << cumul << " key: " << timeData[lastIndex].key << " val: " << timeData[lastIndex].value << endl;
+                  lastIndex = index;
+                  cumul = 2;
+              }
+          } else {
+              timeData[index].value = 0;
+          }
+          ++iter;
       }
+      for (int i = 0; i < 150; ++i)
+          cout << "gi: " << gi << " k: " << timeData[i].key << " v: " << timeData[i].value << endl;
       ui->customPlot->graph()->data()->set(timeData);
     }
-
     // configure bottom axis to show date instead of number:
     QSharedPointer<QCPAxisTickerDateTime> dateTicker(new QCPAxisTickerDateTime);
     dateTicker->setDateTimeFormat("d. MMMM\nyyyy");
     ui->customPlot->xAxis->setTicker(dateTicker);
     // configure left axis text labels:
     QSharedPointer<QCPAxisTickerText> textTicker(new QCPAxisTickerText);
-    for(int i = 1; i < 11; ++i) {
+    for (int i = 1; i < 21; ++i) {
         textTicker->addTick(i, QString::fromStdString(to_string(i)));
     }
-
     ui->customPlot->yAxis->setTicker(textTicker);
 
     // set a more compact font size for bottom and left axis tick labels:
@@ -175,8 +193,8 @@ void Graphs::createDateGraph(map<string, int> dateByAreas) {
     ui->customPlot->xAxis2->setTickLabels(false);
     ui->customPlot->yAxis2->setTickLabels(false);
     // set axis ranges to show all data:
-    ui->customPlot->xAxis->setRange(now-24*3600*249, now);
-    ui->customPlot->yAxis->setRange(0, 10);
+    ui->customPlot->xAxis->setRange(now-24*3600*149, now);
+    ui->customPlot->yAxis->setRange(0, 20);
     // show legend with slightly transparent background brush:
     ui->customPlot->legend->setVisible(true);
     ui->customPlot->legend->setBrush(QColor(255, 255, 255, 150));

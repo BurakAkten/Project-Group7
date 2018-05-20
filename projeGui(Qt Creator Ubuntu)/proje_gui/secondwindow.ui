@@ -290,36 +290,16 @@
                   </size>
                  </property>
                  <property name="text">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Bölgeler&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Tespit Edilen Resim&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                 </widget>
                </item>
                <item>
                 <widget class="QLabel" name="detectedImage">
                  <property name="text">
-                  <string>Detected Image</string>
+                  <string/>
                  </property>
                 </widget>
-               </item>
-               <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_2">
-                 <item>
-                  <widget class="QListWidget" name="listWidget">
-                   <property name="minimumSize">
-                    <size>
-                     <width>250</width>
-                     <height>200</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>500</width>
-                     <height>16777215</height>
-                    </size>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
                </item>
               </layout>
              </item>
@@ -331,45 +311,30 @@
               </widget>
              </item>
              <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_6">
-               <item>
-                <widget class="QPushButton" name="bolgeGrafigi">
-                 <property name="text">
-                  <string>Bölge Grafiği</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="openDateGraph">
-                 <property name="text">
-                  <string>Tarih Grafiği</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item>
               <layout class="QHBoxLayout" name="horizontalLayout_5">
                <item>
-                <widget class="QComboBox" name="comboBox">
-                 <property name="currentText">
-                  <string/>
+                <layout class="QHBoxLayout" name="horizontalLayout_6">
+                 <property name="spacing">
+                  <number>2</number>
                  </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="ekle">
-                 <property name="text">
-                  <string>Ekle</string>
+                 <property name="sizeConstraint">
+                  <enum>QLayout::SetMinimumSize</enum>
                  </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="cikar">
-                 <property name="text">
-                  <string>Çıkar</string>
-                 </property>
-                </widget>
+                 <item>
+                  <widget class="QPushButton" name="bolgeGrafigi">
+                   <property name="text">
+                    <string>Bölge Grafiği</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="openDateGraph">
+                   <property name="text">
+                    <string>Tarih Grafiği</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </item>
               </layout>
              </item>
