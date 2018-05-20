@@ -30,8 +30,7 @@ public:
     sql::ResultSet *getLastFiftyRaport();
     vector<int> getCountByArea();
     map<string, int> getDateByArea();
-    sql::ResultSet *getAllAreas();
-    void updateArea(Region region);
+    void postReport(int areaId);
 };
 
 #endif // DBCONNECTION_H

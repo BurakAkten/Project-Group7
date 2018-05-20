@@ -12,6 +12,7 @@
 #include <QBuffer>
 #include <QVideoWidget>
 #include <QMediaPlayer>
+#include <QTimer>
 
 #include "QCloseEvent"
 
@@ -28,7 +29,7 @@
 #include "ui_secondwindow.h"
 
 #define WINDOW_NAME "WINDOW"
-
+#define UPDATE_SECOND 10
 
 SecondWindow::SecondWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -49,6 +50,10 @@ SecondWindow::SecondWindow(QWidget *parent) :
 
     loadImages();
     getTableInfo();
+
+    QTimer *timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(updateTableInfo()));
+    timer->start(UPDATE_SECOND * 1000);
 }
 
 void SecondWindow::getTableInfo(){
@@ -57,7 +62,8 @@ void SecondWindow::getTableInfo(){
 
     int i = 0;
     while (res->next()) {
-        table->insertRow(i);
+        if (table->rowCount() < 50)
+            table->insertRow(i);
 
         int area = res->getInt(3);
         string date = res->getString(4);
@@ -264,6 +270,10 @@ void SecondWindow::on_tableWidget_cellDoubleClicked(int row, int column) {
         ui->detectedImage->setScaledContents(true);
         ui->detectedImage->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
     }
+}
+
+void SecondWindow::updateTableInfo() {
+    this->getTableInfo();
 }
 
 void SecondWindow::closeEvent (QCloseEvent *event) {

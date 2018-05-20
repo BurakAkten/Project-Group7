@@ -26,7 +26,6 @@ class SecondWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    //friend void callback(Client& client);
     explicit SecondWindow(QWidget *parent = 0);
     ~SecondWindow();
 
@@ -44,6 +43,8 @@ private slots:
     void on_fullScreen_clicked();
 
     void on_tableWidget_cellDoubleClicked(int row, int column); 
+
+    void updateTableInfo();
 
 private:
     bool isSystemRun = false;

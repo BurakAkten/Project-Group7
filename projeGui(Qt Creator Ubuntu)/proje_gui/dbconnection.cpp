@@ -39,18 +39,13 @@ map<string, int> DbConnection::getDateByArea() {
     return dateByAreas;
 }
 
-sql::ResultSet *DbConnection::getAllAreas() {
-    stmt = con->createStatement();
-    return stmt->executeQuery("SELECT * FROM test.areas ORDER BY id;");
-}
-
-void DbConnection::updateArea(Region region) {
+void DbConnection::postReport(int areaId) {
     try {
-        std::stringstream ss;
-        ss << "UPDATE test.areas SET x1=" << region.x1 << ", x2=" << region.x2 << ", y="
-           << region.y << " WHERE id=" << region.name.substr(region.name.size() - 1) << ";";
-        con->createStatement()->executeQuery(ss.str());
-    } catch (sql::SQLException e) {
-        std::cout << e.what();
+        stmt = con->createStatement();
+        stringstream ss;
+        ss << "INSERT INTO test.reports (id, areaid, date) VALUES(0, " << areaId << ", NOW());";
+        stmt->executeQuery(ss.str());
+    } catch(sql::SQLException e) {
+        cerr << e.what() << endl;
     }
 }
