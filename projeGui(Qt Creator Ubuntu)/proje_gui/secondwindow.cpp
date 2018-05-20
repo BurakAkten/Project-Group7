@@ -129,31 +129,40 @@ void SecondWindow::callback(Client& client) {
     }
 
     for (;connectionActive;) {
-
-        if (client.hasDataPending()) {
+        /*if (client.hasDataPending()) {
             cout << "Data pending " << client.dataPending() << endl;
         } else {
             cout << "No data pending" << endl;
-        }
+        }*/
 
-        if(client.receive(frame)) {
+        if(client.receive(&command, sizeof(Command)) != sizeof(Command)) {
+            err("server.receive()");
+            connectionActive = false;
+        } else if(client.receive(frame)) {
             err("client.receive()");
             connectionActive = false;
         } else {
             pyrUp(frame, decompressedFrame);
-
             cvtColor(frame, frame, CV_BGR2RGB);    //  renkleri Qt ye uygun hale getirmek için
-            image1= QImage((uchar*) frame.data, frame.cols, frame.rows, frame.step, QImage::Format_RGB888);
 
-            if (isLiveStream) {
-                ui->video->setPixmap(QPixmap::fromImage(image1));
-                ui->video->setScaledContents( true );
-                ui->video->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
-                ui->video->show();
-            } else {
-                image1 = QImage();
-                ui->video->setPixmap(QPixmap::fromImage(image1));
-                ui->video->show();
+            if(command == Command::none) {
+                cout << command << endl; // NORMAL FRAME HAS ARRIVED
+                image1= QImage((uchar*) frame.data, frame.cols, frame.rows, frame.step, QImage::Format_RGB888);
+                if (isLiveStream) {
+                    ui->video->setPixmap(QPixmap::fromImage(image1));
+                    ui->video->setScaledContents( true );
+                    ui->video->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
+                    ui->video->show();
+                } else {
+                    image1 = QImage();
+                    ui->video->setPixmap(QPixmap::fromImage(image1));
+                    ui->video->show();
+                }
+            } else if (command == Command::no_helmet) {
+                cout << command << endl; // FRAME WITH BLUE AND RED SQUARES HAS ARRIVED
+                ui->detectedImage->setPixmap(QPixmap::fromImage(QImage((unsigned char*) frame.data, frame.cols, frame.rows, QImage::Format_RGB888)));
+                ui->detectedImage->setScaledContents(true);
+                ui->detectedImage->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
             }
 
             if (cv::waitKey(30) >= 0 || !isSystemRun) {
@@ -266,7 +275,7 @@ void SecondWindow::on_openDateGraph_clicked() {
 
 void SecondWindow::on_tableWidget_cellDoubleClicked(int row, int column) {
     if (isSystemRun) {
-        ui->detectedImage->setPixmap(QPixmap(":/Resources/images/gtu.png"));     // basılan row biliniyor , ona göre db den foto alınacak
+        ui->detectedImage->setPixmap(QPixmap(":/Resources/images/gtu.png"));
         ui->detectedImage->setScaledContents(true);
         ui->detectedImage->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
     }

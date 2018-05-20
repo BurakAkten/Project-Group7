@@ -8,7 +8,7 @@
 namespace server_client {
 
     enum class Command: int {
-        start = 100 , stop, database_updated, none
+        start = 100 , stop, database_updated, no_helmet, none
     };
 
     ostream& operator << (ostream& out, const Command& command) {
@@ -16,6 +16,7 @@ namespace server_client {
             case Command::start: cout << "start"; break;
             case Command::stop: cout << "stop"; break;
             case Command::database_updated: cout << "database_updated"; break;
+            case Command::no_helmet: cout << "no_helmet"; break;
             case Command::none: cout << "none"; break;
         }
         return out;
