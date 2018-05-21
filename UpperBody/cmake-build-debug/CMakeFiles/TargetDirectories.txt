@@ -1,3 +1,0 @@
-C:/Users/Gme Jemsy/CLionProjects/UpperBody/cmake-build-debug/CMakeFiles/UpperBody.dir
-C:/Users/Gme Jemsy/CLionProjects/UpperBody/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Gme Jemsy/CLionProjects/UpperBody/cmake-build-debug/CMakeFiles/rebuild_cache.dir
