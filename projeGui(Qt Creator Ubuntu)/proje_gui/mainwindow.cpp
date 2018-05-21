@@ -35,5 +35,6 @@ void MainWindow::on_pushButton_clicked()
     this->close();
     secWindow = new SecondWindow(this);
     secWindow->show();
+
 }
 

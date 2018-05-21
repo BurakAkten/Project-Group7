@@ -14,6 +14,9 @@
 #include <cppconn/exception.h>
 #include <cppconn/resultset.h>
 #include <cppconn/statement.h>
+#include <cppconn/prepared_statement.h>
+
+#include "Client/MatConverter.h"
 
 using namespace std;
 
@@ -22,6 +25,7 @@ class DbConnection
     sql::Driver *driver;
     sql::Connection *con;
     sql::Statement *stmt;
+    sql::PreparedStatement *pstmt;
     sql::ResultSet *res;
 public:
     DbConnection();
@@ -31,6 +35,8 @@ public:
     vector<int> getCountByArea();
     map<string, int> getDateByArea();
     void postReport(int areaId);
+    void postImage(Mat &image);
+    Mat getImage(int id);
 };
 
 #endif // DBCONNECTION_H

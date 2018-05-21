@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "graphs.h"
+#include "detectedimage.h"
 #include "bolgeekle.h"
 #include "editregion.h"
 #include "rapor.h"
@@ -29,6 +30,7 @@ public:
     explicit SecondWindow(QWidget *parent = 0);
     ~SecondWindow();
 
+
 private slots:
     void on_baslat_clicked();
 
@@ -46,12 +48,17 @@ private slots:
 
     void updateTableInfo();
 
+    void runLiveStream();
+
 private:
     bool isSystemRun = false;
-    bool isLiveStream = false;
+    bool isLiveStream = true;
     bool isFullScreen = false;
+    bool isStopClicked = false;
     Ui::SecondWindow *ui;
-    Graphs* graph;
+    Client *client;
+    Graphs *graph;
+    DetectedImage *detectedImage;
     DbConnection db;
     void getTableInfo();
     void loadImages();

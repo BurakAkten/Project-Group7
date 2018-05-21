@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+#include <sstream>
 #include <pthread.h>
 #include <functional> // bind
 
@@ -28,8 +29,14 @@
 #include "secondwindow.h"
 #include "ui_secondwindow.h"
 
+#include <cppconn/prepared_statement.h>
+#include <QThread>
+
 #define WINDOW_NAME "WINDOW"
 #define UPDATE_SECOND 10
+
+const string ipAddress = "192.168.2.2";
+//const string ipAddress = "localhost";
 
 SecondWindow::SecondWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -51,9 +58,44 @@ SecondWindow::SecondWindow(QWidget *parent) :
     loadImages();
     getTableInfo();
 
+    auto f = bind(&SecondWindow::callback, this, std::placeholders::_1);
+
+    client = new Client(ipAddress, f);
+
+    QTimer::singleShot(27, this, SLOT(runLiveStream()));
+
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(updateTableInfo()));
     timer->start(UPDATE_SECOND * 1000);
+
+
+}
+
+void SecondWindow::runLiveStream(){
+    while (true) {
+        if (client->connectToServer() == -1) {
+            err("client.connect()");
+            #if _WIN32
+                cout << WSAGetLastError() << endl;
+            #endif
+            //exit(1);
+            isLiveStream = false;
+            isSystemRun = false;
+            ui->baslat->setText("Başlat");
+            QMessageBox msgBox(this);
+            msgBox.setStyleSheet("QLabel { color : red; qproperty-alignment: AlignCenter;}");
+            msgBox.setWindowTitle("Uyarı!");
+            msgBox.setText(tr("Server'a Bağlanılamadı !\n"));
+            QPushButton *reconnect = msgBox.addButton(tr("Yeniden Bağlan"), QMessageBox::YesRole);
+            msgBox.addButton(tr("Tamam"), QMessageBox::NoRole);
+            msgBox.exec();
+            if (msgBox.clickedButton() == reconnect) {
+                this->close();
+            } else {
+                break;
+            }
+        }
+    }
 }
 
 void SecondWindow::getTableInfo(){
@@ -120,13 +162,11 @@ void SecondWindow::callback(Client& client) {
     Mat decompressedFrame;
     QImage image1;
     bool connectionActive = true;
+    bool isFirstImg = true;
+    int noHelmetAreaId = 0;
 
-    Command command = Command::start;
-    if(client.send(&command, sizeof(Command)) != sizeof(Command)) {
-        err("client.send()");
-        connectionActive = false;
-        isSystemRun = false;
-    }
+
+    Command command;
 
     for (;connectionActive;) {
         /*if (client.hasDataPending()) {
@@ -138,39 +178,80 @@ void SecondWindow::callback(Client& client) {
         if(client.receive(&command, sizeof(Command)) != sizeof(Command)) {
             err("server.receive()");
             connectionActive = false;
+        } else if (command == Command::no_helmet && client.receive(&noHelmetAreaId, sizeof(int)) != sizeof(int)) {
+            err("client.receive()");
+            connectionActive = false;
         } else if(client.receive(frame)) {
             err("client.receive()");
             connectionActive = false;
         } else {
-            pyrUp(frame, decompressedFrame);
-            cvtColor(frame, frame, CV_BGR2RGB);    //  renkleri Qt ye uygun hale getirmek için
 
-            if(command == Command::none) {
-                cout << command << endl; // NORMAL FRAME HAS ARRIVED
-                image1= QImage((uchar*) frame.data, frame.cols, frame.rows, frame.step, QImage::Format_RGB888);
-                if (isLiveStream) {
-                    ui->video->setPixmap(QPixmap::fromImage(image1));
-                    ui->video->setScaledContents( true );
-                    ui->video->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
-                    ui->video->show();
-                } else {
-                    image1 = QImage();
-                    ui->video->setPixmap(QPixmap::fromImage(image1));
-                    ui->video->show();
+            switch (command) {
+                case Command::none:{
+                    pyrUp(frame, decompressedFrame);
+                    cvtColor(decompressedFrame, decompressedFrame, CV_BGR2RGB);    //  renkleri Qt ye uygun hale getirmek için
+
+                    cout << command << endl; // NORMAL FRAME HAS ARRIVED
+                    image1= QImage((uchar*) decompressedFrame.data, decompressedFrame.cols, decompressedFrame.rows, decompressedFrame.step, QImage::Format_RGB888);
+                    /*if(isFirstImg) {
+                        Mat matImg = db.getImage(1);
+                        //cvtColor(matImg, frame, CV_BGR2RGB);
+                        QImage testImage((uchar*) matImg.data, matImg.cols, matImg.rows, matImg.step, QImage::Format_RGB888);
+                        detectedImage = new DetectedImage(this, testImage);
+                        detectedImage->show();
+                        isFirstImg = false;
+                    }*/
+
+                    if (isLiveStream) {
+                        ui->video->setPixmap(QPixmap::fromImage(image1));
+                        ui->video->setScaledContents( true );
+                        ui->video->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
+                        ui->video->show();
+
+                    } else {
+                        image1 = QImage();
+                        ui->video->setPixmap(QPixmap::fromImage(image1));
+                        ui->video->show();
+                    }
+
                 }
-            } else if (command == Command::no_helmet) {
-                cout << command << endl; // FRAME WITH BLUE AND RED SQUARES HAS ARRIVED
-                ui->detectedImage->setPixmap(QPixmap::fromImage(QImage((unsigned char*) frame.data, frame.cols, frame.rows, QImage::Format_RGB888)));
-                ui->detectedImage->setScaledContents(true);
-                ui->detectedImage->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
+                    break;
+                case Command::no_helmet:{
+                    cout << command << " " << noHelmetAreaId << endl; // FRAME WITH BLUE AND RED SQUARES HAS ARRIVED
+                    ui->detectedImage->setPixmap(QPixmap::fromImage(QImage((unsigned char*) frame.data, frame.cols, frame.rows, QImage::Format_RGB888)));
+                    ui->detectedImage->setScaledContents(true);
+                    ui->detectedImage->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
+                  }
+                    break;
+
+                 case Command::init_point:{
+                    ui->baslat->setVisible(true);
+                 }
+                    break;
+
             }
 
-            if (cv::waitKey(30) >= 0 || !isSystemRun) {
+            if (isSystemRun && isStopClicked) {
+                command = Command::start;
+                if(client.send(&command, sizeof(Command)) != sizeof(Command)) {
+                    err("client.send()");
+                    connectionActive = false;
+                    isSystemRun = false;
+                }
+                isStopClicked = false;
+            }
+            if (!isSystemRun && isStopClicked) {
                 command = Command::stop;
                 if(client.send(&command, sizeof(Command)) != sizeof(Command)) {
                     err("client.send()");
                     connectionActive = false;
                 }
+                ui->baslat->setVisible(false);
+                isStopClicked = false;
+            }
+
+
+            if (cv::waitKey(30) >= 0) {
                 client.disconnectFromServer();
                 connectionActive = false;
             }
@@ -187,49 +268,21 @@ void SecondWindow::on_baslat_clicked() {
     if(isSystemRun == true) {
         //STOP
         isSystemRun = false;
-        isLiveStream = false;
         //QImage image1 = ;
         ui->detectedImage->setPixmap(QPixmap::fromImage(QImage()));
         ui->detectedImage->show();  // biterken ekranı boşaltmak için*/
         ui->baslat->setText("Başlat");
     } else {
         //START
-        cout << "- CLIENT STARTED -" << endl;
-        auto f = bind(&SecondWindow::callback, this, std::placeholders::_1);
-
-        const string ipAddress = "10.1.130.243";
-        const string localIp = "localhost";
-
-        Client client("localhost", f);
-
         ui->baslat->setText("Durdur");
         isSystemRun = true;
-        if (client.connectToServer() == -1) {
-            err("client.connect()");
-            #if _WIN32
-                cout << WSAGetLastError() << endl;
-            #endif
-            //exit(1);
-            isLiveStream = false;
-            isSystemRun = false;
-            ui->baslat->setText("Başlat");
-            QMessageBox msgBox(this);
-            msgBox.setStyleSheet("QLabel { color : red; qproperty-alignment: AlignCenter;}");
-            msgBox.setWindowTitle("Uyarı!");
-            msgBox.setText(tr("Server'a Bağlanılamadı !\n"));
-            msgBox.addButton(tr("Tamam"), QMessageBox::YesRole);
-            msgBox.exec();
-        }
-
-        cout << "- CLIENT EXITED -" << endl;
     }
+    isStopClicked = true;
 
 }
 
 void SecondWindow::on_play_clicked() {
-    if(!isLiveStream && isSystemRun){
-        isLiveStream = true;
-    }
+    isLiveStream = true;
 }
 
 void SecondWindow::on_stop_clicked() {
@@ -286,7 +339,6 @@ void SecondWindow::updateTableInfo() {
 }
 
 void SecondWindow::closeEvent (QCloseEvent *event) {
-
     QMessageBox msgBox(this);
     msgBox.setStyleSheet("QLabel { color : red; qproperty-alignment: AlignCenter;}");
     msgBox.setWindowTitle("Çıkış!");
@@ -299,10 +351,13 @@ void SecondWindow::closeEvent (QCloseEvent *event) {
         event->ignore();
     } else {
         isLiveStream = false;
+        client->disconnectFromServer();
         event->accept();
     }
 }
 
 SecondWindow::~SecondWindow() {
+    delete client;
     delete ui;
 }
+

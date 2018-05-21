@@ -48,7 +48,8 @@ SOURCES += \
     graphs.cpp \
     bolgeekle.cpp \
     dbconnection.cpp \
-    editregion.cpp
+    editregion.cpp \
+    detectedimage.cpp
 
 HEADERS += \
     secondwindow.h \
@@ -67,14 +68,16 @@ HEADERS += \
     dbconnection.h \
     region.h \
     editregion.h \
-    Client/Command.h
+    Client/Command.h \
+    detectedimage.h
 
 FORMS += \
     secondwindow.ui \
     mainwindow.ui \
     graphs.ui \
     bolgeekle.ui \
-    editregion.ui
+    editregion.ui \
+    detectedimage.ui
 
 RESOURCES += \
     recources.qrc
