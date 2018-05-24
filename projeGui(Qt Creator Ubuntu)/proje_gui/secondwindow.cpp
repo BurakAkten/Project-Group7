@@ -14,6 +14,7 @@
 #include <QVideoWidget>
 #include <QMediaPlayer>
 #include <QTimer>
+#include <QtConcurrent/QtConcurrent>
 
 #include "QCloseEvent"
 
@@ -35,8 +36,10 @@
 #define WINDOW_NAME "WINDOW"
 #define UPDATE_SECOND 10
 
-const string ipAddress = "192.168.2.2";
-//const string ipAddress = "localhost";
+//const string ipAddress = "192.168.2.2";
+const string ipAddress = "localhost";
+
+bool PROFILE_PROD = false;
 
 SecondWindow::SecondWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -107,11 +110,13 @@ void SecondWindow::getTableInfo(){
         if (table->rowCount() < 50)
             table->insertRow(i);
 
-        int area = res->getInt(3);
-        string date = res->getString(4);
+        //id setlenmeli, kullanıcı çift tıkladığında bu id ye göre db.getImage(id) methodu ile image alınabilir.
+        int id = res->getInt(1);
+        int areaId = res->getInt(2);
+        string date = res->getString(3);
 
         QTableWidgetItem *item1 = new QTableWidgetItem();
-        item1->setText(QString::fromStdString("Bölge" + to_string(area)));
+        item1->setText(QString::fromStdString("Bölge" + to_string(areaId)));
         table->setItem(i, 0, item1);
 
         QTableWidgetItem *item2 = new QTableWidgetItem();
@@ -187,20 +192,11 @@ void SecondWindow::callback(Client& client) {
         } else {
 
             switch (command) {
-                case Command::none:{
+                case Command::none: {
                     pyrUp(frame, decompressedFrame);
                     cvtColor(decompressedFrame, decompressedFrame, CV_BGR2RGB);    //  renkleri Qt ye uygun hale getirmek için
 
-                    cout << command << endl; // NORMAL FRAME HAS ARRIVED
                     image1= QImage((uchar*) decompressedFrame.data, decompressedFrame.cols, decompressedFrame.rows, decompressedFrame.step, QImage::Format_RGB888);
-                    /*if(isFirstImg) {
-                        Mat matImg = db.getImage(1);
-                        //cvtColor(matImg, frame, CV_BGR2RGB);
-                        QImage testImage((uchar*) matImg.data, matImg.cols, matImg.rows, matImg.step, QImage::Format_RGB888);
-                        detectedImage = new DetectedImage(this, testImage);
-                        detectedImage->show();
-                        isFirstImg = false;
-                    }*/
 
                     if (isLiveStream) {
                         ui->video->setPixmap(QPixmap::fromImage(image1));
@@ -216,19 +212,20 @@ void SecondWindow::callback(Client& client) {
 
                 }
                     break;
-                case Command::no_helmet:{
+                case Command::no_helmet: {
                     cout << command << " " << noHelmetAreaId << endl; // FRAME WITH BLUE AND RED SQUARES HAS ARRIVED
+                    if (PROFILE_PROD) {
+                        QtConcurrent::run(this->db, &DbConnection::postReport, noHelmetAreaId, frame);
+                    }
                     ui->detectedImage->setPixmap(QPixmap::fromImage(QImage((unsigned char*) frame.data, frame.cols, frame.rows, QImage::Format_RGB888)));
                     ui->detectedImage->setScaledContents(true);
                     ui->detectedImage->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
-                  }
+                }
                     break;
-
-                 case Command::init_point:{
+                case Command::init_point:{
                     ui->baslat->setVisible(true);
-                 }
+                }
                     break;
-
             }
 
             if (isSystemRun && isStopClicked) {
@@ -350,6 +347,7 @@ void SecondWindow::closeEvent (QCloseEvent *event) {
     if (msgBox.clickedButton() != yes) {
         event->ignore();
     } else {
+        isSystemRun = false;
         isLiveStream = false;
         client->disconnectFromServer();
         event->accept();

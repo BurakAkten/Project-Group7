@@ -3,6 +3,58 @@
 
 using namespace server_client;
 
+struct matInfo {
+    matInfo(int _cols = -1, int _rows = -1, int _type = CV_8U) :
+            cols(_cols), rows(_rows), type(_type){};
+    int cols, rows, type;
+    size_t Size() {return CV_ELEM_SIZE(type) * rows * cols;}
+    size_t RowSize(){ return CV_ELEM_SIZE(type) * cols; }
+};
+
+bool MatSerialize(ostream &out, const Mat& mat) {
+    matInfo mi( mat.cols, mat.rows, mat.type() );
+    std::ostream::sentry s(out);
+    if (!(s && out.good()))
+        return false;
+    out.write((char*)(&mi), sizeof(matInfo));
+    if (mat.isContinuous()) {
+        out.write((char*)mat.data, mi.Size());
+    } else {
+        size_t rowsz = mi.RowSize();
+        for (int r = 0; r < mi.rows; ++r)
+            out.write((char*)mat.ptr<char>(r), rowsz);
+    }
+    out.flush();
+    return out.good();
+}
+
+stringstream& operator<< (stringstream &out, const cv::Mat& mat)  {
+    MatSerialize(out, mat);
+    return out;
+}
+
+bool MatDeserialize(std::istream& in, cv::Mat& mat) {
+    std::istream::sentry s(in);
+    if (!(s && in.good())) {
+        mat = Mat();
+        return false;
+    }
+    matInfo mi;
+    in.read((char*)(&mi), sizeof(matInfo));
+    if (mi.Size() < 0) {
+        mat = Mat();
+        return false;
+    }
+    mat = Mat(mi.rows, mi.cols, mi.type);
+    in.read((char*)mat.data, mi.Size());
+    return in.good();
+}
+
+istream& operator>>(std::istream& in, cv::Mat& mat) {
+    MatDeserialize(in, mat);
+    return in;
+}
+
 DbConnection::DbConnection() {
     driver = get_driver_instance();
     con = driver->connect("proje7.mysql.database.azure.com", "projeadmin@proje7", "Proje123");
@@ -19,7 +71,7 @@ DbConnection::~DbConnection() {
 
 sql::ResultSet *DbConnection::getLastFiftyRaport() {
     stmt = con->createStatement();
-    return stmt->executeQuery("SELECT * FROM test.reports ORDER BY date DESC LIMIT 50;");
+    return stmt->executeQuery("SELECT id, areaid, date FROM test.reports ORDER BY date DESC LIMIT 50;");
 }
 
 vector<int> DbConnection::getCountByArea() {
@@ -27,7 +79,7 @@ vector<int> DbConnection::getCountByArea() {
     stmt = con->createStatement();
     for (int i = 1; i < 5; ++i){
         std::stringstream ss;
-        ss << "SELECT * FROM test.reports WHERE areaid=" << i << " LIMIT 300;";
+        ss << "SELECT id FROM test.reports WHERE areaid=" << i << " LIMIT 300;";
         sql::ResultSet *res = stmt->executeQuery(ss.str());
         areaCounts.push_back(res->rowsCount());
     }
@@ -43,59 +95,33 @@ map<string, int> DbConnection::getDateByArea() {
     return dateByAreas;
 }
 
-void DbConnection::postReport(int areaId) {
+void DbConnection::postReport(int areaId, Mat &image) {
     try {
-        stmt = con->createStatement();
-        stringstream ss;
-        ss << "INSERT INTO test.reports (id, areaid, date) VALUES(0, " << areaId << ", NOW());";
-        stmt->executeQuery(ss.str());
-    } catch(sql::SQLException e) {
-        cerr << e.what() << endl;
-    }
-}
+        std::stringstream ss;
+        ss << image;
+        std::istream is(ss.rdbuf());
 
-void DbConnection::postImage(Mat &image) {
-    try {
-        MatConverter converter;
-        vector<byte> newVec = converter.byteStream(image);
-        std::string stringN(newVec.begin(), newVec.end());
-        std::istringstream str(stringN);
-        pstmt = con->prepareStatement("INSERT INTO image_test(id, image) VALUES (0, ?)");
-        pstmt->setBlob( 1, &str);
+        sql::PreparedStatement *pstmt;
+        pstmt = con->prepareStatement("INSERT INTO test.reports (id, image, areaid, date) VALUES(0, ?, ?, NOW())");
+        pstmt->setBlob(1, &is);
+        pstmt->setInt(2, areaId);
         pstmt->executeUpdate();
-    } catch(sql::SQLException e) {
+        delete pstmt;
+    } catch(sql::SQLException &e) {
         cerr << e.what() << endl;
     }
 }
 
 cv::Mat DbConnection::getImage(int id) {
+    sql::Statement *stmt;
     stmt = con->createStatement();
     stringstream ss;
-    ss << "SELECT * FROM test.image_test WHERE id=" << id <<  ";";
-    res = stmt->executeQuery(ss.str());
-    std::istream *is;
-
-    while(res->next()){
-        is = res->getBlob(1);
+    ss << "SELECT image FROM test.reports WHERE id=" << id << ";";
+    sql::ResultSet *res = stmt->executeQuery(ss.str());
+    Mat frame;
+    while (res->next()) {
+        istream *os = res->getBlob(1);
+        *os >> frame;
     }
-
-    byte buf[100000];
-    int len=sizeof( buf );
-    std::size_t n = 0;
-
-    while( len > 0 && is->good() ) {
-        is->read( (char *) &buf[n], len );
-        int i = is->gcount();
-        n += i;
-        len -= i;
-    }
-    vector<byte> v;
-    for(int i=0;i<len;++i){
-        byte b = buf[i];
-        v.push_back(b);
-        cout<<v.at(i);
-    }
-    MatConverter converter;
-    Mat mat = converter.makeMat(v);
-    return mat;
+    return frame;
 }

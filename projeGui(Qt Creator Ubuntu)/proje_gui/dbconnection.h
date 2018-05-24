@@ -34,8 +34,7 @@ public:
     sql::ResultSet *getLastFiftyRaport();
     vector<int> getCountByArea();
     map<string, int> getDateByArea();
-    void postReport(int areaId);
-    void postImage(Mat &image);
+    void postReport(int areaId, Mat &image);
     Mat getImage(int id);
 };
 

@@ -30,7 +30,6 @@ public:
     explicit SecondWindow(QWidget *parent = 0);
     ~SecondWindow();
 
-
 private slots:
     void on_baslat_clicked();
 
