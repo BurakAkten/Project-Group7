@@ -40,6 +40,7 @@
 const string ipAddress = "localhost";
 
 bool PROFILE_PROD = false;
+bool inf = true;
 
 SecondWindow::SecondWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -75,7 +76,7 @@ SecondWindow::SecondWindow(QWidget *parent) :
 }
 
 void SecondWindow::runLiveStream(){
-    while (true) {
+   while (inf) {
         if (client->connectToServer() == -1) {
             err("client.connect()");
             #if _WIN32
@@ -90,12 +91,13 @@ void SecondWindow::runLiveStream(){
             msgBox.setWindowTitle("Uyarı!");
             msgBox.setText(tr("Server'a Bağlanılamadı !\n"));
             QPushButton *reconnect = msgBox.addButton(tr("Yeniden Bağlan"), QMessageBox::YesRole);
-            msgBox.addButton(tr("Tamam"), QMessageBox::NoRole);
+            msgBox.addButton(tr("Çıkış"), QMessageBox::NoRole);
             msgBox.exec();
-            if (msgBox.clickedButton() == reconnect) {
+            if (msgBox.clickedButton() != reconnect) {
                 this->close();
-            } else {
-                break;
+            }
+            else {
+                isLiveStream = true;
             }
         }
     }
@@ -117,6 +119,7 @@ void SecondWindow::getTableInfo(){
 
         QTableWidgetItem *item1 = new QTableWidgetItem();
         item1->setText(QString::fromStdString("Bölge" + to_string(areaId)));
+        item1->setData(Qt::UserRole, id);
         table->setItem(i, 0, item1);
 
         QTableWidgetItem *item2 = new QTableWidgetItem();
@@ -312,12 +315,18 @@ void SecondWindow::on_fullScreen_clicked() {
 }
 
 void SecondWindow::on_bolgeGrafigi_clicked() {
+    if(graph != nullptr)
+        delete graph;
+
     graph = new Graphs(this, db.getCountByArea());
     graph->setWindowTitle("Bölge Grafiği");
-    graph->show();
+    graph->show();    
 }
 
 void SecondWindow::on_openDateGraph_clicked() {
+    if(graph != nullptr)
+        delete graph;
+
     graph = new Graphs(this, db.getDateByArea());
     graph->setWindowTitle("Tarih Grafiği");
     graph->show();
@@ -325,9 +334,23 @@ void SecondWindow::on_openDateGraph_clicked() {
 
 void SecondWindow::on_tableWidget_cellDoubleClicked(int row, int column) {
     if (isSystemRun) {
-        ui->detectedImage->setPixmap(QPixmap(":/Resources/images/gtu.png"));
-        ui->detectedImage->setScaledContents(true);
-        ui->detectedImage->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
+        QImage image;
+        Mat frame, decompressedFrame;
+        int id;
+
+        id = ui->tableWidget->item(row, 0)->data(Qt::UserRole).toInt();
+        frame = db.getImage(id);
+        pyrUp(frame, decompressedFrame);
+        cvtColor(decompressedFrame, decompressedFrame, CV_BGR2RGB);    //  renkleri Qt ye uygun hale getirmek için
+
+        image = QImage((uchar*) decompressedFrame.data, decompressedFrame.cols, decompressedFrame.rows, decompressedFrame.step, QImage::Format_RGB888);
+
+        if(detectedImage != nullptr)
+            delete detectedImage;
+
+        detectedImage = new DetectedImage(this, image);
+        detectedImage->setWindowTitle("Tespit Edilen Resim");
+        detectedImage->show();
     }
 }
 
@@ -349,12 +372,23 @@ void SecondWindow::closeEvent (QCloseEvent *event) {
     } else {
         isSystemRun = false;
         isLiveStream = false;
-        client->disconnectFromServer();
+        inf = false;
+        QTimer::singleShot(0, this, SLOT(disconnect()));
         event->accept();
     }
 }
 
+void SecondWindow::disconnect(){
+    client->disconnectFromServer();
+}
+
 SecondWindow::~SecondWindow() {
+    if(detectedImage != nullptr)
+        delete detectedImage;
+
+    if(graph != nullptr)
+        delete graph;
+
     delete client;
     delete ui;
 }

@@ -1,0 +1,3 @@
+/home/safa/Documents/SC/Server/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/safa/Documents/SC/Server/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/safa/Documents/SC/Server/cmake-build-debug/CMakeFiles/Server.dir

@@ -116,7 +116,7 @@ void Graphs::createAreaGraph(vector<int> areaCounts) {
 }
 
 void Graphs::createDateGraph(map<string, int> dateByAreas) {
-    // set locale to english, so we get english month names:
+ /*   // set locale to english, so we get english month names:
     ui->customPlot->setLocale(QLocale(QLocale::Turkish));
     // seconds of current time, we'll use it as starting point in time for data:
     QDateTime currentDate = QDateTime::currentDateTime();
@@ -197,5 +197,138 @@ void Graphs::createDateGraph(map<string, int> dateByAreas) {
     ui->customPlot->yAxis->setRange(0, 20);
     // show legend with slightly transparent background brush:
     ui->customPlot->legend->setVisible(true);
-    ui->customPlot->legend->setBrush(QColor(255, 255, 255, 150));
+    ui->customPlot->legend->setBrush(QColor(255, 255, 255, 150));*/
+
+
+
+    QVector<double> datax = QVector<double>();
+    QVector<double> datay1 = QVector<double>();
+    QVector<double> datay2 = QVector<double>();
+
+    QTextStream out(stdout);
+
+    auto iter = dateByAreas.rbegin();
+    bool isFirst = true;
+    QString date_string_on_db, date;
+    QStringList pieces;
+    QMap<double, int*> map = QMap<double, int*>();
+    QDateTime dateT;
+    QVector<QString> dates;
+    int max=0;
+    while (iter != dateByAreas.rend()) {
+        date_string_on_db = QString::fromStdString(iter->first);
+
+        pieces = date_string_on_db.split("-");
+        date = pieces.value(0)+pieces.value(1); // yıl ve ay olarak split
+       // dateT = QDateTime::fromString(data, "yyyy-MM").toTime_t();
+
+        if(!datax.contains(date.toDouble())){
+            datax.push_back(date.toDouble());
+            dates.push_back(pieces.value(0)+"-"+pieces.value(1));
+        }
+
+        if(!map.keys().contains(date.toDouble()))
+        {
+            int arr[2]; arr[0]=0; arr[1]=0;
+            map.insert(date.toDouble(), arr);
+        }
+
+        int* tempArr;
+        if(iter->second == 0)
+        {
+            tempArr = map.value(date.toDouble());
+            ++tempArr[0];
+        }
+        else if(iter->second == 1)
+        {
+            tempArr = map.value(date.toDouble());
+            ++tempArr[1];
+        }
+        ++iter;
+    }
+    int *tempArr;
+    foreach (double var, datax) {
+        tempArr = map.value(var);
+        if(tempArr[0] > max)
+            max = tempArr[0];
+        if(tempArr[1] > max)
+            max = tempArr[1];
+        datay1.push_back(tempArr[0]);
+        datay2.push_back(tempArr[1]);
+
+    }
+
+/*
+    int i, j;
+    double key;
+    for (i = 1; i < datax.size(); i++)
+    {
+       key = datax.at(i);
+       j = i-1;
+
+       while (j >= 0 && datax.at(j) > key)
+       {
+           datax[j+1].value = datax.at(j);
+           j = j-1;
+       }
+       datax[j+1].value = key;
+    }*/
+
+    QCPBarsGroup *group = new QCPBarsGroup(ui->customPlot);
+    QCPBars *bars;
+
+    out << datax.at(0) << datax.at(1) << datax.at(2) <<"  " << datay1.size() <<  "  " << datay2.size() << endl;
+
+    datax  = QVector<double>() << 1 << 2 << 3 << 4 << 5 << 6;
+    datay1 = QVector<double>() << 2 << 3 << 4 << 1 << 2 << 3;
+    //datay2 = QVector<double>() << 1 << 2 << 3 << 4 << 5 << 2;
+
+
+    bars = new QCPBars(ui->customPlot->xAxis, ui->customPlot->yAxis);
+    //ui->customPlot->addPlottable(bars);
+    bars->setData(datax, datay1);
+    bars->setBrush(QColor(0, 0, 255, 50));
+    bars->setPen(QColor(0, 0, 255));
+    bars->setWidth(0.15);
+    bars->setBarsGroup(group);
+    bars = new QCPBars(ui->customPlot->xAxis, ui->customPlot->yAxis);
+    //ui->customPlot->addPlottable(bars);
+    bars->setData(datax, datay2);
+    bars->setBrush(QColor(180, 00, 120, 50));
+    bars->setPen(QColor(180, 00, 120));
+    bars->setWidth(0.15);
+    bars->setBarsGroup(group);
+
+
+/*
+    QSharedPointer<QCPAxisTickerDateTime> dateTicker(new QCPAxisTickerDateTime);
+    dateTicker->setDateTimeFormat("yyyy\nMMMM");
+
+
+    ui->customPlot->xAxis->setTicker(dateTicker);
+*/
+    string Months[]={"Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"};
+    QSharedPointer<QCPAxisTickerText> textTicker(new QCPAxisTickerText);
+    textTicker->setTickOrigin(1);
+    int i=1;
+    foreach (QString var, dates) {
+        pieces = var.split("-");
+        QString month = pieces.value(1);
+        textTicker->addTick(i,  QString::fromStdString(Months[month.toInt()-1]) +"\n"+pieces.value(0));
+        out << month << endl;
+        ++i;
+    }
+    out << i << endl;
+    ui->customPlot->xAxis->setTicker(textTicker);
+
+
+    ui->customPlot->xAxis->setLabel("Tarih");
+    ui->customPlot->yAxis->setLabel("Yakalanan resim sayıs");
+
+   // ui->customPlot->xAxis->setRange(0, datax.length());
+    ui->customPlot->yAxis->setRange(0, max );
+
+  //  ui->customPlot->yAxis->setRange(0, 0.7);
+    //ui->customPlot->xAxis->setAutoTickStep(false);
+    //ui->customPlot->xAxis->setTickStep(1);
 }

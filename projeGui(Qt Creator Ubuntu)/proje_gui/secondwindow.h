@@ -48,6 +48,7 @@ private slots:
     void updateTableInfo();
 
     void runLiveStream();
+    void disconnect();
 
 private:
     bool isSystemRun = false;
@@ -56,8 +57,8 @@ private:
     bool isStopClicked = false;
     Ui::SecondWindow *ui;
     Client *client;
-    Graphs *graph;
-    DetectedImage *detectedImage;
+    Graphs *graph = nullptr;
+    DetectedImage *detectedImage= nullptr;
     DbConnection db;
     void getTableInfo();
     void loadImages();

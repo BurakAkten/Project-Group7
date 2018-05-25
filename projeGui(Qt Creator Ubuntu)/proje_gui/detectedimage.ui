@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>439</width>
-    <height>321</height>
+    <width>545</width>
+    <height>377</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -24,8 +24,8 @@
     <widget class="QLabel" name="label">
      <property name="minimumSize">
       <size>
-       <width>401</width>
-       <height>291</height>
+       <width>527</width>
+       <height>359</height>
       </size>
      </property>
      <property name="text">

@@ -9,6 +9,7 @@ DetectedImage::DetectedImage(QWidget *parent, QImage &image) :
     ui->label->setPixmap(QPixmap::fromImage(image));
     ui->label->setScaledContents(true);
     ui->label->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
+    ui->label->show();
 }
 
 DetectedImage::~DetectedImage()
