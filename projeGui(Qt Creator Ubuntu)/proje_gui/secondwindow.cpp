@@ -39,7 +39,7 @@
 //const string ipAddress = "192.168.2.2";
 const string ipAddress = "localhost";
 
-bool PROFILE_PROD = false;
+bool PROFILE_PROD = true;
 bool inf = true;
 
 SecondWindow::SecondWindow(QWidget *parent) :
@@ -165,6 +165,11 @@ void SecondWindow::loadImages(){
     ui->fullScreen->setIconSize(QSize(60,100));
 }
 
+void push(int area, Mat &image){
+    DbConnection dbcon;
+    dbcon.postReport(area, image);
+}
+
 void SecondWindow::callback(Client& client) {
     Mat frame;
     Mat decompressedFrame;
@@ -218,7 +223,8 @@ void SecondWindow::callback(Client& client) {
                 case Command::no_helmet: {
                     cout << command << " " << noHelmetAreaId << endl; // FRAME WITH BLUE AND RED SQUARES HAS ARRIVED
                     if (PROFILE_PROD) {
-                        QtConcurrent::run(this->db, &DbConnection::postReport, noHelmetAreaId, frame);
+                        isFirstImg = false;
+                        QtConcurrent::run(push, noHelmetAreaId, frame);
                     }
                     ui->detectedImage->setPixmap(QPixmap::fromImage(QImage((unsigned char*) frame.data, frame.cols, frame.rows, QImage::Format_RGB888)));
                     ui->detectedImage->setScaledContents(true);
@@ -333,28 +339,28 @@ void SecondWindow::on_openDateGraph_clicked() {
 }
 
 void SecondWindow::on_tableWidget_cellDoubleClicked(int row, int column) {
-    if (isSystemRun) {
-        QImage image;
-        Mat frame, decompressedFrame;
-        int id;
+    QImage image;
+    Mat frame, decompressedFrame;
+    int id;
+    DbConnection dbconn;
 
-        id = ui->tableWidget->item(row, 0)->data(Qt::UserRole).toInt();
-        frame = db.getImage(id);
-        pyrUp(frame, decompressedFrame);
-        cvtColor(decompressedFrame, decompressedFrame, CV_BGR2RGB);    //  renkleri Qt ye uygun hale getirmek için
+    id = ui->tableWidget->item(row, 0)->data(Qt::UserRole).toInt();
+    frame = dbconn.getImage(id);
+    pyrUp(frame, decompressedFrame);
+    cvtColor(decompressedFrame, decompressedFrame, CV_BGR2RGB);    //  renkleri Qt ye uygun hale getirmek için
 
-        image = QImage((uchar*) decompressedFrame.data, decompressedFrame.cols, decompressedFrame.rows, decompressedFrame.step, QImage::Format_RGB888);
+    image = QImage((uchar*) decompressedFrame.data, decompressedFrame.cols, decompressedFrame.rows, decompressedFrame.step, QImage::Format_RGB888);
 
-        if(detectedImage != nullptr)
-            delete detectedImage;
+    if(detectedImage != nullptr)
+        delete detectedImage;
 
-        detectedImage = new DetectedImage(this, image);
-        detectedImage->setWindowTitle("Tespit Edilen Resim");
-        detectedImage->show();
-    }
+    detectedImage = new DetectedImage(this, image);
+    detectedImage->setWindowTitle("Tespit Edilen Resim");
+    detectedImage->show();
 }
 
 void SecondWindow::updateTableInfo() {
+    cout << "Updated" << endl;
     this->getTableInfo();
 }
 

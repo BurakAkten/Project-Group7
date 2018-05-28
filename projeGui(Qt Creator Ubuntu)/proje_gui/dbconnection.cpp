@@ -57,38 +57,39 @@ istream& operator>>(std::istream& in, cv::Mat& mat) {
 
 DbConnection::DbConnection() {
     driver = get_driver_instance();
-    con = driver->connect("proje7.mysql.database.azure.com", "projeadmin@proje7", "Proje123");
+    con = driver->connect("localhost", "root", "admin");
+    //con = driver->connect("proje7.mysql.database.azure.com", "projeadmin@proje7", "Proje123");
     /* Connect to the MySQL test database */
     con->setSchema("test");
 }
 
 DbConnection::~DbConnection() {
-    delete res;
-    delete stmt;
     delete con;
-    delete pstmt;
 }
 
 sql::ResultSet *DbConnection::getLastFiftyRaport() {
-    stmt = con->createStatement();
-    return stmt->executeQuery("SELECT id, areaid, date FROM test.reports ORDER BY date DESC LIMIT 50;");
+    sql::Statement *stmt = con->createStatement();
+    sql::ResultSet *res = stmt->executeQuery("SELECT id, areaid, date FROM test.reports ORDER BY date DESC LIMIT 50;");
+    delete stmt;
+    return res;
 }
 
 vector<int> DbConnection::getCountByArea() {
     vector<int> areaCounts;
-    stmt = con->createStatement();
+    sql::Statement *stmt = con->createStatement();
     for (int i = 1; i < 5; ++i){
         std::stringstream ss;
         ss << "SELECT id FROM test.reports WHERE areaid=" << i << " LIMIT 300;";
         sql::ResultSet *res = stmt->executeQuery(ss.str());
         areaCounts.push_back(res->rowsCount());
     }
+    delete stmt;
     return areaCounts;
 }
 
 map<string, int> DbConnection::getDateByArea() {
     map<string, int> dateByAreas;
-    res = con->createStatement()->executeQuery("SELECT date, areaid FROM test.reports ORDER BY date LIMIT 500;");
+    sql::ResultSet *res = con->createStatement()->executeQuery("SELECT date, areaid FROM test.reports ORDER BY date LIMIT 500;");
     while (res->next()) {
         dateByAreas[res->getString(1)] = res->getInt(2);
     }
@@ -123,5 +124,6 @@ cv::Mat DbConnection::getImage(int id) {
         istream *os = res->getBlob(1);
         *os >> frame;
     }
+    delete stmt;
     return frame;
 }

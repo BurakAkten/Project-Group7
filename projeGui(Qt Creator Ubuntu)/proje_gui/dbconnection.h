@@ -24,9 +24,6 @@ class DbConnection
 {
     sql::Driver *driver;
     sql::Connection *con;
-    sql::Statement *stmt;
-    sql::PreparedStatement *pstmt;
-    sql::ResultSet *res;
 public:
     DbConnection();
     ~DbConnection();

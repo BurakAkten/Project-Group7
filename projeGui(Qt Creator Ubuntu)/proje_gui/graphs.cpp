@@ -66,15 +66,15 @@ void Graphs::createAreaGraph(vector<int> areaCounts) {
     // prepare x axis with country labels:
     QVector<double> ticks;
     QVector<QString> labels;
-    ticks << 1 << 2 << 3 << 4;
-    labels << "Bölge 1" << "Bölge 2" << "Bölge  3" << "Bölge 4";
+    ticks << 1 << 2;
+    labels << "Bölge 1" << "Bölge 2";
     QSharedPointer<QCPAxisTickerText> textTicker(new QCPAxisTickerText);
     textTicker->addTicks(ticks, labels);
     ui->customPlot->xAxis->setTicker(textTicker);
     ui->customPlot->xAxis->setTickLabelRotation(60);
     ui->customPlot->xAxis->setSubTicks(false);
     ui->customPlot->xAxis->setTickLength(0, 4);
-    ui->customPlot->xAxis->setRange(0, 5); // Bölge sayısı
+    ui->customPlot->xAxis->setRange(0, 3); // Bölge sayısı
     ui->customPlot->xAxis->setBasePen(QPen(Qt::white));
     ui->customPlot->xAxis->setTickPen(QPen(Qt::white));
     ui->customPlot->xAxis->grid()->setVisible(true);
@@ -83,7 +83,7 @@ void Graphs::createAreaGraph(vector<int> areaCounts) {
     ui->customPlot->xAxis->setLabelColor(Qt::white);
 
     // prepare y axis:
-    ui->customPlot->yAxis->setRange(0, 300); // y eksen sınırları
+    ui->customPlot->yAxis->setRange(0, (areaCounts[0] + areaCounts[1]) / 2 + 10); // y eksen sınırları
     ui->customPlot->yAxis->setPadding(5); // a bit more space to the left border
     ui->customPlot->yAxis->setLabel("Bölgelere göre\nrapor sayısı");
     ui->customPlot->yAxis->setBasePen(QPen(Qt::white));
@@ -97,7 +97,7 @@ void Graphs::createAreaGraph(vector<int> areaCounts) {
 
     // Add data:
     QVector<double> raportNumberData; //nuclearData, regenData;
-    raportNumberData  << areaCounts[0] << areaCounts[1] << areaCounts[2] << areaCounts[3];
+    raportNumberData  << areaCounts[0] << areaCounts[1];
     //nuclearData << 0.08*10.5 << 0.12*5.5 << 0.12*5.5 << 0.40*5.8 << 0.09*5.2 << 0.00*4.2 << 0.07*11.2;
     //regenData   << 0.06*10.5 << 0.05*5.5 << 0.04*5.5 << 0.06*5.8 << 0.02*5.2 << 0.07*4.2 << 0.25*11.2;
     raportNumber->setData(ticks, raportNumberData);
