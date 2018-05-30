@@ -208,7 +208,7 @@
                      <item row="0" column="0">
                       <widget class="QLabel" name="label_2">
                        <property name="text">
-                        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;BÖLGE SEÇMEDİĞİNİZ SÜRECE&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;SİSTEM AKTİF OLMAYACAKTIR.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;BAŞLAT BUTONU İLE SİSTEM HAREKETE BAŞLAR&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;SİSTEM DURDURULDUĞUNDA KAMERANIN BAŞLANGICA DÖNMESİ BEKLENİR&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;YAKALANAN DURUMLAR ARAYÜZÜN SAĞ TARAFINDA GÖSTERİLİR&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;GEÇMİŞTEKİ OLAYLAR TABLODAN ÇİFT TIKLAYARAK GÖRÜLEBİLİR&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                        </property>
                       </widget>
                      </item>
@@ -239,7 +239,7 @@
                        </size>
                       </property>
                       <property name="text">
-                       <string>Anladım</string>
+                       <string>DEVAM</string>
                       </property>
                      </widget>
                     </item>

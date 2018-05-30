@@ -72,6 +72,7 @@ SecondWindow::SecondWindow(QWidget *parent) :
     connect(timer, SIGNAL(timeout()), this, SLOT(updateTableInfo()));
     timer->start(UPDATE_SECOND * 1000);
 
+    ui->openDateGraph->setVisible(false);
 
 }
 
