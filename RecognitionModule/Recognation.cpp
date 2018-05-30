@@ -125,7 +125,7 @@ void Recognation::detectBody(Mat& frame, Detected& detectedHelmet) {
 
     // Load cascade into CascadeClassifier
     bool loaded1 = detectorUpper.load(cascadeUpper);
-    if (!loaded1) { cout << "Error loading upper body cascade file\n" << endl; exit(1); };
+    if (!loaded1) { cout << "Error loading cascade file\n" << endl; exit(1); };
 
     vector<Rect> detectedHeads;
     Mat img, crp;
