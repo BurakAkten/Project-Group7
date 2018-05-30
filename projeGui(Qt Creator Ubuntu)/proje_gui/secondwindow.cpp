@@ -136,21 +136,24 @@ void SecondWindow::getTableInfo(){
 
 void SecondWindow::loadImages(){
 
-    QPixmap *image = new QPixmap(":/Resources/images/gtu.png");
-    int w = ui->gtu->width();
-    int h = ui->gtu->height();
-    ui->gtu->setPixmap(image->scaled(w, h, Qt::KeepAspectRatio));
 
-    image = new QPixmap(":/Resources/images/dikkat.png");
-    w = ui->dikkat1->width();
-    h = ui->dikkat1->height();
-    ui->dikkat1->setPixmap(image->scaled(w, h, Qt::KeepAspectRatio));
+    QImage image2(":/Resources/images/gtu.png");
+    ui->gtu->setPixmap(QPixmap::fromImage(image2));
+    ui->gtu->setScaledContents(true);
+    ui->gtu->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
 
-    w = ui->dikkat2->width();
-    h = ui->dikkat2->height();
-    ui->dikkat2->setPixmap(image->scaled(w, h, Qt::KeepAspectRatio));
 
-    image = new QPixmap(":/Resources/images/play.png");
+    QImage image3(":/Resources/images/dikkat.png");
+    ui->dikkat1->setPixmap(QPixmap::fromImage(image3));
+    ui->dikkat1->setScaledContents(true);
+    ui->dikkat1->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+
+    ui->dikkat2->setPixmap(QPixmap::fromImage(image3));
+    ui->dikkat2->setScaledContents(true);
+    ui->dikkat2->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+
+
+    QPixmap *image = new QPixmap(":/Resources/images/play.png");
     QIcon ButtonIcon(*image);
     ui->play->setIcon(ButtonIcon);
     ui->play->setIconSize(QSize(60,55));

@@ -8,17 +8,16 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    QPixmap pix(":/Resources/images/gtu.png");
-    int w = ui->gtu->width();
-    int h = ui->gtu->height();
-    ui->gtu->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
 
-    QPixmap pix2(":/Resources/images/dikkat.png");
-    w = ui->dikkat->width();
-    h = ui->dikkat->height();
-    ui->dikkat->setPixmap(pix2.scaled(w, h, Qt::KeepAspectRatio));
+    QImage image(":/Resources/images/gtu.png");
+    ui->gtu->setPixmap(QPixmap::fromImage(image));
+    ui->gtu->setScaledContents(true);
+    ui->gtu->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
 
-
+    QImage image2(":/Resources/images/dikkat.png");
+    ui->dikkat->setPixmap(QPixmap::fromImage(image2));
+    ui->dikkat->setScaledContents(true);
+    ui->dikkat->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
 
 }
 
