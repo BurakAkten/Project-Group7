@@ -204,6 +204,60 @@ Server.cpp.s:
 	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/Server.cpp.s
 .PHONY : Server.cpp.s
 
+image/Detected.o: image/Detected.cpp.o
+
+.PHONY : image/Detected.o
+
+# target to build an object file
+image/Detected.cpp.o:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/image/Detected.cpp.o
+.PHONY : image/Detected.cpp.o
+
+image/Detected.i: image/Detected.cpp.i
+
+.PHONY : image/Detected.i
+
+# target to preprocess a source file
+image/Detected.cpp.i:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/image/Detected.cpp.i
+.PHONY : image/Detected.cpp.i
+
+image/Detected.s: image/Detected.cpp.s
+
+.PHONY : image/Detected.s
+
+# target to generate assembly for a file
+image/Detected.cpp.s:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/image/Detected.cpp.s
+.PHONY : image/Detected.cpp.s
+
+image/Recognation.o: image/Recognation.cpp.o
+
+.PHONY : image/Recognation.o
+
+# target to build an object file
+image/Recognation.cpp.o:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/image/Recognation.cpp.o
+.PHONY : image/Recognation.cpp.o
+
+image/Recognation.i: image/Recognation.cpp.i
+
+.PHONY : image/Recognation.i
+
+# target to preprocess a source file
+image/Recognation.cpp.i:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/image/Recognation.cpp.i
+.PHONY : image/Recognation.cpp.i
+
+image/Recognation.s: image/Recognation.cpp.s
+
+.PHONY : image/Recognation.s
+
+# target to generate assembly for a file
+image/Recognation.cpp.s:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/image/Recognation.cpp.s
+.PHONY : image/Recognation.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -230,6 +284,33 @@ main.s: main.cpp.s
 main.cpp.s:
 	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/main.cpp.s
 .PHONY : main.cpp.s
+
+motor/Motor.o: motor/Motor.cpp.o
+
+.PHONY : motor/Motor.o
+
+# target to build an object file
+motor/Motor.cpp.o:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/motor/Motor.cpp.o
+.PHONY : motor/Motor.cpp.o
+
+motor/Motor.i: motor/Motor.cpp.i
+
+.PHONY : motor/Motor.i
+
+# target to preprocess a source file
+motor/Motor.cpp.i:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/motor/Motor.cpp.i
+.PHONY : motor/Motor.cpp.i
+
+motor/Motor.s: motor/Motor.cpp.s
+
+.PHONY : motor/Motor.s
+
+# target to generate assembly for a file
+motor/Motor.cpp.s:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/motor/Motor.cpp.s
+.PHONY : motor/Motor.cpp.s
 
 supporting/restart.o: supporting/restart.c.o
 
@@ -330,9 +411,18 @@ help:
 	@echo "... Server.o"
 	@echo "... Server.i"
 	@echo "... Server.s"
+	@echo "... image/Detected.o"
+	@echo "... image/Detected.i"
+	@echo "... image/Detected.s"
+	@echo "... image/Recognation.o"
+	@echo "... image/Recognation.i"
+	@echo "... image/Recognation.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... motor/Motor.o"
+	@echo "... motor/Motor.i"
+	@echo "... motor/Motor.s"
 	@echo "... supporting/restart.o"
 	@echo "... supporting/restart.i"
 	@echo "... supporting/restart.s"

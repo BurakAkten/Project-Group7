@@ -6,6 +6,9 @@ file(REMOVE_RECURSE
   "CMakeFiles/Server.dir/MatConverter.cpp.o"
   "CMakeFiles/Server.dir/Server.cpp.o"
   "CMakeFiles/Server.dir/Networkable.cpp.o"
+  "CMakeFiles/Server.dir/motor/Motor.cpp.o"
+  "CMakeFiles/Server.dir/image/Detected.cpp.o"
+  "CMakeFiles/Server.dir/image/Recognation.cpp.o"
   "Server.pdb"
   "Server"
 )

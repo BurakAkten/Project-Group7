@@ -111,7 +111,31 @@
 		<Unit filename="/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/Server.h">
 			<Option target="Server"/>
 		</Unit>
+		<Unit filename="/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/image/Detected.cpp">
+			<Option target="Server"/>
+		</Unit>
+		<Unit filename="/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/image/Detected.h">
+			<Option target="Server"/>
+		</Unit>
+		<Unit filename="/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/image/Recognation.cpp">
+			<Option target="Server"/>
+		</Unit>
+		<Unit filename="/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/image/Recognation.h">
+			<Option target="Server"/>
+		</Unit>
+		<Unit filename="/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/image/variables.h">
+			<Option target="Server"/>
+		</Unit>
 		<Unit filename="/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/main.cpp">
+			<Option target="Server"/>
+		</Unit>
+		<Unit filename="/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/motor/Motor.cpp">
+			<Option target="Server"/>
+		</Unit>
+		<Unit filename="/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/motor/Motor.h">
+			<Option target="Server"/>
+		</Unit>
+		<Unit filename="/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/motor/MotorException.h">
 			<Option target="Server"/>
 		</Unit>
 		<Unit filename="/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/supporting/restart.c">

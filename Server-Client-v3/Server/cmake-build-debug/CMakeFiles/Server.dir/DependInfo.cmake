@@ -21,7 +21,10 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/MatConverter.cpp" "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/cmake-build-debug/CMakeFiles/Server.dir/MatConverter.cpp.o"
   "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/Networkable.cpp" "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/cmake-build-debug/CMakeFiles/Server.dir/Networkable.cpp.o"
   "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/Server.cpp" "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/cmake-build-debug/CMakeFiles/Server.dir/Server.cpp.o"
+  "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/image/Detected.cpp" "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/cmake-build-debug/CMakeFiles/Server.dir/image/Detected.cpp.o"
+  "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/image/Recognation.cpp" "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/cmake-build-debug/CMakeFiles/Server.dir/image/Recognation.cpp.o"
   "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/main.cpp" "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/cmake-build-debug/CMakeFiles/Server.dir/main.cpp.o"
+  "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/motor/Motor.cpp" "/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/cmake-build-debug/CMakeFiles/Server.dir/motor/Motor.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 

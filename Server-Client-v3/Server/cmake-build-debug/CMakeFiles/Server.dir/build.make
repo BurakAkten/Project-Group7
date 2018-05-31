@@ -225,6 +225,78 @@ CMakeFiles/Server.dir/Networkable.cpp.o.provides: CMakeFiles/Server.dir/Networka
 CMakeFiles/Server.dir/Networkable.cpp.o.provides.build: CMakeFiles/Server.dir/Networkable.cpp.o
 
 
+CMakeFiles/Server.dir/motor/Motor.cpp.o: CMakeFiles/Server.dir/flags.make
+CMakeFiles/Server.dir/motor/Motor.cpp.o: ../motor/Motor.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Server.dir/motor/Motor.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Server.dir/motor/Motor.cpp.o -c /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/motor/Motor.cpp
+
+CMakeFiles/Server.dir/motor/Motor.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Server.dir/motor/Motor.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/motor/Motor.cpp > CMakeFiles/Server.dir/motor/Motor.cpp.i
+
+CMakeFiles/Server.dir/motor/Motor.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Server.dir/motor/Motor.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/motor/Motor.cpp -o CMakeFiles/Server.dir/motor/Motor.cpp.s
+
+CMakeFiles/Server.dir/motor/Motor.cpp.o.requires:
+
+.PHONY : CMakeFiles/Server.dir/motor/Motor.cpp.o.requires
+
+CMakeFiles/Server.dir/motor/Motor.cpp.o.provides: CMakeFiles/Server.dir/motor/Motor.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/motor/Motor.cpp.o.provides.build
+.PHONY : CMakeFiles/Server.dir/motor/Motor.cpp.o.provides
+
+CMakeFiles/Server.dir/motor/Motor.cpp.o.provides.build: CMakeFiles/Server.dir/motor/Motor.cpp.o
+
+
+CMakeFiles/Server.dir/image/Detected.cpp.o: CMakeFiles/Server.dir/flags.make
+CMakeFiles/Server.dir/image/Detected.cpp.o: ../image/Detected.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Server.dir/image/Detected.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Server.dir/image/Detected.cpp.o -c /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/image/Detected.cpp
+
+CMakeFiles/Server.dir/image/Detected.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Server.dir/image/Detected.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/image/Detected.cpp > CMakeFiles/Server.dir/image/Detected.cpp.i
+
+CMakeFiles/Server.dir/image/Detected.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Server.dir/image/Detected.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/image/Detected.cpp -o CMakeFiles/Server.dir/image/Detected.cpp.s
+
+CMakeFiles/Server.dir/image/Detected.cpp.o.requires:
+
+.PHONY : CMakeFiles/Server.dir/image/Detected.cpp.o.requires
+
+CMakeFiles/Server.dir/image/Detected.cpp.o.provides: CMakeFiles/Server.dir/image/Detected.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/image/Detected.cpp.o.provides.build
+.PHONY : CMakeFiles/Server.dir/image/Detected.cpp.o.provides
+
+CMakeFiles/Server.dir/image/Detected.cpp.o.provides.build: CMakeFiles/Server.dir/image/Detected.cpp.o
+
+
+CMakeFiles/Server.dir/image/Recognation.cpp.o: CMakeFiles/Server.dir/flags.make
+CMakeFiles/Server.dir/image/Recognation.cpp.o: ../image/Recognation.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Server.dir/image/Recognation.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Server.dir/image/Recognation.cpp.o -c /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/image/Recognation.cpp
+
+CMakeFiles/Server.dir/image/Recognation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Server.dir/image/Recognation.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/image/Recognation.cpp > CMakeFiles/Server.dir/image/Recognation.cpp.i
+
+CMakeFiles/Server.dir/image/Recognation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Server.dir/image/Recognation.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/image/Recognation.cpp -o CMakeFiles/Server.dir/image/Recognation.cpp.s
+
+CMakeFiles/Server.dir/image/Recognation.cpp.o.requires:
+
+.PHONY : CMakeFiles/Server.dir/image/Recognation.cpp.o.requires
+
+CMakeFiles/Server.dir/image/Recognation.cpp.o.provides: CMakeFiles/Server.dir/image/Recognation.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/image/Recognation.cpp.o.provides.build
+.PHONY : CMakeFiles/Server.dir/image/Recognation.cpp.o.provides
+
+CMakeFiles/Server.dir/image/Recognation.cpp.o.provides.build: CMakeFiles/Server.dir/image/Recognation.cpp.o
+
+
 # Object files for target Server
 Server_OBJECTS = \
 "CMakeFiles/Server.dir/main.cpp.o" \
@@ -233,7 +305,10 @@ Server_OBJECTS = \
 "CMakeFiles/Server.dir/supporting/uiciname.c.o" \
 "CMakeFiles/Server.dir/MatConverter.cpp.o" \
 "CMakeFiles/Server.dir/Server.cpp.o" \
-"CMakeFiles/Server.dir/Networkable.cpp.o"
+"CMakeFiles/Server.dir/Networkable.cpp.o" \
+"CMakeFiles/Server.dir/motor/Motor.cpp.o" \
+"CMakeFiles/Server.dir/image/Detected.cpp.o" \
+"CMakeFiles/Server.dir/image/Recognation.cpp.o"
 
 # External object files for target Server
 Server_EXTERNAL_OBJECTS =
@@ -245,6 +320,9 @@ Server: CMakeFiles/Server.dir/supporting/uiciname.c.o
 Server: CMakeFiles/Server.dir/MatConverter.cpp.o
 Server: CMakeFiles/Server.dir/Server.cpp.o
 Server: CMakeFiles/Server.dir/Networkable.cpp.o
+Server: CMakeFiles/Server.dir/motor/Motor.cpp.o
+Server: CMakeFiles/Server.dir/image/Detected.cpp.o
+Server: CMakeFiles/Server.dir/image/Recognation.cpp.o
 Server: CMakeFiles/Server.dir/build.make
 Server: /usr/local/lib/libopencv_stitching.3.4.1.dylib
 Server: /usr/local/lib/libopencv_superres.3.4.1.dylib
@@ -291,7 +369,7 @@ Server: /usr/local/lib/libopencv_objdetect.3.4.1.dylib
 Server: /usr/local/lib/libopencv_imgproc.3.4.1.dylib
 Server: /usr/local/lib/libopencv_core.3.4.1.dylib
 Server: CMakeFiles/Server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable Server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/vakhidbetrakhmadov/Desktop/Project/Project-Group7/Server-Client-v3/Server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable Server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -306,6 +384,9 @@ CMakeFiles/Server.dir/requires: CMakeFiles/Server.dir/supporting/uiciname.c.o.re
 CMakeFiles/Server.dir/requires: CMakeFiles/Server.dir/MatConverter.cpp.o.requires
 CMakeFiles/Server.dir/requires: CMakeFiles/Server.dir/Server.cpp.o.requires
 CMakeFiles/Server.dir/requires: CMakeFiles/Server.dir/Networkable.cpp.o.requires
+CMakeFiles/Server.dir/requires: CMakeFiles/Server.dir/motor/Motor.cpp.o.requires
+CMakeFiles/Server.dir/requires: CMakeFiles/Server.dir/image/Detected.cpp.o.requires
+CMakeFiles/Server.dir/requires: CMakeFiles/Server.dir/image/Recognation.cpp.o.requires
 
 .PHONY : CMakeFiles/Server.dir/requires
 

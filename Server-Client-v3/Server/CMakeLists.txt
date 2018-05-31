@@ -23,7 +23,16 @@ add_executable(Server
         Networkable.h
         NetworkableException.h
         Command.h
-        Data.h)
+        Data.h
+        motor/Motor.cpp
+        motor/Motor.h
+        motor/MotorException.h
+        image/Detected.h
+        image/Detected.cpp
+        image/Recognation.h
+        image/Recognation.cpp
+        image/variables.h
+        )
 
 include_directories(${OpenCV_INCLUDE_DIRS})
 target_link_libraries(Server ${OpenCV_LIBS})

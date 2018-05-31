@@ -12,7 +12,6 @@ namespace server_client {
     class Server;
     typedef void(*callback_t)(Server& server);
 
-    // TODO: Make it singleton
     class Server: public Networkable {
         u_port_t port;
         callback_t callback;
